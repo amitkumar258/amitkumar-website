@@ -94,7 +94,7 @@ const commentariesData = [
         publication: "ThinkChina",
         date: "11/08/2025",
         pubCategory: "international",
-        url: "https://www.thinkchina.sg/",
+        url: "https://www.thinkchina.sg/politics/dalai-lamas-succession-and-geopolitics-faith",
         tags: ["security"]
     },
     {
@@ -142,7 +142,7 @@ const commentariesData = [
         publication: "ThinkChina",
         date: "10/05/2025",
         pubCategory: "international",
-        url: "https://www.thinkchina.sg/",
+        url: "https://www.thinkchina.sg/economy/why-chinas-finances-are-weaker-they-seem",
         tags: ["economy"]
     },
     {
@@ -166,7 +166,7 @@ const commentariesData = [
         publication: "ThinkChina",
         date: "24/10/2024",
         pubCategory: "international",
-        url: "https://www.thinkchina.sg/",
+        url: "https://www.thinkchina.sg/economy/india-warming-chinese-investment",
         tags: ["economy", "security"]
     },
     {
