@@ -75,32 +75,99 @@
 
         <!-- Commentaries Section -->
         <section id="commentaries" class="section">
-            <div class="container">
-                <h2>Commentaries</h2>
-                <p class="section-intro">Opinion pieces and analysis on geopolitics, economics, and policy.</p>
-
-                <div class="filter-controls">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="indian-express">Indian Express</button>
-                    <button class="filter-btn" data-filter="moneycontrol">Moneycontrol</button>
-                    <button class="filter-btn" data-filter="nikkei-asia">Nikkei Asia</button>
-                    <button class="filter-btn" data-filter="others">Others</button>
+            <div class="section-wrapper">
+                <div class="section-sidebar">
+                    <div class="stats-card">
+                        <div class="stat-number" id="commentaries-count">0</div>
+                        <div class="stat-label">Commentaries</div>
+                    </div>
+                    <div class="themes">
+                        <div class="theme-item">
+                            <span class="theme-tag security">Security</span>
+                            <span class="theme-count" id="security-count">0</span>
+                        </div>
+                        <div class="theme-item">
+                            <span class="theme-tag economy">Economy</span>
+                            <span class="theme-count" id="economy-count">0</span>
+                        </div>
+                        <div class="theme-item">
+                            <span class="theme-tag technology">Technology</span>
+                            <span class="theme-count" id="technology-count">0</span>
+                        </div>
+                    </div>
                 </div>
+                <div class="section-content">
+                    <h2>Commentaries</h2>
+                    <p class="section-intro">Opinion pieces and analysis on geopolitics, economics, and policy.</p>
 
-                <div class="commentaries-list">
-                    <!-- Commentaries will be inserted here by JavaScript -->
+                    <div class="publications-header">
+                        <div class="pub-group">
+                            <h3>National Publications</h3>
+                            <div class="filter-controls">
+                                <button class="filter-btn active" data-filter="all">All</button>
+                                <button class="filter-btn" data-filter="national-indian-express">Indian Express</button>
+                                <button class="filter-btn" data-filter="national-the-hindu">The Hindu</button>
+                                <button class="filter-btn" data-filter="national-hindustan-times">Hindustan Times</button>
+                                <button class="filter-btn" data-filter="national-the-print">The Print</button>
+                                <button class="filter-btn" data-filter="national-the-qunit">The Qunit</button>
+                                <button class="filter-btn" data-filter="national-moneycontrol">Moneycontrol</button>
+                                <button class="filter-btn" data-filter="national-deccan-herald">Deccan Herald</button>
+                            </div>
+                        </div>
+                        <div class="pub-group">
+                            <h3>International Publications</h3>
+                            <div class="filter-controls">
+                                <button class="filter-btn" data-filter="international-foreign-policy">Foreign Policy</button>
+                                <button class="filter-btn" data-filter="international-nikkei-asia">Nikkei Asia</button>
+                                <button class="filter-btn" data-filter="international-thinkchina">ThinkChina</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="commentaries-list">
+                        <!-- Commentaries will be inserted here by JavaScript -->
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Papers Section -->
         <section id="papers" class="section">
-            <div class="container">
-                <h2>Papers</h2>
-                <p class="section-intro">In-depth research and analysis on geopolitical and economic issues.</p>
+            <div class="section-wrapper">
+                <div class="section-sidebar">
+                    <div class="stats-card">
+                        <div class="stat-number" id="papers-count">0</div>
+                        <div class="stat-label">Papers</div>
+                    </div>
+                    <div class="themes">
+                        <div class="theme-item">
+                            <span class="theme-tag security">Security</span>
+                            <span class="theme-count" id="papers-security-count">0</span>
+                        </div>
+                        <div class="theme-item">
+                            <span class="theme-tag economy">Economy</span>
+                            <span class="theme-count" id="papers-economy-count">0</span>
+                        </div>
+                        <div class="theme-item">
+                            <span class="theme-tag technology">Technology</span>
+                            <span class="theme-count" id="papers-technology-count">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <h2>Papers</h2>
+                    <p class="section-intro">In-depth research and analysis on geopolitical and economic issues.</p>
 
-                <div class="papers-grid">
-                    <!-- Papers will be inserted here by JavaScript -->
+                    <div class="filter-controls">
+                        <button class="filter-btn active" data-filter="papers-all">All</button>
+                        <button class="filter-btn" data-filter="papers-security">Security</button>
+                        <button class="filter-btn" data-filter="papers-economy">Economy</button>
+                        <button class="filter-btn" data-filter="papers-technology">Technology</button>
+                    </div>
+
+                    <div class="papers-grid">
+                        <!-- Papers will be inserted here by JavaScript -->
+                    </div>
                 </div>
             </div>
         </section>

@@ -141,12 +141,18 @@ a:hover {
 
 .section {
     display: none;
-    padding: 3rem var(--spacing);
     animation: fadeIn 0.5s ease-in;
 }
 
 .section.active {
     display: block;
+}
+
+#home,
+#books,
+#media,
+#conference {
+    padding: 3rem var(--spacing);
 }
 
 @keyframes fadeIn {
@@ -269,6 +275,110 @@ a:hover {
     font-style: italic;
 }
 
+/* ==================== Section Layout with Sidebar ==================== */
+.section-wrapper {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing);
+}
+
+.section-sidebar {
+    position: sticky;
+    top: 120px;
+}
+
+.stats-card {
+    background-color: var(--light-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.themes {
+    background-color: var(--light-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.theme-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.theme-item:last-child {
+    border-bottom: none;
+}
+
+.theme-tag {
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.theme-tag.security {
+    background-color: rgba(220, 38, 38, 0.15);
+    color: #b91c1c;
+}
+
+.theme-tag.economy {
+    background-color: rgba(34, 197, 94, 0.15);
+    color: #15803d;
+}
+
+.theme-tag.technology {
+    background-color: rgba(59, 130, 246, 0.15);
+    color: #1e40af;
+}
+
+.theme-count {
+    font-weight: 700;
+    color: var(--accent-color);
+    font-size: 1rem;
+}
+
+.section-content {
+    min-width: 0;
+}
+
+.publications-header {
+    margin-bottom: 2rem;
+}
+
+.pub-group {
+    margin-bottom: 2rem;
+}
+
+.pub-group h3 {
+    font-size: 0.95rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+
 /* ==================== Commentaries Section ==================== */
 .filter-controls {
     display: flex;
@@ -312,6 +422,25 @@ a:hover {
     transform: translateX(8px);
 }
 
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.comment-header h3 {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.comment-date {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    white-space: nowrap;
+}
+
 .commentary-item h3 {
     margin-bottom: 0.5rem;
 }
@@ -325,6 +454,42 @@ a:hover {
     font-size: 0.9rem;
     color: var(--accent-color);
     font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+.comment-tags,
+.paper-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.75rem;
+}
+
+.comment-tag,
+.paper-tag {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.comment-tag.security,
+.paper-tag.security {
+    background-color: rgba(220, 38, 38, 0.15);
+    color: #b91c1c;
+}
+
+.comment-tag.economy,
+.paper-tag.economy {
+    background-color: rgba(34, 197, 94, 0.15);
+    color: #15803d;
+}
+
+.comment-tag.technology,
+.paper-tag.technology {
+    background-color: rgba(59, 130, 246, 0.15);
+    color: #1e40af;
 }
 
 /* ==================== Papers Section ==================== */
@@ -524,11 +689,34 @@ a:hover {
     }
 
     .filter-controls {
-        flex-direction: column;
+        flex-wrap: wrap;
     }
 
     .filter-btn {
-        width: 100%;
+        flex: 1;
+        min-width: 100px;
+    }
+
+    .section-wrapper {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .section-sidebar {
+        position: static;
+        order: -1;
+    }
+
+    .pub-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .pub-group h3 {
+        font-size: 0.85rem;
+    }
+
+    .publications-header {
+        margin-bottom: 1.5rem;
     }
 }
 

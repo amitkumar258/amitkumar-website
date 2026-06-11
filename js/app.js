@@ -11,6 +11,7 @@ class Router {
     init() {
         this.setupEventListeners();
         this.renderContent();
+        this.updateStatistics();
         this.showSection('home');
     }
 
@@ -35,7 +36,7 @@ class Router {
             this.showSection(hash);
         });
 
-        // Filter buttons for commentaries
+        // Filter buttons for commentaries and papers
         this.setupFilters();
     }
 
@@ -43,10 +44,23 @@ class Router {
         const filterBtns = document.querySelectorAll('.filter-btn');
         filterBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                filterBtns.forEach(b => b.classList.remove('active'));
+                // Get the parent filter controls
+                const filterControls = e.target.parentElement;
+
+                // Only deactivate siblings in the same filter group
+                filterControls.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+
                 e.target.classList.add('active');
                 const filter = e.target.getAttribute('data-filter');
-                this.filterCommentaries(filter);
+
+                // Route to appropriate filter function
+                if (filter.startsWith('papers-')) {
+                    this.filterPapers(filter);
+                } else {
+                    this.filterCommentaries(filter);
+                }
             });
         });
     }
@@ -59,6 +73,19 @@ class Router {
             } else {
                 const category = item.getAttribute('data-category');
                 item.style.display = category === filter ? 'block' : 'none';
+            }
+        });
+    }
+
+    filterPapers(filter) {
+        const items = document.querySelectorAll('.paper-card');
+        items.forEach(item => {
+            if (filter === 'papers-all') {
+                item.style.display = 'block';
+            } else {
+                const tags = item.getAttribute('data-tags');
+                const filterTag = filter.replace('papers-', '');
+                item.style.display = tags && tags.includes(filterTag) ? 'block' : 'none';
             }
         });
     }
@@ -76,25 +103,41 @@ class Router {
         const container = document.querySelector('.commentaries-list');
         if (!container) return;
 
-        container.innerHTML = commentariesData.map(commentary => `
-            <div class="commentary-item" data-category="${commentary.category}">
-                <h3><a href="${commentary.url}" target="_blank">${commentary.title}</a></h3>
-                <p class="publication-meta">${commentary.publication}</p>
-            </div>
-        `).join('');
+        container.innerHTML = commentariesData.map(commentary => {
+            const pubCategory = commentary.pubCategory || 'national';
+            const filterKey = `${pubCategory}-${commentary.publication.toLowerCase().replace(/\s+/g, '-')}`;
+            return `
+                <div class="commentary-item" data-category="${filterKey}">
+                    <div class="comment-header">
+                        <h3><a href="${commentary.url}" target="_blank">${commentary.title}</a></h3>
+                        <span class="comment-date">${commentary.date}</span>
+                    </div>
+                    <p class="publication-meta">${commentary.publication}</p>
+                    <div class="comment-tags">
+                        ${commentary.tags.map(tag => `<span class="comment-tag ${tag}">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+        }).join('');
     }
 
     renderPapers() {
         const container = document.querySelector('.papers-grid');
         if (!container) return;
 
-        container.innerHTML = papersData.map(paper => `
-            <div class="paper-card">
-                <h3><a href="${paper.url}" target="_blank">${paper.title}</a></h3>
-                <p class="card-meta">${paper.publication} • ${paper.date}</p>
-                <p>${paper.description}</p>
-            </div>
-        `).join('');
+        container.innerHTML = papersData.map(paper => {
+            const tagsString = (paper.tags || []).join(',');
+            return `
+                <div class="paper-card" data-tags="${tagsString}">
+                    <h3><a href="${paper.url}" target="_blank">${paper.title}</a></h3>
+                    <p class="card-meta">${paper.publication} • ${paper.date}</p>
+                    <p>${paper.description}</p>
+                    <div class="paper-tags">
+                        ${(paper.tags || []).map(tag => `<span class="paper-tag ${tag}">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+        }).join('');
     }
 
     renderMedia() {
@@ -103,10 +146,66 @@ class Router {
 
         container.innerHTML = mediaData.map(media => `
             <div class="media-item">
-                <p class="media-title">${media.title}</p>
+                ${media.url ? `<a href="${media.url}" target="_blank" class="media-title">${media.title}</a>` : `<p class="media-title">${media.title}</p>`}
                 <p class="media-outlet">${media.outlet}</p>
             </div>
         `).join('');
+    }
+
+    updateStatistics() {
+        // Update commentaries statistics
+        const commentariesCount = document.getElementById('commentaries-count');
+        if (commentariesCount) {
+            commentariesCount.textContent = commentariesData.length;
+        }
+
+        // Count commentaries by theme
+        const commentariesByTheme = {
+            security: 0,
+            economy: 0,
+            technology: 0
+        };
+
+        commentariesData.forEach(item => {
+            (item.tags || []).forEach(tag => {
+                if (commentariesByTheme.hasOwnProperty(tag)) {
+                    commentariesByTheme[tag]++;
+                }
+            });
+        });
+
+        document.getElementById('security-count').textContent = commentariesByTheme.security;
+        document.getElementById('economy-count').textContent = commentariesByTheme.economy;
+        document.getElementById('technology-count').textContent = commentariesByTheme.technology;
+
+        // Update papers statistics
+        const papersCount = document.getElementById('papers-count');
+        if (papersCount) {
+            papersCount.textContent = papersData.length;
+        }
+
+        // Count papers by theme
+        const papersByTheme = {
+            security: 0,
+            economy: 0,
+            technology: 0
+        };
+
+        papersData.forEach(item => {
+            (item.tags || []).forEach(tag => {
+                if (papersByTheme.hasOwnProperty(tag)) {
+                    papersByTheme[tag]++;
+                }
+            });
+        });
+
+        const paperSecurityCount = document.getElementById('papers-security-count');
+        const paperEconomyCount = document.getElementById('papers-economy-count');
+        const paperTechnologyCount = document.getElementById('papers-technology-count');
+
+        if (paperSecurityCount) paperSecurityCount.textContent = papersByTheme.security;
+        if (paperEconomyCount) paperEconomyCount.textContent = papersByTheme.economy;
+        if (paperTechnologyCount) paperTechnologyCount.textContent = papersByTheme.technology;
     }
 
     toggleMobileMenu() {
