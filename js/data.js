@@ -90,6 +90,14 @@ const commentariesData = [
         tags: ["economy"]
     },
     {
+        title: "Dalai Lama's succession and geopolitics of faith",
+        publication: "ThinkChina",
+        date: "11/08/2025",
+        pubCategory: "international",
+        url: "https://www.thinkchina.sg/",
+        tags: ["security"]
+    },
+    {
         title: "Why is Trump upset with India? It is not about peace in Ukraine",
         publication: "Indian Express",
         date: "06/08/2025",
@@ -130,6 +138,14 @@ const commentariesData = [
         tags: ["security"]
     },
     {
+        title: "Why China's finances are weaker than they seem",
+        publication: "ThinkChina",
+        date: "10/05/2025",
+        pubCategory: "international",
+        url: "https://www.thinkchina.sg/",
+        tags: ["economy"]
+    },
+    {
         title: "In global trade war, China is unlikely to blink first",
         publication: "Indian Express",
         date: "10/04/2025",
@@ -143,6 +159,14 @@ const commentariesData = [
         date: "18/12/2024",
         pubCategory: "national",
         url: "https://www.firstpost.com/opinion/using-coercive-economic-tools/",
+        tags: ["economy", "security"]
+    },
+    {
+        title: "India warming to Chinese investment?",
+        publication: "ThinkChina",
+        date: "24/10/2024",
+        pubCategory: "international",
+        url: "https://www.thinkchina.sg/",
         tags: ["economy", "security"]
     },
     {
