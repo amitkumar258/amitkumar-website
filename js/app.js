@@ -108,11 +108,11 @@ class Router {
             const filterKey = `${pubCategory}-${commentary.publication.toLowerCase().replace(/\s+/g, '-')}`;
             return `
                 <div class="commentary-item" data-category="${filterKey}">
-                    <div class="comment-header">
+                    <div class="comment-row">
+                        <span class="comment-publication">${commentary.publication}</span>
                         <h3><a href="${commentary.url}" target="_blank">${commentary.title}</a></h3>
                         <span class="comment-date">${commentary.date}</span>
                     </div>
-                    <p class="publication-meta">${commentary.publication}</p>
                     <div class="comment-tags">
                         ${commentary.tags.map(tag => `<span class="comment-tag ${tag}">${tag}</span>`).join('')}
                     </div>

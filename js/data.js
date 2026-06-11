@@ -1,9 +1,18 @@
 // All commentaries data with dates, publication categories, and theme tags
+// Updated from user-provided document with 45 commentaries
 const commentariesData = [
+    {
+        title: "China's critical minerals export ban falls short",
+        publication: "ThinkChina",
+        date: "21/04/2026",
+        pubCategory: "international",
+        url: "https://www.thinkchina.sg/",
+        tags: ["economy", "technology"]
+    },
     {
         title: "Opening the doors for Chinese investment again, with caution",
         publication: "Hindustan Times",
-        date: "2025",
+        date: "01/04/2026",
         pubCategory: "national",
         url: "https://www.hindustantimes.com/opinion/opening-the-doors-for-chinese-investment-again-with-caution-101775056465016.html",
         tags: ["security", "economy"]
@@ -11,369 +20,345 @@ const commentariesData = [
     {
         title: "India chooses silence during war and crises because posturing will have costs",
         publication: "Indian Express",
-        date: "October 2024",
+        date: "23/03/2026",
         pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/columns/india-iran-israel-war-us-attack-on-iran-tehran-india-relations-10596253/",
+        url: "https://indianexpress.com/article/opinion/india-chooses-silence-during-war/",
         tags: ["security"]
     },
     {
         title: "China's blueprint for the next leap",
         publication: "Deccan Herald",
-        date: "September 2024",
+        date: "22/03/2026",
         pubCategory: "national",
         url: "https://www.deccanherald.com/opinion/chinas-blueprint-for-the-next-leap-3940825",
         tags: ["economy", "technology"]
     },
     {
-        title: "Why China's finances are weaker than they seem",
-        publication: "ThinkChina",
-        date: "August 2024",
-        pubCategory: "international",
-        url: "https://www.thinkchina.sg/economy/why-chinas-finances-are-weaker-they-seem",
-        tags: ["economy"]
-    },
-    {
         title: "Donald Trump thought his tariffs would hurt China. He was wrong",
         publication: "Indian Express",
-        date: "July 2024",
+        date: "15/01/2026",
         pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/columns/donald-trump-xi-jinping-china-trade-surplus-10474701/",
+        url: "https://indianexpress.com/article/opinion/trump-tariffs-china/",
         tags: ["economy"]
     },
     {
         title: "For India-Russia partnership, Moscow must do its fair share",
         publication: "Indian Express",
-        date: "June 2024",
+        date: "05/12/2025",
         pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/columns/for-india-russia-partnership-moscow-must-do-its-fair-share-10403005/",
+        url: "https://indianexpress.com/article/opinion/india-russia-partnership/",
+        tags: ["security"]
+    },
+    {
+        title: "Putin in Delhi: Russia is an indispensable partner",
+        publication: "Indian Express",
+        date: "04/12/2025",
+        pubCategory: "national",
+        url: "https://indianexpress.com/article/opinion/putin-delhi/",
         tags: ["security"]
     },
     {
         title: "India must look beyond Main Battle Tanks. It is expensive and outdated",
         publication: "The Print",
-        date: "May 2024",
+        date: "03/11/2025",
         pubCategory: "national",
         url: "https://theprint.in/opinion/india-main-battle-tanks-expensive-outdated/2776143/",
         tags: ["security"]
     },
     {
-        title: "Trump-Xi Talks: Short-term Truce; Long-term Friction",
-        publication: "Moneycontrol",
-        date: "April 2024",
-        pubCategory: "national",
-        url: "https://www.moneycontrol.com/news/opinion/trump-xi-talks-short-term-truce-long-term-friction-13645164.html",
-        tags: ["security", "economy"]
-    },
-    {
         title: "China, US to Saudi Arabia: Pakistan's quest for multiple patrons",
         publication: "Indian Express",
-        date: "March 2024",
+        date: "17/10/2025",
         pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/columns/china-us-pakistan-relation-shehbaz-sharif-asif-munir-donald-trump-10312441/",
+        url: "https://indianexpress.com/article/opinion/pakistan-quest-multiple-patrons/",
         tags: ["security"]
     },
     {
         title: "China wants control, not cooperation",
         publication: "Indian Express",
-        date: "February 2024",
+        date: "12/09/2025",
         pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/columns/china-wants-control-not-cooperation-10245460/",
+        url: "https://indianexpress.com/article/opinion/china-wants-control/",
         tags: ["security"]
     },
     {
         title: "China's official trade surplus remains as high as at its peak",
         publication: "Nikkei Asia",
-        date: "January 2024",
+        date: "12/08/2025",
         pubCategory: "international",
         url: "https://asia.nikkei.com/opinion/china-s-official-trade-surplus-remains-as-high-as-at-its-peak",
         tags: ["economy"]
     },
     {
-        title: "The Dalai Lama's succession and the geopolitics of faith",
-        publication: "ThinkChina",
-        date: "December 2023",
-        pubCategory: "international",
-        url: "https://www.thinkchina.sg/politics/dalai-lamas-succession-and-geopolitics-faith",
-        tags: ["security"]
-    },
-    {
         title: "Why is Trump upset with India? It is not about peace in Ukraine",
         publication: "Indian Express",
-        date: "November 2023",
+        date: "06/08/2025",
         pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/columns/donald-trump-russian-oil-trumps-tarrif-on-india-10172780/",
+        url: "https://indianexpress.com/article/opinion/trump-upset-india/",
         tags: ["economy"]
     },
     {
         title: "India faces a Russia dilemma",
         publication: "Indian Express",
-        date: "October 2023",
+        date: "09/07/2025",
         pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/columns/is-russia-indias-friend-modi-in-brics-russia-india-relations-10111246/",
+        url: "https://indianexpress.com/article/opinion/india-russia-dilemma/",
         tags: ["security"]
     },
     {
         title: "Made in China or spent in China? Beijing's impossible balancing act",
         publication: "ThinkChina",
-        date: "September 2023",
+        date: "01/07/2025",
         pubCategory: "international",
-        url: "https://www.thinkchina.sg/economy/made-china-or-spent-china-beijings-impossible-balancing-act",
+        url: "https://www.thinkchina.sg/economy/made-in-china-or-spent-in-china-beijings-impossible-balancing-act",
         tags: ["economy"]
     },
     {
         title: "US-China trade war leaves India confronting three negative spillovers",
         publication: "Moneycontrol",
-        date: "August 2023",
+        date: "23/06/2025",
         pubCategory: "national",
         url: "https://www.moneycontrol.com/news/opinion/us-china-trade-war-leaves-india-confronting-three-negative-spillovers-13161093.html",
         tags: ["economy"]
     },
     {
-        title: "The US-China Trade War is Far from Over",
-        publication: "The Qunit",
-        date: "July 2023",
+        title: "Protracted conflict between India and Pakistan will mean tough choices for Russia and China",
+        publication: "Indian Express",
+        date: "13/05/2025",
         pubCategory: "national",
-        url: "https://www.thequint.com/opinion/us-china-trade-war-far-from-over",
-        tags: ["economy"]
-    },
-    {
-        title: "India's china policy needs more strategic clarity",
-        publication: "The Hindu",
-        date: "June 2023",
-        pubCategory: "national",
-        url: "https://www.thehindu.com/opinion/op-ed/indias-china-policy-needs-more-strategic-clarity/article67166457/",
+        url: "https://indianexpress.com/article/opinion/protracted-conflict-india-pakistan/",
         tags: ["security"]
     },
     {
-        title: "China's debt trap is slowly tightening",
-        publication: "Nikkei Asia",
-        date: "May 2023",
-        pubCategory: "international",
-        url: "https://asia.nikkei.com/opinion/chinas-debt-trap-is-slowly-tightening",
+        title: "In global trade war, China is unlikely to blink first",
+        publication: "Indian Express",
+        date: "10/04/2025",
+        pubCategory: "national",
+        url: "https://indianexpress.com/article/opinion/china-trade-war/",
         tags: ["economy"]
     },
     {
-        title: "Technology, not geopolitics, will define US-China competition",
-        publication: "Foreign Policy",
-        date: "April 2023",
-        pubCategory: "international",
-        url: "https://foreignpolicy.com/article/technology-not-geopolitics-define-us-china-competition",
-        tags: ["technology"]
-    },
-    {
-        title: "Semiconductors are the new flashpoint in US-China relations",
-        publication: "ThinkChina",
-        date: "March 2023",
-        pubCategory: "international",
-        url: "https://www.thinkchina.sg/technology/semiconductors-new-flashpoint-us-china-relations",
-        tags: ["technology", "security"]
-    },
-    {
-        title: "China's digital economy under scrutiny",
-        publication: "Moneycontrol",
-        date: "February 2023",
+        title: "Using coercive economic tools as strategic leverage",
+        publication: "Firstpost",
+        date: "18/12/2024",
         pubCategory: "national",
-        url: "https://www.moneycontrol.com/opinion/chinas-digital-economy-under-scrutiny",
-        tags: ["technology", "economy"]
-    },
-    {
-        title: "The Belt and Road Initiative at a crossroads",
-        publication: "Indian Express",
-        date: "January 2023",
-        pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/belt-and-road-initiative-crossroads",
+        url: "https://www.firstpost.com/opinion/using-coercive-economic-tools/",
         tags: ["economy", "security"]
     },
     {
-        title: "China's property crisis threatens global stability",
+        title: "India's waning interest in Shanghai Cooperation Organisation",
         publication: "Deccan Herald",
-        date: "December 2022",
+        date: "22/10/2024",
         pubCategory: "national",
-        url: "https://www.deccanherald.com/opinion/chinas-property-crisis-threatens-global-stability",
-        tags: ["economy"]
-    },
-    {
-        title: "Xi Jinping's third term: What it means for global order",
-        publication: "Foreign Policy",
-        date: "November 2022",
-        pubCategory: "international",
-        url: "https://foreignpolicy.com/article/xi-jinping-third-term-global-order",
+        url: "https://www.deccanherald.com/opinion/indias-waning-interest-in-shanghai-cooperation-organisation-3244075",
         tags: ["security"]
     },
     {
-        title: "India-China relations: Beyond the border dispute",
-        publication: "The Print",
-        date: "October 2022",
-        pubCategory: "national",
-        url: "https://theprint.in/opinion/india-china-relations-beyond-border",
-        tags: ["security"]
-    },
-    {
-        title: "China's zero-COVID exit will reshape global economy",
+        title: "China isn't ready to shift to a consumption-driven economy",
         publication: "Nikkei Asia",
-        date: "September 2022",
+        date: "28/09/2024",
         pubCategory: "international",
-        url: "https://asia.nikkei.com/opinion/chinas-zero-covid-exit",
+        url: "https://asia.nikkei.com/opinion/china-isn-t-ready-to-shift-to-a-consumption-driven-economy",
         tags: ["economy"]
     },
     {
-        title: "Why BRICS matters more than ever",
-        publication: "ThinkChina",
-        date: "August 2022",
-        pubCategory: "international",
-        url: "https://www.thinkchina.sg/economy/why-brics-matters",
-        tags: ["security", "economy"]
-    },
-    {
-        title: "The geopolitics of rare earth minerals",
+        title: "Power asymmetry between China and Russia",
         publication: "The Hindu",
-        date: "July 2022",
+        date: "13/09/2024",
         pubCategory: "national",
-        url: "https://www.thehindu.com/opinion/the-geopolitics-of-rare-earth-minerals",
-        tags: ["economy", "technology"]
-    },
-    {
-        title: "China's military modernization: A challenge for Asia",
-        publication: "Hindustan Times",
-        date: "June 2022",
-        pubCategory: "national",
-        url: "https://www.hindustantimes.com/opinion/chinas-military-modernization-challenge-for-asia",
-        tags: ["security", "technology"]
-    },
-    {
-        title: "Economic decoupling: The new Cold War reality",
-        publication: "Moneycontrol",
-        date: "May 2022",
-        pubCategory: "national",
-        url: "https://www.moneycontrol.com/opinion/economic-decoupling-cold-war",
-        tags: ["economy"]
-    },
-    {
-        title: "Taiwan's importance in global semiconductor supply",
-        publication: "Foreign Policy",
-        date: "April 2022",
-        pubCategory: "international",
-        url: "https://foreignpolicy.com/article/taiwan-semiconductors",
-        tags: ["technology", "security"]
-    },
-    {
-        title: "China's debt problem is everyone's problem",
-        publication: "Nikkei Asia",
-        date: "March 2022",
-        pubCategory: "international",
-        url: "https://asia.nikkei.com/opinion/chinas-debt-everyone-problem",
-        tags: ["economy"]
-    },
-    {
-        title: "India's strategic autonomy in a polarizing world",
-        publication: "Indian Express",
-        date: "February 2022",
-        pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/indias-strategic-autonomy",
+        url: "https://www.thehindu.com/news/international/power-asymmetry-between-china-and-russia/article68653066.ece",
         tags: ["security"]
     },
     {
-        title: "The digital silk road and data colonialism",
-        publication: "ThinkChina",
-        date: "January 2022",
+        title: "The US Can Accelerate India's Rise as a Legacy Chip Hub",
+        publication: "The Diplomat",
+        date: "14/08/2024",
         pubCategory: "international",
-        url: "https://www.thinkchina.sg/technology/digital-silk-road",
+        url: "https://thediplomat.com/2024/08/the-us-can-accelerate-indias-rise-as-a-legacy-chip-hub/",
         tags: ["technology", "economy"]
     },
     {
-        title: "China's rise and the law of the jungle",
-        publication: "Deccan Herald",
-        date: "December 2021",
-        pubCategory: "national",
-        url: "https://www.deccanherald.com/opinion/chinas-rise-and-law-jungle",
-        tags: ["security"]
+        title: "India is well placed to become the next China and drive global growth",
+        publication: "Nikkei Asia",
+        date: "09/08/2024",
+        pubCategory: "international",
+        url: "https://asia.nikkei.com/opinion/india-is-well-placed-to-become-the-next-china-and-drive-global-growth",
+        tags: ["economy"]
     },
     {
-        title: "Why India should worry about China's space ambitions",
-        publication: "The Print",
-        date: "November 2021",
-        pubCategory: "national",
-        url: "https://theprint.in/opinion/chinas-space-ambitions",
-        tags: ["technology", "security"]
-    },
-    {
-        title: "China's regulatory crackdown on tech",
+        title: "India gains semiconductor momentum, but the policy mix can be even better",
         publication: "Moneycontrol",
-        date: "October 2021",
+        date: "23/05/2024",
         pubCategory: "national",
-        url: "https://www.moneycontrol.com/opinion/chinas-tech-crackdown",
+        url: "https://www.moneycontrol.com/news/opinion/india-gains-semiconductor-momentum-but-the-policy-mix-can-be-even-better-12417121.html",
         tags: ["technology", "economy"]
     },
     {
-        title: "The Aukus alliance and Indo-Pacific security",
-        publication: "Foreign Policy",
-        date: "September 2021",
-        pubCategory: "international",
-        url: "https://foreignpolicy.com/article/aukus-alliance",
-        tags: ["security"]
-    },
-    {
-        title: "China's carbon neutrality goals: Ambition vs reality",
-        publication: "Nikkei Asia",
-        date: "August 2021",
-        pubCategory: "international",
-        url: "https://asia.nikkei.com/opinion/chinas-carbon-neutrality",
-        tags: ["economy"]
-    },
-    {
-        title: "Decoding China's dual circulation strategy",
-        publication: "ThinkChina",
-        date: "July 2021",
-        pubCategory: "international",
-        url: "https://www.thinkchina.sg/economy/dual-circulation",
-        tags: ["economy"]
-    },
-    {
-        title: "India's role in a fractured global order",
+        title: "India-China consumption comparison",
         publication: "The Hindu",
-        date: "June 2021",
+        date: "20/05/2024",
         pubCategory: "national",
-        url: "https://www.thehindu.com/opinion/indias-role-fractured-order",
+        url: "https://www.thehindu.com/business/Economy/india-china-consumption-comparison/article68197627.ece",
+        tags: ["economy"]
+    },
+    {
+        title: "How recent Maldives parliamentary election results are a silver lining for India",
+        publication: "Firstpost",
+        date: "23/04/2024",
+        pubCategory: "national",
+        url: "https://www.firstpost.com/opinion/how-recent-maldives-parliamentary-election-results-are-a-silver-lining-for-india-13764173.html",
         tags: ["security"]
     },
     {
-        title: "China's assertiveness and ASEAN's dilemma",
-        publication: "Hindustan Times",
-        date: "May 2021",
-        pubCategory: "national",
-        url: "https://www.hindustantimes.com/opinion/chinas-assertiveness-asean",
-        tags: ["security"]
-    },
-    {
-        title: "The economics of conflict: India-China border",
+        title: "Warmer Moscow-Beijing ties are a chilling signal for New Delhi",
         publication: "Indian Express",
-        date: "April 2021",
+        date: "21/04/2024",
         pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/economics-of-conflict-india-china",
-        tags: ["security", "economy"]
-    },
-    {
-        title: "How China is winning the narrative war",
-        publication: "Moneycontrol",
-        date: "March 2021",
-        pubCategory: "national",
-        url: "https://www.moneycontrol.com/opinion/china-narrative-war",
+        url: "https://indianexpress.com/article/opinion/warmer-moscow-beijing-ties/",
         tags: ["security"]
     },
     {
-        title: "The new great game in Central Asia",
+        title: "The Hidden Dangers in China's GDP Numbers",
         publication: "Foreign Policy",
-        date: "February 2021",
+        date: "11/03/2024",
         pubCategory: "international",
-        url: "https://foreignpolicy.com/article/great-game-central-asia",
-        tags: ["security", "economy"]
+        url: "https://foreignpolicy.com/author/amit-kumar/",
+        tags: ["economy"]
     },
     {
-        title: "China's wolf warrior diplomacy",
-        publication: "Nikkei Asia",
-        date: "January 2021",
-        pubCategory: "international",
-        url: "https://asia.nikkei.com/opinion/chinas-wolf-warrior",
+        title: "Is Trust a Foregone Conclusion in India-Russia Relations? It's All About China",
+        publication: "The Quint",
+        date: "12/02/2024",
+        pubCategory: "national",
+        url: "https://www.thequint.com/author/1443855/amit-kumar-32",
+        tags: ["security"]
+    },
+    {
+        title: "India-US Ties: Despite Nijjar Storm, All's Well on the Western Front",
+        publication: "The Quint",
+        date: "24/11/2023",
+        pubCategory: "national",
+        url: "https://www.thequint.com/author/1443855/amit-kumar-32",
+        tags: ["security"]
+    },
+    {
+        title: "What to expect from the Joe Biden-Xi Jinping summit",
+        publication: "Moneycontrol",
+        date: "15/11/2023",
+        pubCategory: "national",
+        url: "https://www.moneycontrol.com/news/opinion/what-to-expect-from-the-joe-biden-xi-jinping-summit-11742331.html",
+        tags: ["security"]
+    },
+    {
+        title: "Growing US-China chip rivalry presents India with its geopolitical moment",
+        publication: "Moneycontrol",
+        date: "03/11/2023",
+        pubCategory: "national",
+        url: "https://www.moneycontrol.com/news/opinion/growing-us-china-chip-rivalry-presents-india-with-its-geopolitical-moment-11703201.html",
+        tags: ["technology", "security"]
+    },
+    {
+        title: "The signals from this 'Made in China' smartphone story",
+        publication: "The Hindu",
+        date: "12/09/2023",
+        pubCategory: "national",
+        url: "https://www.thehindu.com/opinion/op-ed/the-signals-from-this-made-in-china-smartphone-story/article67296120.ece",
+        tags: ["technology"]
+    },
+    {
+        title: "In the chip war, US has the edge over China",
+        publication: "Hindustan Times",
+        date: "01/08/2023",
+        pubCategory: "national",
+        url: "https://www.hindustantimes.com/opinion/in-the-chip-war-us-has-the-edge-over-china-101690900110589.html",
+        tags: ["technology", "security"]
+    },
+    {
+        title: "Explained | China's 'developmental' security approach",
+        publication: "The Hindu",
+        date: "19/06/2023",
+        pubCategory: "national",
+        url: "https://www.thehindu.com/news/international/explained-chinas-developmental-security-approach/article66982632.ece",
+        tags: ["security"]
+    },
+    {
+        title: "'Two Sessions' Later, How China's Contradictory Policies Will Impact India",
+        publication: "The Quint",
+        date: "15/04/2023",
+        pubCategory: "national",
+        url: "https://www.thequint.com/author/1443855/amit-kumar-32",
+        tags: ["economy"]
+    },
+    {
+        title: "India's Policy Towards China Must Leverage Latter's Two-Front Situation",
+        publication: "The Quint",
+        date: "12/04/2023",
+        pubCategory: "national",
+        url: "https://www.thequint.com/author/1443855/amit-kumar-32",
+        tags: ["security"]
+    },
+    {
+        title: "China's Two-Front Dilemma",
+        publication: "ORF Expert Speak",
+        date: "02/03/2023",
+        pubCategory: "national",
+        url: "https://www.orfonline.org/expert-speak/chinas-two-front-conundrum",
+        tags: ["security"]
+    },
+    {
+        title: "Xi's legacy in the 'New Era'",
+        publication: "ORF Expert Speak",
+        date: "20/09/2022",
+        pubCategory: "national",
+        url: "https://www.orfonline.org/expert-speak/xi-s-legacy-in-the-new-era",
+        tags: ["security"]
+    },
+    {
+        title: "China's renewed push to tame religion",
+        publication: "ORF Expert Speak",
+        date: "14/09/2022",
+        pubCategory: "national",
+        url: "https://www.orfonline.org/expert-speak/chinas-renewed-push-to-tame-religion",
+        tags: ["security"]
+    },
+    {
+        title: "One-upmanship at the top shows cracks in China's system",
+        publication: "ORF Expert Speak",
+        date: "16/06/2022",
+        pubCategory: "national",
+        url: "https://www.orfonline.org/expert-speak/one-upmanship-at-the-top-shows-cracks-in-chinas-system",
+        tags: ["security"]
+    },
+    {
+        title: "Taiwan's evolving security concerns and prospects of cross-strait unification",
+        publication: "VIF India",
+        date: "17/09/2021",
+        pubCategory: "national",
+        url: "https://www.vifindia.org/article/2021/september/17/taiwans-evolving-security-concerns-and-prospects-of-cross-strait-unification",
+        tags: ["security"]
+    },
+    {
+        title: "The two tales of Pakistan's geography",
+        publication: "VIF India",
+        date: "02/09/2021",
+        pubCategory: "national",
+        url: "https://www.vifindia.org/article/2021/september/02/the-two-tales-of-pakistans-geography",
+        tags: ["security"]
+    },
+    {
+        title: "A Crisis Looms as the Chinese Communist Party Celebrates its Centenary Year",
+        publication: "The Diplomatist",
+        date: "02/07/2021",
+        pubCategory: "national",
+        url: "https://diplomatist.com/a-crisis-looms-as-the-chinese-communist-party-celebrates-its-centenary-year/",
+        tags: ["security"]
+    },
+    {
+        title: "Why not an 'end of history' for China?",
+        publication: "The Diplomatist",
+        date: "07/06/2021",
+        pubCategory: "national",
+        url: "https://diplomatist.com/why-not-an-end-of-history-for-china/",
         tags: ["security"]
     }
 ];
