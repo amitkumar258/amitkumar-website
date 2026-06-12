@@ -7,6 +7,9 @@ class Router {
         this.sections = document.querySelectorAll('.section');
         this.activePubFilter = 'all';
         this.activeYearFilter = 'all';
+        this.searchQuery = '';
+        this.currentPage = 1;
+        this.itemsPerPage = 20;
         this.init();
     }
 
@@ -46,7 +49,6 @@ class Router {
                 tab.classList.add('active');
                 const pubFilter = tab.getAttribute('data-pub-filter');
 
-                // Show/hide sub-publication lists
                 document.querySelectorAll('.pub-sub-list').forEach(list => list.classList.remove('visible'));
                 if (pubFilter === 'national') {
                     document.getElementById('national-pubs').classList.add('visible');
@@ -54,10 +56,10 @@ class Router {
                     document.getElementById('international-pubs').classList.add('visible');
                 }
 
-                // Deactivate any specific pub buttons and apply category-level filter
                 document.querySelectorAll('.pub-btn').forEach(b => b.classList.remove('active'));
                 this.activePubFilter = pubFilter;
-                this.applyCommentaryFilters();
+                this.currentPage = 1;
+                this.renderCommentaries();
             });
         });
 
@@ -67,7 +69,8 @@ class Router {
                 document.querySelectorAll('.pub-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 this.activePubFilter = btn.getAttribute('data-filter');
-                this.applyCommentaryFilters();
+                this.currentPage = 1;
+                this.renderCommentaries();
             });
         });
 
@@ -76,7 +79,8 @@ class Router {
         if (yearSelect) {
             yearSelect.addEventListener('change', () => {
                 this.activeYearFilter = yearSelect.value;
-                this.applyCommentaryFilters();
+                this.currentPage = 1;
+                this.renderCommentaries();
             });
         }
 
@@ -98,12 +102,12 @@ class Router {
         });
     }
 
-    applyCommentaryFilters() {
-        const items = document.querySelectorAll('.commentary-item');
-        items.forEach(item => {
-            const category = item.getAttribute('data-category'); // e.g. "national-indian-express"
-            const pubCategory = category.split('-')[0];           // "national" or "international"
-            const year = item.getAttribute('data-year');
+    // ── Filtering ────────────────────────────────────────────────────────────
+
+    getFilteredCommentaries() {
+        return commentariesData.filter(c => {
+            const pubCategory = c.pubCategory || 'national';
+            const filterKey = `${pubCategory}-${c.publication.toLowerCase().replace(/\s+/g, '-')}`;
 
             let pubMatch;
             if (this.activePubFilter === 'all') {
@@ -111,54 +115,53 @@ class Router {
             } else if (this.activePubFilter === 'national' || this.activePubFilter === 'international') {
                 pubMatch = pubCategory === this.activePubFilter;
             } else {
-                pubMatch = category === this.activePubFilter;
+                pubMatch = filterKey === this.activePubFilter;
             }
 
+            const year = c.date ? c.date.split('/')[2] : '';
             const yearMatch = this.activeYearFilter === 'all' || year === this.activeYearFilter;
-            item.style.display = pubMatch && yearMatch ? 'block' : 'none';
+
+            const searchMatch = !this.searchQuery ||
+                c.title.toLowerCase().includes(this.searchQuery) ||
+                c.publication.toLowerCase().includes(this.searchQuery) ||
+                (c.tags || []).some(t => t.toLowerCase().includes(this.searchQuery));
+
+            return pubMatch && yearMatch && searchMatch;
         });
     }
 
     applySearch(query) {
+        this.searchQuery = query;
         const activeSection = document.querySelector('.section.active');
         if (!activeSection) return;
 
-        if (!query) {
-            // Re-apply existing filters when search is cleared
-            if (activeSection.id === 'commentaries') this.applyCommentaryFilters();
-            else {
-                activeSection.querySelectorAll('.paper-card, .media-item').forEach(el => el.style.display = '');
-            }
-            return;
+        if (activeSection.id === 'commentaries') {
+            this.currentPage = 1;
+            this.renderCommentaries();
+        } else {
+            const selectors = { papers: '.paper-card', media: '.media-item' };
+            const selector = selectors[activeSection.id];
+            if (!selector) return;
+            activeSection.querySelectorAll(selector).forEach(item => {
+                const match = !query || item.textContent.toLowerCase().includes(query);
+                item.style.display = match ? '' : 'none';
+            });
         }
-
-        const selectors = {
-            commentaries: '.commentary-item',
-            papers: '.paper-card',
-            media: '.media-item'
-        };
-
-        const selector = selectors[activeSection.id];
-        if (!selector) return;
-
-        activeSection.querySelectorAll(selector).forEach(item => {
-            const match = item.textContent.toLowerCase().includes(query);
-            item.style.display = match ? 'block' : 'none';
-        });
     }
 
     filterPapers(filter) {
-        const items = document.querySelectorAll('.paper-card');
-        items.forEach(item => {
+        document.querySelectorAll('.paper-card').forEach(item => {
             if (filter === 'papers-all') {
-                item.style.display = 'block';
+                item.style.display = '';
             } else {
                 const tags = item.getAttribute('data-tags');
                 const filterTag = filter.replace('papers-', '');
-                item.style.display = tags && tags.includes(filterTag) ? 'block' : 'none';
+                item.style.display = tags && tags.includes(filterTag) ? '' : 'none';
             }
         });
     }
+
+    // ── Rendering ────────────────────────────────────────────────────────────
 
     renderContent() {
         this.renderCommentaries();
@@ -166,29 +169,73 @@ class Router {
         this.renderMedia();
     }
 
+    formatDate(dateStr) {
+        if (!dateStr) return '';
+        const parts = dateStr.split('/');
+        if (parts.length !== 3) return dateStr;
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        return `${months[parseInt(parts[1], 10) - 1]} ${parts[2]}`;
+    }
+
     renderCommentaries() {
         const container = document.querySelector('.commentaries-list');
         if (!container) return;
 
-        container.innerHTML = commentariesData.map(commentary => {
-            const pubCategory = commentary.pubCategory || 'national';
-            const filterKey = `${pubCategory}-${commentary.publication.toLowerCase().replace(/\s+/g, '-')}`;
-            const year = commentary.date ? commentary.date.split('/')[2] : '';
+        const filtered = this.getFilteredCommentaries();
+        const totalPages = Math.max(1, Math.ceil(filtered.length / this.itemsPerPage));
+        if (this.currentPage > totalPages) this.currentPage = totalPages;
+
+        const start = (this.currentPage - 1) * this.itemsPerPage;
+        const pageItems = filtered.slice(start, start + this.itemsPerPage);
+
+        container.innerHTML = pageItems.map(c => {
+            const pubCategory = c.pubCategory || 'national';
+            const filterKey = `${pubCategory}-${c.publication.toLowerCase().replace(/\s+/g, '-')}`;
+            const year = c.date ? c.date.split('/')[2] : '';
+            const fmtDate = this.formatDate(c.date);
             return `
                 <div class="commentary-item" data-category="${filterKey}" data-year="${year}">
                     <div class="comment-row">
-                        <div class="comment-meta">
-                            <span class="comment-publication">${commentary.publication}</span>
-                            <span class="comment-date">${commentary.date}</span>
+                        <span class="comment-date">${fmtDate}</span>
+                        <div class="comment-body">
+                            <a href="${c.url}" target="_blank" class="comment-link">${c.title}</a>
+                            <span class="comment-publication">${c.publication}</span>
                         </div>
-                        <h3 class="comment-title"><a href="${commentary.url}" target="_blank">${commentary.title}</a></h3>
                     </div>
                     <div class="comment-tags">
-                        ${commentary.tags.map(tag => `<span class="comment-tag ${tag}">${tag}</span>`).join('')}
+                        ${(c.tags || []).map(tag => `<span class="comment-tag ${tag}">${tag}</span>`).join('')}
                     </div>
-                </div>
-            `;
+                </div>`;
         }).join('');
+
+        this.renderPagination(filtered.length, totalPages);
+    }
+
+    renderPagination(total, totalPages) {
+        const container = document.getElementById('commentaries-pagination');
+        if (!container) return;
+
+        if (totalPages <= 1) { container.innerHTML = ''; return; }
+
+        const cur = this.currentPage;
+        const pageNums = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+        container.innerHTML = `
+            <button class="page-btn" data-page="${cur - 1}" ${cur === 1 ? 'disabled' : ''}>‹</button>
+            ${pageNums.map(p => `<button class="page-btn ${p === cur ? 'active' : ''}" data-page="${p}">${p}</button>`).join('')}
+            <button class="page-btn" data-page="${cur + 1}" ${cur === totalPages ? 'disabled' : ''}>›</button>
+        `;
+
+        container.querySelectorAll('.page-btn:not([disabled])').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const page = parseInt(btn.getAttribute('data-page'));
+                if (page >= 1 && page <= totalPages) {
+                    this.currentPage = page;
+                    this.renderCommentaries();
+                    document.querySelector('.commentaries-list').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
     }
 
     renderPapers() {
@@ -205,8 +252,7 @@ class Router {
                     <div class="paper-tags">
                         ${(paper.tags || []).map(tag => `<span class="paper-tag ${tag}">${tag}</span>`).join('')}
                     </div>
-                </div>
-            `;
+                </div>`;
         }).join('');
     }
 
@@ -216,18 +262,16 @@ class Router {
 
         container.innerHTML = mediaData.map(media => `
             <div class="media-item">
-                ${media.url ? `<a href="${media.url}" target="_blank" class="media-title">${media.title}</a>` : `<p class="media-title">${media.title}</p>`}
+                ${media.url ? `<a href="${media.url}" target="_blank" class="media-title">${media.title}</a>` : `<span class="media-title">${media.title}</span>`}
                 <p class="media-outlet">${media.outlet}</p>
-            </div>
-        `).join('');
+            </div>`).join('');
     }
 
     updateStatistics() {
-        const commentariesCount = document.getElementById('commentaries-count');
-        if (commentariesCount) commentariesCount.textContent = commentariesData.length;
-
-        const papersCount = document.getElementById('papers-count');
-        if (papersCount) papersCount.textContent = papersData.length;
+        const el = document.getElementById('commentaries-count');
+        if (el) el.textContent = commentariesData.length;
+        const ep = document.getElementById('papers-count');
+        if (ep) ep.textContent = papersData.length;
     }
 
     toggleMobileMenu() {
@@ -236,18 +280,17 @@ class Router {
 
     handleNavigation(sectionName) {
         this.closeMobileMenu();
-        // Clear search on navigation
         const searchInput = document.getElementById('globalSearch');
-        if (searchInput) searchInput.value = '';
+        if (searchInput) { searchInput.value = ''; this.searchQuery = ''; }
         this.showSection(sectionName);
         window.location.hash = sectionName;
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     showSection(sectionName) {
-        this.sections.forEach(section => section.classList.remove('active'));
-        const targetSection = document.getElementById(sectionName);
-        if (targetSection) targetSection.classList.add('active');
+        this.sections.forEach(s => s.classList.remove('active'));
+        const target = document.getElementById(sectionName);
+        if (target) target.classList.add('active');
         this.updateActiveNavLink(sectionName);
     }
 
@@ -265,14 +308,12 @@ class Router {
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof commentariesData !== 'undefined' && typeof papersData !== 'undefined' && typeof mediaData !== 'undefined') {
         const router = new Router();
-        const hash = window.location.hash.slice(1) || 'home';
-        router.showSection(hash);
+        router.showSection(window.location.hash.slice(1) || 'home');
     } else {
         setTimeout(() => {
             if (typeof commentariesData !== 'undefined') {
                 const router = new Router();
-                const hash = window.location.hash.slice(1) || 'home';
-                router.showSection(hash);
+                router.showSection(window.location.hash.slice(1) || 'home');
             }
         }, 100);
     }

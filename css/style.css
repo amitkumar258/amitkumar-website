@@ -573,100 +573,80 @@ a:hover {
     width: 100%;
 }
 
+
+/* ── Quarto-style commentary list ───────────────────────────────────────── */
 .commentaries-list {
-    display: grid;
-    gap: 1.5rem;
-    overflow: hidden; /* prevent any child from escaping */
+    border-top: 1px solid var(--border-color);
     min-width: 0;
 }
 
 .commentary-item {
-    padding: 1rem 1.5rem;
-    border-left: 4px solid var(--accent-color);
-    background-color: var(--light-bg);
-    border-radius: 4px;
-    transition: transform var(--transition);
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .commentary-item:hover {
-    transform: translateX(8px);
+    background-color: transparent;
 }
 
 .comment-row {
     display: flex;
     align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 0.4rem;
-    flex-wrap: nowrap;
+    gap: 1.25rem;
     min-width: 0;
 }
 
-/* Left column: publication name + date stacked */
-.comment-meta {
-    width: 130px;
+/* Date: short muted label on the left */
+.comment-date {
+    width: 72px;
     flex-shrink: 0;
+    font-size: 0.78rem;
+    color: var(--text-light);
+    padding-top: 0.15rem;
+    white-space: nowrap;
+}
+
+/* Body: title + publication side by side */
+.comment-body {
+    flex: 1;
+    min-width: 0;
     display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.comment-link {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    line-height: 1.45;
+    transition: color var(--transition);
+}
+
+.comment-link:hover {
+    color: var(--accent-color);
+    text-decoration: none;
 }
 
 .comment-publication {
-    font-weight: 700;
-    font-style: italic;
-    color: var(--primary-color);
-    font-size: 0.85rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.comment-date {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     color: var(--text-light);
+    font-style: italic;
+    font-weight: 500;
     white-space: nowrap;
-}
-
-/* Right: title — wraps to multiple lines so full title is always visible */
-.comment-title {
-    flex: 1;
-    min-width: 0;
-    margin: 0;
-    font-size: 0.88rem;
-    font-weight: 600;
-    line-height: 1.4;
-}
-
-.comment-title a {
-    color: var(--primary-color);
-    font-weight: inherit;
-    display: inline;
-}
-
-.comment-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 0.5rem;
-}
-
-.comment-header h3 {
-    flex: 1;
-    margin-bottom: 0;
-}
-
-.commentary-item h3 {
-    margin-bottom: 0.5rem;
-    font-size: 1.3rem;
+    flex-shrink: 0;
+    padding-top: 0.2rem;
 }
 
 .commentary-item a {
     color: var(--primary-color);
-    font-weight: 500;
 }
+
 
 .publication-meta {
     font-size: 0.9rem;
@@ -678,9 +658,11 @@ a:hover {
 .comment-tags,
 .paper-tags {
     display: flex;
-    gap: 0.4rem;
+    gap: 0.35rem;
     flex-wrap: wrap;
-    margin-top: 0.5rem;
+    margin-top: 0.4rem;
+    /* indent tags to align with title (date-column width + gap) */
+    padding-left: calc(72px + 1.25rem);
 }
 
 .comment-tag,
@@ -699,6 +681,49 @@ a:hover {
 .comment-tag.US, .paper-tag.US,
 .comment-tag.SCO, .paper-tag.SCO {
     text-transform: uppercase;
+}
+
+/* ==================== Pagination ==================== */
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+}
+
+.page-btn {
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0 0.4rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: none;
+    cursor: pointer;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 0.82rem;
+    color: var(--text-color);
+    transition: all var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-btn:hover:not([disabled]) {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.page-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.page-btn[disabled] {
+    opacity: 0.35;
+    cursor: default;
 }
 
 /* ==================== Papers Section ==================== */
@@ -942,13 +967,10 @@ a:hover {
     }
     .section-search-input { width: 100%; flex: 1; }
 
-    /* Commentary cards: on mobile, meta column narrows, title wraps */
-    .comment-meta {
-        width: 110px;
-    }
-    .comment-title {
-        font-size: 0.9rem;
-    }
+    /* Commentary: tighten date column on mobile */
+    .comment-date { width: 58px; font-size: 0.72rem; }
+    .comment-link { font-size: 0.84rem; }
+    .comment-tags { padding-left: calc(58px + 1.25rem); }
 
     /* Book covers smaller on mobile */
     .book-item {
@@ -977,9 +999,10 @@ a:hover {
     .social-links { flex-direction: column; }
     .social-link { width: 100%; text-align: center; }
 
-    /* Commentary cards: full-width compact on small phones */
-    .commentary-item { padding: 0.75rem 1rem; }
-    .comment-publication { font-size: 0.78rem; }
+    /* Commentary cards: compact on small phones */
+    .commentary-item { padding: 0.75rem 0; }
+    .comment-date { width: 52px; }
+    .comment-tags { padding-left: calc(52px + 1.25rem); }
 
     /* Stats card smaller */
     .stat-number { font-size: 2rem; }
