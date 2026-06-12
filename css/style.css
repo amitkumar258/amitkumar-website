@@ -516,6 +516,7 @@ a:hover {
 
 .section-content {
     min-width: 0;
+    padding-right: 1.5rem;
 }
 
 .publications-header {
@@ -575,6 +576,8 @@ a:hover {
 .commentaries-list {
     display: grid;
     gap: 1.5rem;
+    overflow: hidden; /* prevent any child from escaping */
+    min-width: 0;
 }
 
 .commentary-item {
@@ -587,6 +590,8 @@ a:hover {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow: hidden; /* clip anything that overflows the card */
+    min-width: 0;
 }
 
 .commentary-item:hover {
@@ -600,6 +605,7 @@ a:hover {
     margin-bottom: 0.4rem;
     flex-wrap: nowrap;
     min-width: 0;
+    overflow: hidden;
 }
 
 /* Left column: publication name + date stacked */
@@ -632,7 +638,7 @@ a:hover {
     flex: 1;
     min-width: 0;
     margin: 0;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     overflow: hidden;
     white-space: nowrap;
