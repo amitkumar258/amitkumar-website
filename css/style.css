@@ -789,15 +789,16 @@ a:hover {
 .book-card {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     padding: 1.25rem;
     border: 1px solid var(--border-color);
     border-radius: 4px;
 }
 
 .book-cover {
-    width: 130px;
-    height: auto;
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    object-position: center top;
     display: block;
     margin-bottom: 1rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
@@ -956,7 +957,7 @@ a:hover {
 
     /* Books: stack to single column on mobile */
     .books-grid { grid-template-columns: 1fr; }
-    .book-cover { width: 110px; }
+    .book-cover { height: 220px; }
 
     /* Filter buttons */
     .filter-controls { flex-wrap: wrap; }
