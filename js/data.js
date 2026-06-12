@@ -448,7 +448,7 @@ const papersData = [
     {
         title: "The Pulls and Pushes Within the Chinese Economy",
         publication: "Carnegie Endowment",
-        date: "30/03/2026",
+        date: "29/04/2025",
         coAuthor: "",
         url: "https://carnegieendowment.org/research/2025/04/views-from-taipei-essays-by-young-indian-scholars-on-china",
         tags: ["china", "economy"]
