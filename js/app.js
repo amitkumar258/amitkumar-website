@@ -177,14 +177,14 @@ class Router {
             return `
                 <div class="commentary-item" data-category="${filterKey}" data-year="${year}">
                     <div class="comment-row">
-                        <span class="comment-publication">${commentary.publication}</span>
-                        <h3><a href="${commentary.url}" target="_blank">${commentary.title}</a></h3>
-                    </div>
-                    <div class="comment-bottom">
-                        <div class="comment-tags">
-                            ${commentary.tags.map(tag => `<span class="comment-tag ${tag}">${tag}</span>`).join('')}
+                        <div class="comment-meta">
+                            <span class="comment-publication">${commentary.publication}</span>
+                            <span class="comment-date">${commentary.date}</span>
                         </div>
-                        <span class="comment-date">${commentary.date}</span>
+                        <h3 class="comment-title"><a href="${commentary.url}" target="_blank">${commentary.title}</a></h3>
+                    </div>
+                    <div class="comment-tags">
+                        ${commentary.tags.map(tag => `<span class="comment-tag ${tag}">${tag}</span>`).join('')}
                     </div>
                 </div>
             `;

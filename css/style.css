@@ -595,10 +595,20 @@ a:hover {
 
 .comment-row {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 1rem;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.4rem;
     flex-wrap: nowrap;
+    min-width: 0;
+}
+
+/* Left column: publication name + date stacked */
+.comment-meta {
+    width: 130px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
 }
 
 .comment-publication {
@@ -607,32 +617,32 @@ a:hover {
     color: var(--primary-color);
     font-size: 0.85rem;
     white-space: nowrap;
-    width: 130px;
-    flex-shrink: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.comment-row h3 {
+.comment-date {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    white-space: nowrap;
+}
+
+/* Right: title — inline anchor so h3 text-overflow applies correctly */
+.comment-title {
     flex: 1;
     min-width: 0;
     margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-.comment-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.comment-date {
-    font-size: 0.8rem;
-    color: var(--text-light);
-    white-space: nowrap;
-    flex-shrink: 0;
+.comment-title a {
+    color: var(--primary-color);
+    font-weight: inherit;
+    display: inline;
 }
 
 .comment-header {
@@ -656,10 +666,6 @@ a:hover {
 .commentary-item a {
     color: var(--primary-color);
     font-weight: 500;
-    display: block;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
 }
 
 .publication-meta {
@@ -674,10 +680,7 @@ a:hover {
     display: flex;
     gap: 0.4rem;
     flex-wrap: wrap;
-}
-
-.paper-tags {
-    margin-top: 0.75rem;
+    margin-top: 0.5rem;
 }
 
 .comment-tag,
@@ -939,18 +942,12 @@ a:hover {
     }
     .section-search-input { width: 100%; flex: 1; }
 
-    /* Commentary cards: publication stacks above title */
-    .comment-row {
-        flex-wrap: wrap;
-        gap: 0.3rem;
+    /* Commentary cards: on mobile, meta column narrows, title wraps */
+    .comment-meta {
+        width: 110px;
     }
-    .comment-publication {
-        width: auto;
-        min-width: 0;
-    }
-    .comment-row h3 {
-        width: 100%;
-        flex-basis: 100%;
+    .comment-title {
+        font-size: 0.9rem;
     }
 
     /* Book covers smaller on mobile */
