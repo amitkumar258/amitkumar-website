@@ -179,10 +179,12 @@ class Router {
                     <div class="comment-row">
                         <span class="comment-publication">${commentary.publication}</span>
                         <h3><a href="${commentary.url}" target="_blank">${commentary.title}</a></h3>
-                        <span class="comment-date">${commentary.date}</span>
                     </div>
-                    <div class="comment-tags">
-                        ${commentary.tags.map(tag => `<span class="comment-tag ${tag}">${tag}</span>`).join('')}
+                    <div class="comment-bottom">
+                        <div class="comment-tags">
+                            ${commentary.tags.map(tag => `<span class="comment-tag ${tag}">${tag}</span>`).join('')}
+                        </div>
+                        <span class="comment-date">${commentary.date}</span>
                     </div>
                 </div>
             `;
