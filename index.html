@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Amit Kumar - Policy researcher at Takshashila Institution">
     <title>Amit Kumar</title>
-    <link rel="stylesheet" href="css/style.css?v=3">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
     <!-- Navigation -->
@@ -19,6 +22,10 @@
                 <li><a href="#books" class="nav-link" data-section="books">Book Chapters</a></li>
                 <li><a href="#media" class="nav-link" data-section="media">Media Appearances</a></li>
                 <li><a href="#conference" class="nav-link" data-section="conference">Conferences</a></li>
+                <li class="nav-divider"></li>
+                <li><a href="https://www.linkedin.com/in/amit-kumar-china/" target="_blank" class="nav-social-link">LinkedIn</a></li>
+                <li><a href="https://x.com/am_i_t_kumar" target="_blank" class="nav-social-link">X</a></li>
+                <li><a href="https://takshashila.org.in/people/amit-kumar" target="_blank" class="nav-social-link">Takshashila</a></li>
             </ul>
         </div>
     </nav>
@@ -81,48 +88,51 @@
                         <div class="stat-number" id="commentaries-count">0</div>
                         <div class="stat-label">Commentaries</div>
                     </div>
-                    <div class="themes">
-                        <div class="theme-item">
-                            <span class="theme-tag security">Security</span>
-                            <span class="theme-count" id="security-count">0</span>
+
+                    <div class="sidebar-filter-group">
+                        <div class="sidebar-filter-header">National</div>
+                        <div class="sidebar-filter-list">
+                            <button class="filter-btn sidebar-btn active" data-filter="all">All</button>
+                            <button class="filter-btn sidebar-btn" data-filter="national-indian-express">Indian Express</button>
+                            <button class="filter-btn sidebar-btn" data-filter="national-the-hindu">The Hindu</button>
+                            <button class="filter-btn sidebar-btn" data-filter="national-hindustan-times">Hindustan Times</button>
+                            <button class="filter-btn sidebar-btn" data-filter="national-the-print">The Print</button>
+                            <button class="filter-btn sidebar-btn" data-filter="national-the-quint">The Quint</button>
+                            <button class="filter-btn sidebar-btn" data-filter="national-moneycontrol">Moneycontrol</button>
+                            <button class="filter-btn sidebar-btn" data-filter="national-deccan-herald">Deccan Herald</button>
+                            <button class="filter-btn sidebar-btn" data-filter="national-firstpost">Firstpost</button>
+                            <button class="filter-btn sidebar-btn" data-filter="national-orf-expert-speak">ORF Expert Speak</button>
+                            <button class="filter-btn sidebar-btn" data-filter="national-vif-india">VIF India</button>
+                            <button class="filter-btn sidebar-btn" data-filter="national-the-diplomatist">The Diplomatist</button>
                         </div>
-                        <div class="theme-item">
-                            <span class="theme-tag economy">Economy</span>
-                            <span class="theme-count" id="economy-count">0</span>
+                    </div>
+
+                    <div class="sidebar-filter-group">
+                        <div class="sidebar-filter-header">International</div>
+                        <div class="sidebar-filter-list">
+                            <button class="filter-btn sidebar-btn" data-filter="international-foreign-policy">Foreign Policy</button>
+                            <button class="filter-btn sidebar-btn" data-filter="international-nikkei-asia">Nikkei Asia</button>
+                            <button class="filter-btn sidebar-btn" data-filter="international-thinkchina">ThinkChina</button>
+                            <button class="filter-btn sidebar-btn" data-filter="international-the-diplomat">The Diplomat</button>
                         </div>
-                        <div class="theme-item">
-                            <span class="theme-tag technology">Technology</span>
-                            <span class="theme-count" id="technology-count">0</span>
+                    </div>
+
+                    <div class="sidebar-filter-group">
+                        <div class="sidebar-filter-header">By Year</div>
+                        <div class="sidebar-filter-list">
+                            <button class="filter-btn sidebar-btn year-btn" data-year="all">All Years</button>
+                            <button class="filter-btn sidebar-btn year-btn" data-year="2026">2026</button>
+                            <button class="filter-btn sidebar-btn year-btn" data-year="2025">2025</button>
+                            <button class="filter-btn sidebar-btn year-btn" data-year="2024">2024</button>
+                            <button class="filter-btn sidebar-btn year-btn" data-year="2023">2023</button>
+                            <button class="filter-btn sidebar-btn year-btn" data-year="2022">2022</button>
+                            <button class="filter-btn sidebar-btn year-btn" data-year="2021">2021</button>
                         </div>
                     </div>
                 </div>
                 <div class="section-content">
                     <h2>Commentaries</h2>
-                    <p class="section-intro">Opinion pieces and analysis on geopolitics, economics, and policy.</p>
-
-                    <div class="publications-header">
-                        <div class="pub-group">
-                            <h3>National Publications</h3>
-                            <div class="filter-controls">
-                                <button class="filter-btn active" data-filter="all">All</button>
-                                <button class="filter-btn" data-filter="national-indian-express">Indian Express</button>
-                                <button class="filter-btn" data-filter="national-the-hindu">The Hindu</button>
-                                <button class="filter-btn" data-filter="national-hindustan-times">Hindustan Times</button>
-                                <button class="filter-btn" data-filter="national-the-print">The Print</button>
-                                <button class="filter-btn" data-filter="national-the-quint">The Quint</button>
-                                <button class="filter-btn" data-filter="national-moneycontrol">Moneycontrol</button>
-                                <button class="filter-btn" data-filter="national-deccan-herald">Deccan Herald</button>
-                            </div>
-                        </div>
-                        <div class="pub-group">
-                            <h3>International Publications</h3>
-                            <div class="filter-controls">
-                                <button class="filter-btn" data-filter="international-foreign-policy">Foreign Policy</button>
-                                <button class="filter-btn" data-filter="international-nikkei-asia">Nikkei Asia</button>
-                                <button class="filter-btn" data-filter="international-thinkchina">ThinkChina</button>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="section-intro">Following is a list of opinion and commentaries I have published with national and international media publications.</p>
 
                     <div class="commentaries-list">
                         <!-- Commentaries will be inserted here by JavaScript -->

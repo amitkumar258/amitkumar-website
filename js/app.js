@@ -5,6 +5,8 @@ class Router {
         this.navMenu = document.getElementById('navMenu');
         this.navLinks = document.querySelectorAll('[data-section]');
         this.sections = document.querySelectorAll('.section');
+        this.activePubFilter = 'all';
+        this.activeYearFilter = 'all';
         this.init();
     }
 
@@ -16,12 +18,10 @@ class Router {
     }
 
     setupEventListeners() {
-        // Mobile menu toggle
         if (this.navToggle) {
             this.navToggle.addEventListener('click', () => this.toggleMobileMenu());
         }
 
-        // Navigation links
         this.navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -30,50 +30,53 @@ class Router {
             });
         });
 
-        // Handle browser back/forward
         window.addEventListener('hashchange', () => {
             const hash = window.location.hash.slice(1) || 'home';
             this.showSection(hash);
         });
 
-        // Filter buttons for commentaries and papers
         this.setupFilters();
     }
 
     setupFilters() {
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        filterBtns.forEach(btn => {
+        document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
-                // Get the parent filter controls
-                const filterControls = e.target.parentElement;
+                const btn = e.target;
+                const filter = btn.getAttribute('data-filter');
+                const year = btn.getAttribute('data-year');
 
-                // Only deactivate siblings in the same filter group
-                filterControls.querySelectorAll('.filter-btn').forEach(b => {
-                    b.classList.remove('active');
-                });
-
-                e.target.classList.add('active');
-                const filter = e.target.getAttribute('data-filter');
-
-                // Route to appropriate filter function
-                if (filter.startsWith('papers-')) {
+                if (filter && filter.startsWith('papers-')) {
+                    // Papers filter: deactivate siblings only
+                    btn.closest('.filter-controls').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
                     this.filterPapers(filter);
-                } else {
-                    this.filterCommentaries(filter);
+                } else if (year !== null) {
+                    // Year filter: deactivate all year buttons
+                    document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    this.activeYearFilter = year;
+                    this.applyCommentaryFilters();
+                } else if (filter) {
+                    // Publication filter: deactivate all sidebar pub buttons
+                    document.querySelectorAll('.sidebar-btn:not(.year-btn)').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    this.activePubFilter = filter;
+                    this.applyCommentaryFilters();
                 }
             });
         });
     }
 
-    filterCommentaries(filter) {
+    applyCommentaryFilters() {
         const items = document.querySelectorAll('.commentary-item');
         items.forEach(item => {
-            if (filter === 'all') {
-                item.style.display = 'block';
-            } else {
-                const category = item.getAttribute('data-category');
-                item.style.display = category === filter ? 'block' : 'none';
-            }
+            const category = item.getAttribute('data-category');
+            const year = item.getAttribute('data-year');
+
+            const pubMatch = this.activePubFilter === 'all' || category === this.activePubFilter;
+            const yearMatch = this.activeYearFilter === 'all' || year === this.activeYearFilter;
+
+            item.style.display = pubMatch && yearMatch ? 'block' : 'none';
         });
     }
 
@@ -91,11 +94,8 @@ class Router {
     }
 
     renderContent() {
-        // Render commentaries
         this.renderCommentaries();
-        // Render papers
         this.renderPapers();
-        // Render media
         this.renderMedia();
     }
 
@@ -106,8 +106,9 @@ class Router {
         container.innerHTML = commentariesData.map(commentary => {
             const pubCategory = commentary.pubCategory || 'national';
             const filterKey = `${pubCategory}-${commentary.publication.toLowerCase().replace(/\s+/g, '-')}`;
+            const year = commentary.date ? commentary.date.split('/')[2] : '';
             return `
-                <div class="commentary-item" data-category="${filterKey}">
+                <div class="commentary-item" data-category="${filterKey}" data-year="${year}">
                     <div class="comment-row">
                         <span class="comment-publication">${commentary.publication}</span>
                         <h3><a href="${commentary.url}" target="_blank">${commentary.title}</a></h3>
@@ -153,59 +154,11 @@ class Router {
     }
 
     updateStatistics() {
-        // Update commentaries statistics
         const commentariesCount = document.getElementById('commentaries-count');
-        if (commentariesCount) {
-            commentariesCount.textContent = commentariesData.length;
-        }
+        if (commentariesCount) commentariesCount.textContent = commentariesData.length;
 
-        // Count commentaries by theme
-        const commentariesByTheme = {
-            security: 0,
-            economy: 0,
-            technology: 0
-        };
-
-        commentariesData.forEach(item => {
-            (item.tags || []).forEach(tag => {
-                if (commentariesByTheme.hasOwnProperty(tag)) {
-                    commentariesByTheme[tag]++;
-                }
-            });
-        });
-
-        document.getElementById('security-count').textContent = commentariesByTheme.security;
-        document.getElementById('economy-count').textContent = commentariesByTheme.economy;
-        document.getElementById('technology-count').textContent = commentariesByTheme.technology;
-
-        // Update papers statistics
         const papersCount = document.getElementById('papers-count');
-        if (papersCount) {
-            papersCount.textContent = papersData.length;
-        }
-
-        // Count papers by theme
-        const papersByTheme = {
-            security: 0,
-            economy: 0,
-            technology: 0
-        };
-
-        papersData.forEach(item => {
-            (item.tags || []).forEach(tag => {
-                if (papersByTheme.hasOwnProperty(tag)) {
-                    papersByTheme[tag]++;
-                }
-            });
-        });
-
-        const paperSecurityCount = document.getElementById('papers-security-count');
-        const paperEconomyCount = document.getElementById('papers-economy-count');
-        const paperTechnologyCount = document.getElementById('papers-technology-count');
-
-        if (paperSecurityCount) paperSecurityCount.textContent = papersByTheme.security;
-        if (paperEconomyCount) paperEconomyCount.textContent = papersByTheme.economy;
-        if (paperTechnologyCount) paperTechnologyCount.textContent = papersByTheme.technology;
+        if (papersCount) papersCount.textContent = papersData.length;
     }
 
     toggleMobileMenu() {
@@ -220,28 +173,15 @@ class Router {
     }
 
     showSection(sectionName) {
-        // Hide all sections
-        this.sections.forEach(section => {
-            section.classList.remove('active');
-        });
-
-        // Show the selected section
+        this.sections.forEach(section => section.classList.remove('active'));
         const targetSection = document.getElementById(sectionName);
-        if (targetSection) {
-            targetSection.classList.add('active');
-        }
-
-        // Update active nav link
+        if (targetSection) targetSection.classList.add('active');
         this.updateActiveNavLink(sectionName);
     }
 
     updateActiveNavLink(sectionName) {
         this.navLinks.forEach(link => {
-            if (link.getAttribute('data-section') === sectionName) {
-                link.style.color = 'var(--accent-color)';
-            } else {
-                link.style.color = 'white';
-            }
+            link.style.color = link.getAttribute('data-section') === sectionName ? 'var(--accent-color)' : 'white';
         });
     }
 
@@ -250,24 +190,17 @@ class Router {
     }
 }
 
-// Initialize router when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    // Ensure data is available before initializing router
     if (typeof commentariesData !== 'undefined' && typeof papersData !== 'undefined' && typeof mediaData !== 'undefined') {
         const router = new Router();
-
-        // Check for hash on page load
         const hash = window.location.hash.slice(1) || 'home';
         router.showSection(hash);
     } else {
-        // Retry after a short delay if data isn't ready
         setTimeout(() => {
-            if (typeof commentariesData !== 'undefined' && typeof papersData !== 'undefined' && typeof mediaData !== 'undefined') {
+            if (typeof commentariesData !== 'undefined') {
                 const router = new Router();
                 const hash = window.location.hash.slice(1) || 'home';
                 router.showSection(hash);
-            } else {
-                console.warn('Data not loaded in time');
             }
         }, 100);
     }

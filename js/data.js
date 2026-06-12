@@ -6,7 +6,7 @@ const commentariesData = [
         publication: "ThinkChina",
         date: "21/04/2026",
         pubCategory: "international",
-        url: "https://www.thinkchina.sg/",
+        url: "https://www.thinkchina.sg/economy/chinas-critical-minerals-export-ban-falls-short",
         tags: ["economy", "technology"]
     },
     {
@@ -22,7 +22,7 @@ const commentariesData = [
         publication: "Indian Express",
         date: "23/03/2026",
         pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/india-chooses-silence-during-war/",
+        url: "https://indianexpress.com/article/opinion/columns/india-iran-israel-war-us-attack-on-iran-tehran-india-relations-10596253/",
         tags: ["security"]
     },
     {
@@ -38,7 +38,7 @@ const commentariesData = [
         publication: "Indian Express",
         date: "15/01/2026",
         pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/trump-tariffs-china/",
+        url: "https://indianexpress.com/article/opinion/columns/donald-trump-xi-jinping-china-trade-surplus-10474701/",
         tags: ["economy"]
     },
     {
@@ -46,15 +46,15 @@ const commentariesData = [
         publication: "Indian Express",
         date: "05/12/2025",
         pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/india-russia-partnership/",
+        url: "https://indianexpress.com/article/opinion/columns/for-india-russia-partnership-moscow-must-do-its-fair-share-10403005/",
         tags: ["security"]
     },
     {
-        title: "Putin in Delhi: Russia is an indispensable partner",
+        title: "Putin in Delhi: Russia is an indispensable partner. But the consequences of its actions cannot be left for India to deal with",
         publication: "Indian Express",
         date: "04/12/2025",
         pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/putin-delhi/",
+        url: "https://indianexpress.com/article/opinion/columns/putin-in-delhi-india-russia-relations-ukraine-war-10401435/",
         tags: ["security"]
     },
     {
@@ -70,7 +70,7 @@ const commentariesData = [
         publication: "Indian Express",
         date: "17/10/2025",
         pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/pakistan-quest-multiple-patrons/",
+        url: "https://indianexpress.com/article/opinion/columns/china-us-pakistan-relation-shehbaz-sharif-asif-munir-donald-trump-10312441/",
         tags: ["security"]
     },
     {
@@ -102,7 +102,7 @@ const commentariesData = [
         publication: "Indian Express",
         date: "06/08/2025",
         pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/trump-upset-india/",
+        url: "https://indianexpress.com/article/opinion/columns/donald-trump-russian-oil-trumps-tarrif-on-india-10172780/",
         tags: ["economy"]
     },
     {
@@ -110,7 +110,7 @@ const commentariesData = [
         publication: "Indian Express",
         date: "09/07/2025",
         pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/india-russia-dilemma/",
+        url: "https://indianexpress.com/article/opinion/columns/is-russia-indias-friend-modi-in-brics-russia-india-relations-10111246/",
         tags: ["security"]
     },
     {
@@ -118,7 +118,7 @@ const commentariesData = [
         publication: "ThinkChina",
         date: "01/07/2025",
         pubCategory: "international",
-        url: "https://www.thinkchina.sg/economy/made-in-china-or-spent-in-china-beijings-impossible-balancing-act",
+        url: "https://www.thinkchina.sg/economy/made-china-or-spent-china-beijings-impossible-balancing-act",
         tags: ["economy"]
     },
     {
@@ -130,11 +130,19 @@ const commentariesData = [
         tags: ["economy"]
     },
     {
+        title: "China's duplicity on display during the India-Pakistan conflict",
+        publication: "Firstpost",
+        date: "25/05/2025",
+        pubCategory: "national",
+        url: "https://www.firstpost.com/opinion/chinas-duplicity-on-display-during-the-india-pakistan-conflict-13890777.html",
+        tags: ["security"]
+    },
+    {
         title: "Protracted conflict between India and Pakistan will mean tough choices for Russia and China",
         publication: "Indian Express",
         date: "13/05/2025",
         pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/protracted-conflict-india-pakistan/",
+        url: "https://indianexpress.com/article/opinion/columns/pakistan-india-conflict-russia-china-tough-choice-10000220/",
         tags: ["security"]
     },
     {
@@ -146,11 +154,11 @@ const commentariesData = [
         tags: ["economy"]
     },
     {
-        title: "In global trade war, China is unlikely to blink first",
+        title: "In global trade war, China is unlikely to blink first. It has options to counter Trump",
         publication: "Indian Express",
         date: "10/04/2025",
         pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/china-trade-war/",
+        url: "https://indianexpress.com/article/opinion/columns/global-trade-war-us-china-trump-reciprocal-tariffs-9936569/",
         tags: ["economy"]
     },
     {
@@ -246,7 +254,7 @@ const commentariesData = [
         publication: "Indian Express",
         date: "21/04/2024",
         pubCategory: "national",
-        url: "https://indianexpress.com/article/opinion/warmer-moscow-beijing-ties/",
+        url: "https://indianexpress.com/article/opinion/columns/warmer-moscow-beijing-ties-india-chilling-signal-9282828/",
         tags: ["security"]
     },
     {
@@ -262,7 +270,7 @@ const commentariesData = [
         publication: "The Quint",
         date: "12/02/2024",
         pubCategory: "national",
-        url: "https://www.thequint.com/author/1443855/amit-kumar-32",
+        url: "https://www.thequint.com/opinion/is-trust-foregone-conclusion-india-russia-relations-it-is-about-china",
         tags: ["security"]
     },
     {
@@ -270,7 +278,7 @@ const commentariesData = [
         publication: "The Quint",
         date: "24/11/2023",
         pubCategory: "national",
-        url: "https://www.thequint.com/author/1443855/amit-kumar-32",
+        url: "https://www.thequint.com/opinion/india-us-bilateral-ties-nijjar-killing-canada-justin-trudeau-diplomatic-strategic-partnership",
         tags: ["security"]
     },
     {
@@ -326,15 +334,7 @@ const commentariesData = [
         publication: "The Quint",
         date: "12/04/2023",
         pubCategory: "national",
-        url: "https://www.thequint.com/author/1443855/amit-kumar-32",
-        tags: ["security"]
-    },
-    {
-        title: "China's Two-Front Dilemma",
-        publication: "ORF Expert Speak",
-        date: "02/03/2023",
-        pubCategory: "national",
-        url: "https://www.orfonline.org/expert-speak/chinas-two-front-conundrum",
+        url: "https://www.thequint.com/opinion/india-china-policy-two-front-situation-us-indo-pacific",
         tags: ["security"]
     },
     {
