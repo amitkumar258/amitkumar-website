@@ -777,44 +777,46 @@ a:hover {
     font-weight: 500;
 }
 
-/* ==================== Books Section ==================== */
-.books-list {
+/* ==================== Books Section (Quarto-style grid) ==================== */
+.books-grid {
     display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
 }
 
-.book-item {
+.book-card {
     display: flex;
-    gap: 2rem;
+    flex-direction: column;
     align-items: flex-start;
-    padding: 1.5rem;
-    background-color: var(--light-bg);
-    border-radius: 8px;
-    border-left: 4px solid var(--accent-color);
+    padding: 1.25rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
 }
 
 .book-cover {
-    width: 150px;
-    min-width: 150px;
+    width: 130px;
     height: auto;
-    border-radius: 6px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    display: block;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    border-radius: 3px;
 }
 
-.book-content {
-    flex: 1;
-}
-
-.book-item h3 {
-    margin-top: 0;
-    font-size: 1.2rem;
-    margin-bottom: 0.75rem;
+.book-chapter-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin: 0 0 0.5rem 0;
+    color: var(--text-color);
 }
 
 .book-meta {
-    font-style: italic;
+    font-size: 0.82rem;
     color: var(--text-light);
-    font-size: 0.95rem;
+    font-style: italic;
+    margin: 0;
 }
 
 /* ==================== Empty Section ==================== */
@@ -952,12 +954,9 @@ a:hover {
     .comment-link { font-size: 0.84rem; }
     .comment-tags { padding-left: calc(58px + 1.25rem); }
 
-    /* Book covers smaller on mobile */
-    .book-item {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    .book-cover { width: 120px; }
+    /* Books: stack to single column on mobile */
+    .books-grid { grid-template-columns: 1fr; }
+    .book-cover { width: 110px; }
 
     /* Filter buttons */
     .filter-controls { flex-wrap: wrap; }
