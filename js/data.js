@@ -7,7 +7,7 @@ const commentariesData = [
         date: "21/04/2026",
         pubCategory: "international",
         url: "https://www.thinkchina.sg/economy/chinas-critical-minerals-export-ban-falls-short",
-        tags: ["economy", "technology"]
+        tags: ["economy", "technology", "china"]
     },
     {
         title: "Opening the doors for Chinese investment again, with caution",
@@ -15,7 +15,7 @@ const commentariesData = [
         date: "01/04/2026",
         pubCategory: "national",
         url: "https://www.hindustantimes.com/opinion/opening-the-doors-for-chinese-investment-again-with-caution-101775056465016.html",
-        tags: ["security", "economy"]
+        tags: ["security", "economy", "china", "india"]
     },
     {
         title: "India chooses silence during war and crises because posturing will have costs",
@@ -23,7 +23,7 @@ const commentariesData = [
         date: "23/03/2026",
         pubCategory: "national",
         url: "https://indianexpress.com/article/opinion/columns/india-iran-israel-war-us-attack-on-iran-tehran-india-relations-10596253/",
-        tags: ["security"]
+        tags: ["security", "india"]
     },
     {
         title: "China's blueprint for the next leap",
@@ -31,7 +31,7 @@ const commentariesData = [
         date: "22/03/2026",
         pubCategory: "national",
         url: "https://www.deccanherald.com/opinion/chinas-blueprint-for-the-next-leap-3940825",
-        tags: ["economy", "technology"]
+        tags: ["economy", "technology", "china"]
     },
     {
         title: "Donald Trump thought his tariffs would hurt China. He was wrong",
@@ -39,7 +39,7 @@ const commentariesData = [
         date: "15/01/2026",
         pubCategory: "national",
         url: "https://indianexpress.com/article/opinion/columns/donald-trump-xi-jinping-china-trade-surplus-10474701/",
-        tags: ["economy"]
+        tags: ["economy", "us", "china"]
     },
     {
         title: "For India-Russia partnership, Moscow must do its fair share",
@@ -47,7 +47,7 @@ const commentariesData = [
         date: "05/12/2025",
         pubCategory: "national",
         url: "https://indianexpress.com/article/opinion/columns/for-india-russia-partnership-moscow-must-do-its-fair-share-10403005/",
-        tags: ["security"]
+        tags: ["security", "india", "russia"]
     },
     {
         title: "Putin in Delhi: Russia is an indispensable partner. But the consequences of its actions cannot be left for India to deal with",
@@ -55,7 +55,7 @@ const commentariesData = [
         date: "04/12/2025",
         pubCategory: "national",
         url: "https://indianexpress.com/article/opinion/columns/putin-in-delhi-india-russia-relations-ukraine-war-10401435/",
-        tags: ["security"]
+        tags: ["security", "india", "russia"]
     },
     {
         title: "India must look beyond Main Battle Tanks. It is expensive and outdated",
@@ -63,7 +63,7 @@ const commentariesData = [
         date: "03/11/2025",
         pubCategory: "national",
         url: "https://theprint.in/opinion/india-main-battle-tanks-expensive-outdated/2776143/",
-        tags: ["security"]
+        tags: ["security", "india"]
     },
     {
         title: "China, US to Saudi Arabia: Pakistan's quest for multiple patrons",
@@ -71,7 +71,7 @@ const commentariesData = [
         date: "17/10/2025",
         pubCategory: "national",
         url: "https://indianexpress.com/article/opinion/columns/china-us-pakistan-relation-shehbaz-sharif-asif-munir-donald-trump-10312441/",
-        tags: ["security"]
+        tags: ["security", "china", "us"]
     },
     {
         title: "China wants control, not cooperation",
@@ -79,7 +79,7 @@ const commentariesData = [
         date: "12/09/2025",
         pubCategory: "national",
         url: "https://indianexpress.com/article/opinion/china-wants-control/",
-        tags: ["security"]
+        tags: ["security", "china"]
     },
     {
         title: "China's official trade surplus remains as high as at its peak",
@@ -87,7 +87,7 @@ const commentariesData = [
         date: "12/08/2025",
         pubCategory: "international",
         url: "https://asia.nikkei.com/opinion/china-s-official-trade-surplus-remains-as-high-as-at-its-peak",
-        tags: ["economy"]
+        tags: ["economy", "china"]
     },
     {
         title: "Dalai Lama's succession and geopolitics of faith",
@@ -95,7 +95,7 @@ const commentariesData = [
         date: "11/08/2025",
         pubCategory: "international",
         url: "https://www.thinkchina.sg/politics/dalai-lamas-succession-and-geopolitics-faith",
-        tags: ["security"]
+        tags: ["security", "china", "india"]
     },
     {
         title: "Why is Trump upset with India? It is not about peace in Ukraine",
@@ -103,7 +103,7 @@ const commentariesData = [
         date: "06/08/2025",
         pubCategory: "national",
         url: "https://indianexpress.com/article/opinion/columns/donald-trump-russian-oil-trumps-tarrif-on-india-10172780/",
-        tags: ["economy"]
+        tags: ["economy", "us", "india"]
     },
     {
         title: "India faces a Russia dilemma",
@@ -111,7 +111,7 @@ const commentariesData = [
         date: "09/07/2025",
         pubCategory: "national",
         url: "https://indianexpress.com/article/opinion/columns/is-russia-indias-friend-modi-in-brics-russia-india-relations-10111246/",
-        tags: ["security"]
+        tags: ["security", "india", "russia"]
     },
     {
         title: "Made in China or spent in China? Beijing's impossible balancing act",
@@ -119,7 +119,7 @@ const commentariesData = [
         date: "01/07/2025",
         pubCategory: "international",
         url: "https://www.thinkchina.sg/economy/made-china-or-spent-china-beijings-impossible-balancing-act",
-        tags: ["economy"]
+        tags: ["economy", "china"]
     },
     {
         title: "US-China trade war leaves India confronting three negative spillovers",
@@ -127,7 +127,7 @@ const commentariesData = [
         date: "23/06/2025",
         pubCategory: "national",
         url: "https://www.moneycontrol.com/news/opinion/us-china-trade-war-leaves-india-confronting-three-negative-spillovers-13161093.html",
-        tags: ["economy"]
+        tags: ["economy", "us", "china", "india"]
     },
     {
         title: "China's duplicity on display during the India-Pakistan conflict",
@@ -135,7 +135,7 @@ const commentariesData = [
         date: "25/05/2025",
         pubCategory: "national",
         url: "https://www.firstpost.com/opinion/chinas-duplicity-on-display-during-the-india-pakistan-conflict-13890777.html",
-        tags: ["security"]
+        tags: ["security", "china", "india"]
     },
     {
         title: "Protracted conflict between India and Pakistan will mean tough choices for Russia and China",
@@ -143,7 +143,7 @@ const commentariesData = [
         date: "13/05/2025",
         pubCategory: "national",
         url: "https://indianexpress.com/article/opinion/columns/pakistan-india-conflict-russia-china-tough-choice-10000220/",
-        tags: ["security"]
+        tags: ["security", "india", "russia", "china"]
     },
     {
         title: "Why China's finances are weaker than they seem",
@@ -151,7 +151,7 @@ const commentariesData = [
         date: "10/05/2025",
         pubCategory: "international",
         url: "https://www.thinkchina.sg/economy/why-chinas-finances-are-weaker-they-seem",
-        tags: ["economy"]
+        tags: ["economy", "china"]
     },
     {
         title: "In global trade war, China is unlikely to blink first. It has options to counter Trump",
@@ -159,7 +159,7 @@ const commentariesData = [
         date: "10/04/2025",
         pubCategory: "national",
         url: "https://indianexpress.com/article/opinion/columns/global-trade-war-us-china-trump-reciprocal-tariffs-9936569/",
-        tags: ["economy"]
+        tags: ["economy", "us", "china"]
     },
     {
         title: "Trump-Xi talks: Short-term truce, long-term friction",
@@ -167,7 +167,7 @@ const commentariesData = [
         date: "20/12/2024",
         pubCategory: "national",
         url: "https://www.moneycontrol.com/news/opinion/trump-xi-talks-short-term-truce-long-term-friction-13645164.html",
-        tags: ["economy"]
+        tags: ["economy", "us", "china"]
     },
     {
         title: "Using coercive economic tools as strategic leverage",
@@ -175,7 +175,7 @@ const commentariesData = [
         date: "18/12/2024",
         pubCategory: "national",
         url: "https://www.firstpost.com/opinion/using-coercive-economic-tools/",
-        tags: ["economy", "security"]
+        tags: ["economy", "security", "china"]
     },
     {
         title: "India warming to Chinese investment?",
@@ -183,7 +183,7 @@ const commentariesData = [
         date: "24/10/2024",
         pubCategory: "international",
         url: "https://www.thinkchina.sg/economy/india-warming-chinese-investment",
-        tags: ["economy", "security"]
+        tags: ["economy", "security", "china", "india"]
     },
     {
         title: "India's waning interest in Shanghai Cooperation Organisation",
@@ -191,7 +191,7 @@ const commentariesData = [
         date: "22/10/2024",
         pubCategory: "national",
         url: "https://www.deccanherald.com/opinion/indias-waning-interest-in-shanghai-cooperation-organisation-3244075",
-        tags: ["security"]
+        tags: ["security", "india", "china", "russia"]
     },
     {
         title: "China isn't ready to shift to a consumption-driven economy",
@@ -199,7 +199,7 @@ const commentariesData = [
         date: "28/09/2024",
         pubCategory: "international",
         url: "https://asia.nikkei.com/opinion/china-isn-t-ready-to-shift-to-a-consumption-driven-economy",
-        tags: ["economy"]
+        tags: ["economy", "china"]
     },
     {
         title: "Power asymmetry between China and Russia",
@@ -207,7 +207,7 @@ const commentariesData = [
         date: "13/09/2024",
         pubCategory: "national",
         url: "https://www.thehindu.com/news/international/power-asymmetry-between-china-and-russia/article68653066.ece",
-        tags: ["security"]
+        tags: ["security", "china", "russia"]
     },
     {
         title: "The US Can Accelerate India's Rise as a Legacy Chip Hub",
@@ -215,7 +215,7 @@ const commentariesData = [
         date: "14/08/2024",
         pubCategory: "international",
         url: "https://thediplomat.com/2024/08/the-us-can-accelerate-indias-rise-as-a-legacy-chip-hub/",
-        tags: ["technology", "economy"]
+        tags: ["technology", "economy", "us", "india"]
     },
     {
         title: "India is well placed to become the next China and drive global growth",
@@ -223,7 +223,7 @@ const commentariesData = [
         date: "09/08/2024",
         pubCategory: "international",
         url: "https://asia.nikkei.com/opinion/india-is-well-placed-to-become-the-next-china-and-drive-global-growth",
-        tags: ["economy"]
+        tags: ["economy", "india", "china"]
     },
     {
         title: "India gains semiconductor momentum, but the policy mix can be even better",
@@ -231,7 +231,7 @@ const commentariesData = [
         date: "23/05/2024",
         pubCategory: "national",
         url: "https://www.moneycontrol.com/news/opinion/india-gains-semiconductor-momentum-but-the-policy-mix-can-be-even-better-12417121.html",
-        tags: ["technology", "economy"]
+        tags: ["technology", "economy", "india"]
     },
     {
         title: "India-China consumption comparison",
@@ -239,7 +239,7 @@ const commentariesData = [
         date: "20/05/2024",
         pubCategory: "national",
         url: "https://www.thehindu.com/business/Economy/india-china-consumption-comparison/article68197627.ece",
-        tags: ["economy"]
+        tags: ["economy", "india", "china"]
     },
     {
         title: "How recent Maldives parliamentary election results are a silver lining for India",
@@ -247,7 +247,7 @@ const commentariesData = [
         date: "23/04/2024",
         pubCategory: "national",
         url: "https://www.firstpost.com/opinion/how-recent-maldives-parliamentary-election-results-are-a-silver-lining-for-india-13764173.html",
-        tags: ["security"]
+        tags: ["security", "india"]
     },
     {
         title: "Warmer Moscow-Beijing ties are a chilling signal for New Delhi",
@@ -255,7 +255,7 @@ const commentariesData = [
         date: "21/04/2024",
         pubCategory: "national",
         url: "https://indianexpress.com/article/opinion/columns/warmer-moscow-beijing-ties-india-chilling-signal-9282828/",
-        tags: ["security"]
+        tags: ["security", "russia", "china", "india"]
     },
     {
         title: "The Hidden Dangers in China's GDP Numbers",
@@ -263,7 +263,7 @@ const commentariesData = [
         date: "11/03/2024",
         pubCategory: "international",
         url: "https://foreignpolicy.com/author/amit-kumar/",
-        tags: ["economy"]
+        tags: ["economy", "china"]
     },
     {
         title: "Is Trust a Foregone Conclusion in India-Russia Relations? It's All About China",
@@ -271,7 +271,7 @@ const commentariesData = [
         date: "12/02/2024",
         pubCategory: "national",
         url: "https://www.thequint.com/opinion/is-trust-foregone-conclusion-india-russia-relations-it-is-about-china",
-        tags: ["security"]
+        tags: ["security", "india", "russia", "china"]
     },
     {
         title: "India-US Ties: Despite Nijjar Storm, All's Well on the Western Front",
@@ -279,7 +279,7 @@ const commentariesData = [
         date: "24/11/2023",
         pubCategory: "national",
         url: "https://www.thequint.com/opinion/india-us-bilateral-ties-nijjar-killing-canada-justin-trudeau-diplomatic-strategic-partnership",
-        tags: ["security"]
+        tags: ["security", "india", "us"]
     },
     {
         title: "What to expect from the Joe Biden-Xi Jinping summit",
@@ -287,7 +287,7 @@ const commentariesData = [
         date: "15/11/2023",
         pubCategory: "national",
         url: "https://www.moneycontrol.com/news/opinion/what-to-expect-from-the-joe-biden-xi-jinping-summit-11742331.html",
-        tags: ["security"]
+        tags: ["security", "us", "china"]
     },
     {
         title: "Growing US-China chip rivalry presents India with its geopolitical moment",
@@ -295,7 +295,7 @@ const commentariesData = [
         date: "03/11/2023",
         pubCategory: "national",
         url: "https://www.moneycontrol.com/news/opinion/growing-us-china-chip-rivalry-presents-india-with-its-geopolitical-moment-11703201.html",
-        tags: ["technology", "security"]
+        tags: ["technology", "security", "us", "china", "india"]
     },
     {
         title: "The signals from this 'Made in China' smartphone story",
@@ -303,7 +303,7 @@ const commentariesData = [
         date: "12/09/2023",
         pubCategory: "national",
         url: "https://www.thehindu.com/opinion/op-ed/the-signals-from-this-made-in-china-smartphone-story/article67296120.ece",
-        tags: ["technology"]
+        tags: ["technology", "china"]
     },
     {
         title: "In the chip war, US has the edge over China",
@@ -311,7 +311,7 @@ const commentariesData = [
         date: "01/08/2023",
         pubCategory: "national",
         url: "https://www.hindustantimes.com/opinion/in-the-chip-war-us-has-the-edge-over-china-101690900110589.html",
-        tags: ["technology", "security"]
+        tags: ["technology", "security", "us", "china"]
     },
     {
         title: "Explained | China's 'developmental' security approach",
@@ -319,7 +319,7 @@ const commentariesData = [
         date: "19/06/2023",
         pubCategory: "national",
         url: "https://www.thehindu.com/news/international/explained-chinas-developmental-security-approach/article66982632.ece",
-        tags: ["security"]
+        tags: ["security", "china"]
     },
     {
         title: "'Two Sessions' Later, How China's Contradictory Policies Will Impact India",
@@ -327,7 +327,7 @@ const commentariesData = [
         date: "15/04/2023",
         pubCategory: "national",
         url: "https://www.thequint.com/author/1443855/amit-kumar-32",
-        tags: ["economy"]
+        tags: ["economy", "china", "india"]
     },
     {
         title: "India's Policy Towards China Must Leverage Latter's Two-Front Situation",
@@ -335,7 +335,7 @@ const commentariesData = [
         date: "12/04/2023",
         pubCategory: "national",
         url: "https://www.thequint.com/opinion/india-china-policy-two-front-situation-us-indo-pacific",
-        tags: ["security"]
+        tags: ["security", "india", "china", "us"]
     },
     {
         title: "How Xi Jinping used 'revolution' instead of 'nationalism' to take control of China",
@@ -343,7 +343,7 @@ const commentariesData = [
         date: "02/10/2022",
         pubCategory: "national",
         url: "https://theprint.in/opinion/how-xi-jinping-used-revolution-instead-of-nationalism-to-take-control-of-china/1149691/",
-        tags: ["security"]
+        tags: ["security", "china"]
     },
     {
         title: "Xi's legacy in the 'New Era'",
@@ -351,7 +351,7 @@ const commentariesData = [
         date: "20/09/2022",
         pubCategory: "national",
         url: "https://www.orfonline.org/expert-speak/xi-s-legacy-in-the-new-era",
-        tags: ["security"]
+        tags: ["security", "china"]
     },
     {
         title: "China's renewed push to tame religion",
@@ -359,7 +359,7 @@ const commentariesData = [
         date: "14/09/2022",
         pubCategory: "national",
         url: "https://www.orfonline.org/expert-speak/chinas-renewed-push-to-tame-religion",
-        tags: ["security"]
+        tags: ["security", "china"]
     },
     {
         title: "Is Li coming out of Xi's shadow? His assertiveness is visible",
@@ -367,7 +367,7 @@ const commentariesData = [
         date: "21/06/2022",
         pubCategory: "national",
         url: "https://theprint.in/opinion/is-li-coming-out-of-xis-shadow-his-assertiveness-is-visible/1004415/",
-        tags: ["security"]
+        tags: ["security", "china"]
     },
     {
         title: "One-upmanship at the top shows cracks in China's system",
@@ -375,7 +375,7 @@ const commentariesData = [
         date: "16/06/2022",
         pubCategory: "national",
         url: "https://www.orfonline.org/expert-speak/one-upmanship-at-the-top-shows-cracks-in-chinas-system",
-        tags: ["security"]
+        tags: ["security", "china"]
     },
     {
         title: "Taiwan's evolving security concerns and prospects of cross-strait unification",
@@ -383,7 +383,7 @@ const commentariesData = [
         date: "17/09/2021",
         pubCategory: "national",
         url: "https://www.vifindia.org/article/2021/september/17/taiwans-evolving-security-concerns-and-prospects-of-cross-strait-unification",
-        tags: ["security"]
+        tags: ["security", "china", "us"]
     },
     {
         title: "The two tales of Pakistan's geography",
@@ -391,7 +391,7 @@ const commentariesData = [
         date: "02/09/2021",
         pubCategory: "national",
         url: "https://www.vifindia.org/article/2021/september/02/the-two-tales-of-pakistans-geography",
-        tags: ["security"]
+        tags: ["security", "india"]
     },
     {
         title: "A Crisis Looms as the Chinese Communist Party Celebrates its Centenary Year",
@@ -399,7 +399,7 @@ const commentariesData = [
         date: "02/07/2021",
         pubCategory: "national",
         url: "https://diplomatist.com/a-crisis-looms-as-the-chinese-communist-party-celebrates-its-centenary-year/",
-        tags: ["security"]
+        tags: ["security", "china"]
     },
     {
         title: "Why not an 'end of history' for China?",
@@ -407,7 +407,7 @@ const commentariesData = [
         date: "07/06/2021",
         pubCategory: "national",
         url: "https://diplomatist.com/why-not-an-end-of-history-for-china/",
-        tags: ["security"]
+        tags: ["security", "china"]
     }
 ];
 

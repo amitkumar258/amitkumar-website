@@ -398,12 +398,18 @@ a:hover {
 
 /* ==================== Section header row (h2 + year dropdown) ==================== */
 .section-header-row {
+    position: relative;
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: center;
     gap: 1rem;
     margin-bottom: 1.5rem;
     flex-wrap: wrap;
+    text-align: center;
+}
+
+.section-header-row > div {
+    text-align: center;
 }
 
 .section-header-row h2 {
@@ -425,8 +431,9 @@ a:hover {
     color: var(--text-color);
     cursor: pointer;
     outline: none;
-    flex-shrink: 0;
-    margin-top: 0.25rem;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .year-select:focus {
