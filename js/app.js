@@ -39,30 +39,54 @@ class Router {
     }
 
     setupFilters() {
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const btn = e.target;
-                const filter = btn.getAttribute('data-filter');
-                const year = btn.getAttribute('data-year');
+        // Publication category tabs (All / National / International)
+        document.querySelectorAll('.pub-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.pub-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const pubFilter = tab.getAttribute('data-pub-filter');
 
-                if (filter && filter.startsWith('papers-')) {
-                    // Papers filter: deactivate siblings only
-                    btn.closest('.filter-controls').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    this.filterPapers(filter);
-                } else if (year !== null) {
-                    // Year filter: deactivate all year buttons
-                    document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    this.activeYearFilter = year;
-                    this.applyCommentaryFilters();
-                } else if (filter) {
-                    // Publication filter: deactivate all sidebar pub buttons
-                    document.querySelectorAll('.sidebar-btn:not(.year-btn)').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    this.activePubFilter = filter;
-                    this.applyCommentaryFilters();
+                // Show/hide sub-publication lists
+                document.querySelectorAll('.pub-sub-list').forEach(list => list.classList.remove('visible'));
+                if (pubFilter === 'national') {
+                    document.getElementById('national-pubs').classList.add('visible');
+                } else if (pubFilter === 'international') {
+                    document.getElementById('international-pubs').classList.add('visible');
                 }
+
+                // Deactivate any specific pub buttons and apply category-level filter
+                document.querySelectorAll('.pub-btn').forEach(b => b.classList.remove('active'));
+                this.activePubFilter = pubFilter;
+                this.applyCommentaryFilters();
+            });
+        });
+
+        // Specific publication buttons
+        document.querySelectorAll('.pub-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.pub-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                this.activePubFilter = btn.getAttribute('data-filter');
+                this.applyCommentaryFilters();
+            });
+        });
+
+        // Year filter buttons
+        document.querySelectorAll('.year-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                this.activeYearFilter = btn.getAttribute('data-year');
+                this.applyCommentaryFilters();
+            });
+        });
+
+        // Papers filter buttons
+        document.querySelectorAll('.filter-btn[data-filter^="papers-"]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.closest('.filter-controls').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                this.filterPapers(btn.getAttribute('data-filter'));
             });
         });
     }
@@ -70,12 +94,20 @@ class Router {
     applyCommentaryFilters() {
         const items = document.querySelectorAll('.commentary-item');
         items.forEach(item => {
-            const category = item.getAttribute('data-category');
+            const category = item.getAttribute('data-category'); // e.g. "national-indian-express"
+            const pubCategory = category.split('-')[0];           // "national" or "international"
             const year = item.getAttribute('data-year');
 
-            const pubMatch = this.activePubFilter === 'all' || category === this.activePubFilter;
-            const yearMatch = this.activeYearFilter === 'all' || year === this.activeYearFilter;
+            let pubMatch;
+            if (this.activePubFilter === 'all') {
+                pubMatch = true;
+            } else if (this.activePubFilter === 'national' || this.activePubFilter === 'international') {
+                pubMatch = pubCategory === this.activePubFilter;
+            } else {
+                pubMatch = category === this.activePubFilter;
+            }
 
+            const yearMatch = this.activeYearFilter === 'all' || year === this.activeYearFilter;
             item.style.display = pubMatch && yearMatch ? 'block' : 'none';
         });
     }

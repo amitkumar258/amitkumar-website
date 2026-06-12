@@ -338,8 +338,67 @@ a:hover {
     font-weight: 600;
 }
 
-.sidebar-filter-group {
-    margin-bottom: 1.5rem;
+/* ==================== Commentaries Three-Column Layout ==================== */
+.commentaries-wrapper {
+    display: grid;
+    grid-template-columns: 200px 1fr 120px;
+    gap: 2rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2rem var(--spacing);
+    align-items: start;
+}
+
+.pub-sidebar {
+    position: sticky;
+    top: 100px;
+}
+
+.pub-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+.pub-tab {
+    padding: 0.5rem 0.75rem;
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-color);
+    text-align: left;
+    transition: all var(--transition);
+}
+
+.pub-tab:hover {
+    background-color: var(--light-bg);
+}
+
+.pub-tab.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.pub-sub-list {
+    display: none;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: 0.25rem;
+}
+
+.pub-sub-list.visible {
+    display: flex;
+}
+
+.year-sidebar {
+    position: sticky;
+    top: 100px;
 }
 
 .sidebar-filter-header {
@@ -461,7 +520,8 @@ a:hover {
 }
 
 .comment-publication {
-    font-weight: 600;
+    font-weight: 700;
+    font-style: italic;
     color: var(--primary-color);
     font-size: 0.85rem;
     white-space: nowrap;
@@ -770,16 +830,19 @@ a:hover {
         order: -1;
     }
 
-    .pub-group {
-        margin-bottom: 1.5rem;
+    .commentaries-wrapper {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
-    .pub-group h3 {
-        font-size: 0.85rem;
+    .pub-sidebar,
+    .year-sidebar {
+        position: static;
     }
 
-    .publications-header {
-        margin-bottom: 1.5rem;
+    .pub-tabs {
+        flex-direction: row;
+        flex-wrap: wrap;
     }
 }
 
