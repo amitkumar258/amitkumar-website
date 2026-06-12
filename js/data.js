@@ -154,6 +154,14 @@ const commentariesData = [
         tags: ["economy"]
     },
     {
+        title: "Trump-Xi talks: Short-term truce, long-term friction",
+        publication: "Moneycontrol",
+        date: "20/12/2024",
+        pubCategory: "national",
+        url: "https://www.moneycontrol.com/news/opinion/trump-xi-talks-short-term-truce-long-term-friction-13645164.html",
+        tags: ["economy"]
+    },
+    {
         title: "Using coercive economic tools as strategic leverage",
         publication: "Firstpost",
         date: "18/12/2024",
@@ -330,6 +338,14 @@ const commentariesData = [
         tags: ["security"]
     },
     {
+        title: "How Xi Jinping used 'revolution' instead of 'nationalism' to take control of China",
+        publication: "The Print",
+        date: "02/10/2022",
+        pubCategory: "national",
+        url: "https://theprint.in/opinion/how-xi-jinping-used-revolution-instead-of-nationalism-to-take-control-of-china/1149691/",
+        tags: ["security"]
+    },
+    {
         title: "Xi's legacy in the 'New Era'",
         publication: "ORF Expert Speak",
         date: "20/09/2022",
@@ -343,6 +359,14 @@ const commentariesData = [
         date: "14/09/2022",
         pubCategory: "national",
         url: "https://www.orfonline.org/expert-speak/chinas-renewed-push-to-tame-religion",
+        tags: ["security"]
+    },
+    {
+        title: "Is Li coming out of Xi's shadow? His assertiveness is visible",
+        publication: "The Print",
+        date: "21/06/2022",
+        pubCategory: "national",
+        url: "https://theprint.in/opinion/is-li-coming-out-of-xis-shadow-his-assertiveness-is-visible/1004415/",
         tags: ["security"]
     },
     {
