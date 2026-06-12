@@ -726,45 +726,25 @@ a:hover {
     cursor: default;
 }
 
-/* ==================== Papers Section ==================== */
-.papers-grid {
-    display: grid;
-    gap: 1.5rem;
+/* ==================== Papers Section (Quarto-style list) ==================== */
+.papers-list {
+    border-top: 1px solid var(--border-color);
+    min-width: 0;
 }
 
-.paper-card {
-    background-color: var(--light-bg);
-    padding: 1.5rem;
-    border-left: 4px solid var(--accent-color);
-    border-radius: 4px;
-    transition: transform var(--transition);
+.paper-item {
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
 }
 
-.paper-card:hover {
-    transform: translateX(8px);
-}
-
-.paper-card h3 {
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-    font-size: 1.3rem;
-}
-
-.paper-card p {
-    margin-bottom: 0.75rem;
-}
-
-.card-meta {
-    font-size: 0.85rem;
+.paper-coauthor {
+    font-size: 0.76rem;
     color: var(--text-light);
-    font-weight: 500;
-    margin-bottom: 1rem;
-}
-
-.paper-card p:last-child {
-    margin-bottom: 0;
-    color: var(--text-light);
-    font-size: 0.9rem;
+    font-style: italic;
+    margin-top: 0.2rem;
+    padding-left: calc(72px + 1.25rem);
 }
 
 /* ==================== Media Section ==================== */

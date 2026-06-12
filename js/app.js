@@ -10,6 +10,8 @@ class Router {
         this.searchQuery = '';
         this.currentPage = 1;
         this.itemsPerPage = 20;
+        this.currentPapersPage = 1;
+        this.papersPerPage = 10;
         this.init();
     }
 
@@ -239,21 +241,64 @@ class Router {
     }
 
     renderPapers() {
-        const container = document.querySelector('.papers-grid');
+        const container = document.querySelector('.papers-list');
         if (!container) return;
 
-        container.innerHTML = papersData.map(paper => {
-            const tagsString = (paper.tags || []).join(',');
+        const totalPages = Math.max(1, Math.ceil(papersData.length / this.papersPerPage));
+        if (this.currentPapersPage > totalPages) this.currentPapersPage = totalPages;
+
+        const start = (this.currentPapersPage - 1) * this.papersPerPage;
+        const pageItems = papersData.slice(start, start + this.papersPerPage);
+
+        container.innerHTML = pageItems.map(paper => {
+            const fmtDate = this.formatDate(paper.date);
+            const coAuthorHtml = paper.coAuthor
+                ? `<span class="paper-coauthor">with ${paper.coAuthor}</span>`
+                : '';
             return `
-                <div class="paper-card" data-tags="${tagsString}">
-                    <h3><a href="${paper.url}" target="_blank">${paper.title}</a></h3>
-                    <p class="card-meta">${paper.publication} • ${paper.date}</p>
-                    <p>${paper.description}</p>
-                    <div class="paper-tags">
-                        ${(paper.tags || []).map(tag => `<span class="paper-tag ${tag}">${tag}</span>`).join('')}
+                <div class="paper-item">
+                    <div class="comment-row">
+                        <span class="comment-date">${fmtDate}</span>
+                        <div class="comment-body">
+                            <a href="${paper.url}" target="_blank" class="comment-link">${paper.title}</a>
+                            <span class="comment-publication">${paper.publication}</span>
+                        </div>
+                    </div>
+                    ${coAuthorHtml}
+                    <div class="comment-tags">
+                        ${(paper.tags || []).map(tag => `<span class="comment-tag ${tag}">${tag}</span>`).join('')}
                     </div>
                 </div>`;
         }).join('');
+
+        this.renderPapersPagination(papersData.length, totalPages);
+    }
+
+    renderPapersPagination(total, totalPages) {
+        const container = document.getElementById('papers-pagination');
+        if (!container) return;
+
+        if (totalPages <= 1) { container.innerHTML = ''; return; }
+
+        const cur = this.currentPapersPage;
+        const pageNums = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+        container.innerHTML = `
+            <button class="page-btn" data-page="${cur - 1}" ${cur === 1 ? 'disabled' : ''}>‹</button>
+            ${pageNums.map(p => `<button class="page-btn ${p === cur ? 'active' : ''}" data-page="${p}">${p}</button>`).join('')}
+            <button class="page-btn" data-page="${cur + 1}" ${cur === totalPages ? 'disabled' : ''}>›</button>
+        `;
+
+        container.querySelectorAll('.page-btn:not([disabled])').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const page = parseInt(btn.getAttribute('data-page'));
+                if (page >= 1 && page <= totalPages) {
+                    this.currentPapersPage = page;
+                    this.renderPapers();
+                    document.querySelector('.papers-list').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
     }
 
     renderMedia() {

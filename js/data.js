@@ -162,12 +162,28 @@ const commentariesData = [
         tags: ["economy", "US", "china"]
     },
     {
+        title: "Digging Deep: Tunnel Boring Machines and India's China Challenge",
+        publication: "Takshashila Institution",
+        date: "22/01/2025",
+        pubCategory: "national",
+        url: "https://takshashila.org.in/content/blogs/digging-deep.html",
+        tags: ["security", "india", "china", "geopolitics"]
+    },
+    {
         title: "Trump-Xi talks: Short-term truce, long-term friction",
         publication: "Moneycontrol",
         date: "20/12/2024",
         pubCategory: "national",
         url: "https://www.moneycontrol.com/news/opinion/trump-xi-talks-short-term-truce-long-term-friction-13645164.html",
         tags: ["economy", "US", "china"]
+    },
+    {
+        title: "A Silicon Curtain: Examining the Implications of US Export Controls on Chips",
+        publication: "Takshashila Institution",
+        date: "03/12/2024",
+        pubCategory: "national",
+        url: "https://takshashila.org.in/content/blogs/silicon-curtain.html",
+        tags: ["technology", "security", "geopolitics", "china", "US", "semiconductors"]
     },
     {
         title: "India warming to Chinese investment?",
@@ -224,6 +240,14 @@ const commentariesData = [
         pubCategory: "national",
         url: "https://www.thehindu.com/business/Economy/india-china-consumption-comparison/article68197627.ece",
         tags: ["economy", "india", "china"]
+    },
+    {
+        title: "China's Electronics Domestic Substitution Mandate Is a Sign of Weakness",
+        publication: "Takshashila Institution",
+        date: "28/04/2024",
+        pubCategory: "national",
+        url: "https://legion.takshashila.org.in/blogs/chinas-electronics-domestic-substitution-mandate-is-a-sign-of-weakness",
+        tags: ["china", "technology", "geoeconomics"]
     },
     {
         title: "How recent Maldives parliamentary election results are a silver lining for India",
@@ -411,130 +435,177 @@ const commentariesData = [
     }
 ];
 
-// Papers data with dates and theme tags
+// Papers data — newest to oldest
 const papersData = [
     {
-        title: "De-Risking Trade with China: Evaluating India's Options",
+        title: "Sand Slipping Through Fingers",
         publication: "Takshashila Institution",
-        date: "March 30, 2026",
-        description: "Strategic analysis of India's approaches to managing economic dependency on China through trade de-risking initiatives.",
-        url: "https://takshashila.org.in/research/de-risking-india-china-trade",
-        tags: ["economy", "security"]
+        date: "30/03/2026",
+        coAuthor: "Pranay Kotasthane",
+        url: "https://takshashila.org.in/content/publications/China-Ga-Ge-Export-Restrictions-29032026.html",
+        tags: ["china", "US", "geoeconomics", "critical-minerals"]
     },
     {
-        title: "China's Technology Competition: The Semiconductor Challenge",
-        publication: "Observer Research Foundation",
-        date: "March 4, 2026",
-        description: "Examination of China's technological advancement in semiconductors and implications for global supply chains.",
-        url: "https://www.orfonline.org/research/chinas-semiconductor-competition",
-        tags: ["technology", "economy"]
-    },
-    {
-        title: "Belt and Road Initiative: Debt Sustainability Analysis",
-        publication: "Takshashila Institution",
-        date: "October 13, 2025",
-        description: "Comprehensive assessment of BRI projects' financial viability and debt sustainability across recipient countries.",
-        url: "https://takshashila.org.in/research/bri-debt-sustainability",
-        tags: ["economy", "security"]
-    },
-    {
-        title: "India-China Economic Competition in South Asia",
-        publication: "Brookings India",
-        date: "May 14, 2025",
-        description: "Analysis of competing economic influence of India and China across South Asian economies.",
-        url: "https://brookings.edu/research/india-china-south-asia",
-        tags: ["economy", "security"]
-    },
-    {
-        title: "Digital Sovereignty and the Geopolitics of Data",
-        publication: "Takshashila Institution",
-        date: "April 2025",
-        description: "Framework for understanding data governance challenges in an era of technological nationalism.",
-        url: "https://takshashila.org.in/research/digital-sovereignty-data",
-        tags: ["technology", "security"]
-    },
-    {
-        title: "China's Economic Slowdown: Structural or Cyclical?",
+        title: "The Pulls and Pushes Within the Chinese Economy",
         publication: "Carnegie Endowment",
-        date: "January 1, 2025",
-        description: "Deep dive into the nature of China's economic deceleration and long-term growth prospects.",
-        url: "https://carnegieendowment.org/research/chinas-economic-slowdown",
-        tags: ["economy"]
+        date: "30/03/2026",
+        coAuthor: "",
+        url: "https://carnegieendowment.org/research/2025/04/views-from-taipei-essays-by-young-indian-scholars-on-china",
+        tags: ["china", "economy"]
     },
     {
-        title: "Artificial Intelligence and Military Modernization",
-        publication: "RAND Corporation",
-        date: "September 3, 2024",
-        description: "Analysis of AI's role in transforming military capabilities and strategic competition.",
-        url: "https://rand.org/research/ai-military-modernization",
-        tags: ["technology", "security"]
-    },
-    {
-        title: "China's Port Strategy in the Indian Ocean",
+        title: "Previewing China's 15th Five-Year Plan",
         publication: "Takshashila Institution",
-        date: "March 9, 2024",
-        description: "Geopolitical implications of China's expanding port infrastructure and naval presence in Indian Ocean.",
-        url: "https://takshashila.org.in/research/china-port-strategy",
-        tags: ["security", "economy"]
+        date: "04/03/2026",
+        coAuthor: "Manoj Kewalramani",
+        url: "https://takshashila.org.in/content/publications/15-FYP-China-04-03-2026.html",
+        tags: ["china", "economy", "domestic-politics", "geopolitics"]
     },
     {
-        title: "Supply Chain Resilience Post-COVID",
-        publication: "Observer Research Foundation",
-        date: "August 30, 2023",
-        description: "Post-Zero-COVID economic assessment highlighting headwinds in consumption, real estate, exports, local debt, and FDI.",
-        url: "https://www.orfonline.org/research/supply-chain-resilience",
-        tags: ["economy", "technology"]
-    },
-    {
-        title: "Defining Dependence-Induced Vulnerabilities in Trade",
+        title: "Faultlines & Fallouts",
         publication: "Takshashila Institution",
-        date: "July 20, 2023",
-        description: "Conceptual framework establishing tests to distinguish critical vulnerabilities from routine asymmetrical trade interdependence.",
-        url: "https://takshashila.org.in/research/trade-vulnerabilities",
-        tags: ["economy", "security"]
+        date: "19/12/2025",
+        coAuthor: "Anushka Saxena, Manoj Kewalramani",
+        url: "https://takshashila.org.in/content/publications/20251219-Taiwan-Workshop-Report.html",
+        tags: ["china", "geopolitics", "technology", "economy", "taiwan"]
     },
     {
-        title: "India-China Border: Tactics, Talks and Transgressions",
+        title: "India Must Look Beyond Main Battle Tanks",
         publication: "Takshashila Institution",
-        date: "March 9, 2023",
-        description: "Analysis of India-China border dynamics through multiple dimensions of conflict, negotiation, and strategic maneuvering.",
-        url: "https://takshashila.org.in/research/india-china-border",
-        tags: ["security"]
+        date: "12/10/2025",
+        coAuthor: "Satya S. Sahu",
+        url: "https://takshashila.org.in/content/publications/20251013_Main_Battle_Tanks.html",
+        tags: ["defence", "security", "geopolitics", "china", "pakistan"]
     },
     {
-        title: "Chinese Economy: A Bird's Eye View",
+        title: "China's Local Governments: Can They Pull the Weight of the Country's Economy?",
         publication: "Takshashila Institution",
-        date: "February 14, 2023",
-        description: "Comprehensive overview of the Chinese economy covering key sectors, structural challenges, and future trajectories.",
-        url: "https://takshashila.org.in/research/chinese-economy-overview",
-        tags: ["economy"]
+        date: "14/05/2025",
+        coAuthor: "",
+        url: "https://takshashila.org.in/content/publications/20250514-chinas-local-governments.html",
+        tags: ["china", "economy"]
+    },
+    {
+        title: "De-risking India's Trade with China: Identifying Strategic and Critical Vulnerabilities",
+        publication: "Takshashila Institution",
+        date: "01/01/2025",
+        coAuthor: "",
+        url: "https://takshashila.org.in/content/publications/20250101-Derisking-Indias-Trade-With-China.html",
+        tags: ["security", "trade", "economy", "dependence", "china"]
+    },
+    {
+        title: "Pulse of the People: State of India-China Relations",
+        publication: "Takshashila Institution",
+        date: "17/12/2024",
+        coAuthor: "Anushka Saxena, Manoj Kewalramani",
+        url: "https://takshashila.org.in/content/publications/20241217-pulse-of-the-people.html",
+        tags: ["india", "china", "geopolitics"]
+    },
+    {
+        title: "USA's Options to Counter China's Increasing Dominance in Legacy Chips",
+        publication: "Takshashila Institution",
+        date: "07/10/2024",
+        coAuthor: "Satya S. Sahu",
+        url: "https://takshashila.org.in/content/publications/20241007-usa-counter-chinas-dominance-chips.html",
+        tags: ["china", "technology", "security", "semiconductors"]
+    },
+    {
+        title: "China-Russia Relationship: Assessing the Power Asymmetry",
+        publication: "Takshashila Institution",
+        date: "03/09/2024",
+        coAuthor: "",
+        url: "https://takshashila.org.in/content/publications/20240903-china-russia-power-asymmetry.html",
+        tags: ["china", "russia", "geopolitics"]
+    },
+    {
+        title: "Geo-consumerism and India-China Competition: A Comparative Assessment of Consumption Data",
+        publication: "Takshashila Institution",
+        date: "09/03/2024",
+        coAuthor: "",
+        url: "https://takshashila.org.in/content/publications/20240309-geoconsumerism-india-china-competition.html",
+        tags: ["india", "china", "geopolitics", "geoeconomics"]
+    },
+    {
+        title: "Assessing the Global and Local Landscape of Critical Technologies",
+        publication: "Takshashila Institution",
+        date: "01/02/2024",
+        coAuthor: "",
+        url: "https://takshashila.org.in/content/publications/20240201-Assessing-the-Global-and-Local-Landscape-of-Critical-Technologies.html",
+        tags: ["technology", "china"]
+    },
+    {
+        title: "Assessing the Latest Developments in the Chinese Economy",
+        publication: "Takshashila Institution",
+        date: "30/08/2023",
+        coAuthor: "Anushka Saxena, Manoj Kewalramani",
+        url: "https://takshashila.org.in/content/publications/20230830-latest-developments-chinese-economy.html",
+        tags: ["china", "economy"]
+    },
+    {
+        title: "Defining Strategic and Critical Vulnerabilities in Asymmetrical Trade Interdependence",
+        publication: "IPPR",
+        date: "01/08/2023",
+        coAuthor: "",
+        url: "https://ippr.in/index.php/ippr/article/view/214",
+        tags: ["geopolitics", "geoeconomics", "trade", "dependence"]
+    },
+    {
+        title: "Defining Dependence-Induced Vulnerabilities in Asymmetrical Trade Interdependence: A Conceptual Framework",
+        publication: "Takshashila Institution",
+        date: "20/07/2023",
+        coAuthor: "",
+        url: "https://takshashila.org.in/content/publications/20230720-vulnerabilities-asymmetrical-trade-independence.html",
+        tags: ["geopolitics", "geoeconomics", "trade", "dependence"]
     },
     {
         title: "Reducing Data Asymmetry to Strengthen Supply Chains",
         publication: "T20 India",
-        date: "2023",
-        description: "Proposes G20 cooperation framework for mitigating supply chain information disparities among stakeholders.",
-        url: "https://t20ind.org/research/reducing-data-asymmetry-to-strengthen-supply-chains/",
-        tags: ["economy", "technology"]
+        date: "01/05/2023",
+        coAuthor: "Anushka Saxena",
+        url: "https://takshashila.org.in/content/publications/assets/T20_PolicyBrief_TF1_Data-Asymmetry-SupplyChain.pdf",
+        tags: ["economy", "supply-chains"]
     },
     {
-        title: "China's Two-Front Conundrum: A Perspective on the India-China Border",
-        publication: "Observer Research Foundation",
-        date: "2022",
-        description: "Explores India-China border instability through lens of Beijing's historical two-front threat perception as management tool.",
+        title: "India-China Border: Tactics, Talks and Transgressions",
+        publication: "Takshashila Institution",
+        date: "09/03/2023",
+        coAuthor: "",
+        url: "https://takshashila.org.in/content/publications/20230309-india-china-border-tactics-talks.html",
+        tags: ["security", "china", "india"]
+    },
+    {
+        title: "China's Two-Front Conundrum: A Perspective on the India-China Border Situation",
+        publication: "ORF",
+        date: "07/03/2023",
+        coAuthor: "",
         url: "https://www.orfonline.org/research/chinas-two-front-conundrum",
-        tags: ["security"]
+        tags: ["security", "china", "india"]
+    },
+    {
+        title: "Chinese Economy: A Bird's Eye View",
+        publication: "Takshashila Institution",
+        date: "14/02/2023",
+        coAuthor: "Anushka Saxena",
+        url: "https://takshashila.org.in/content/publications/20230214-chinese-economy-birds-eye-view.html",
+        tags: ["china", "economy", "domestic-politics"]
     },
     {
         title: "Understanding the Rejuvenation of China's Revolutionary Impulse",
-        publication: "Jawaharlal Nehru University",
-        date: "2021",
-        description: "Examines Xi Jinping's ideological emphasis, arguing revolutionary impulse alongside nationalism addresses leadership authority concerns.",
+        publication: "ORF",
+        date: "15/09/2022",
+        coAuthor: "",
         url: "https://www.orfonline.org/research/understanding-the-rejuvenation-of-chinas-revolutionary-impulse",
-        tags: ["security"]
+        tags: ["china", "domestic-politics", "elite-politics"]
+    },
+    {
+        title: "How Has the Growing Rift in Oceania Enabled China's Rise in the Region?",
+        publication: "VIF India",
+        date: "21/11/2021",
+        coAuthor: "",
+        url: "https://www.vifindia.org/paper/2021/november/24/how-has-the-growing-rift-in-oceania-enabled-china-s-rise-in-the-region",
+        tags: ["security", "china", "indo-pacific"]
     }
 ];
-
 // Media appearances data
 const mediaData = [
     {
