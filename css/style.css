@@ -431,44 +431,54 @@ a:hover {
     color: var(--text-color);
     cursor: pointer;
     outline: none;
-    position: absolute;
-    right: 0;
-    top: 0;
 }
 
 .year-select:focus {
     border-color: var(--primary-color);
 }
 
-/* ==================== Navbar Search ==================== */
-.nav-search {
+/* ==================== LinkedIn icon link ==================== */
+.nav-icon-link {
     display: flex;
     align-items: center;
-    margin-left: auto;
-    margin-right: 1rem;
+    justify-content: center;
+    padding: 0.3rem 0.5rem;
 }
 
-.nav-search-input {
-    padding: 0.35rem 0.75rem;
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 4px;
-    background: rgba(255,255,255,0.1);
-    color: white;
+.nav-icon-link svg {
+    display: block;
+}
+
+/* ==================== Section search + year controls ==================== */
+.section-header-controls {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.section-search-input {
     font-family: 'Lora', Georgia, serif;
     font-size: 0.85rem;
-    width: 170px;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    width: 160px;
     outline: none;
     transition: all var(--transition);
 }
 
-.nav-search-input::placeholder {
-    color: rgba(255,255,255,0.5);
+.section-search-input::placeholder {
+    color: var(--text-light);
 }
 
-.nav-search-input:focus {
-    background: rgba(255,255,255,0.18);
-    border-color: rgba(255,255,255,0.6);
-    width: 210px;
+.section-search-input:focus {
+    border-color: var(--primary-color);
+    width: 200px;
 }
 
 .sidebar-filter-header {
@@ -914,8 +924,10 @@ a:hover {
         flex-wrap: wrap;
     }
 
-    .nav-search {
-        display: none;
+    .section-header-controls {
+        position: static;
+        width: 100%;
+        justify-content: flex-end;
     }
 }
 

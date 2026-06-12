@@ -8,16 +8,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=8">
+    <link rel="stylesheet" href="css/style.css?v=9">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="#home" class="nav-brand" data-section="home">Amit Kumar</a>
-            <div class="nav-search">
-                <input type="text" id="globalSearch" class="nav-search-input" placeholder="Search…">
-            </div>
             <button class="nav-toggle" id="navToggle">☰</button>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#commentaries" class="nav-link" data-section="commentaries">Commentaries</a></li>
@@ -26,7 +23,7 @@
                 <li><a href="#media" class="nav-link" data-section="media">Media Appearances</a></li>
                 <li><a href="#conference" class="nav-link" data-section="conference">Conferences</a></li>
                 <li class="nav-divider"></li>
-                <li><a href="https://www.linkedin.com/in/amit-kumar-china/" target="_blank" class="nav-social-link">LinkedIn</a></li>
+                <li><a href="https://www.linkedin.com/in/amit-kumar-china/" target="_blank" class="nav-social-link nav-icon-link" title="LinkedIn" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></li>
                 <li><a href="https://x.com/am_i_t_kumar" target="_blank" class="nav-social-link">X</a></li>
                 <li><a href="https://takshashila.org.in/content/team/amit-kumar.html" target="_blank" class="nav-social-link">Takshashila</a></li>
             </ul>
@@ -126,15 +123,18 @@
                             <h2>Commentaries</h2>
                             <p class="section-intro">Following is a list of opinion and commentaries I have published with national and international media publications.</p>
                         </div>
-                        <select class="year-select" id="yearSelect">
-                            <option value="all">All Years</option>
-                            <option value="2026">2026</option>
-                            <option value="2025">2025</option>
-                            <option value="2024">2024</option>
-                            <option value="2023">2023</option>
-                            <option value="2022">2022</option>
-                            <option value="2021">2021</option>
-                        </select>
+                        <div class="section-header-controls">
+                            <input type="text" id="globalSearch" class="section-search-input" placeholder="Search…">
+                            <select class="year-select" id="yearSelect">
+                                <option value="all">All Years</option>
+                                <option value="2026">2026</option>
+                                <option value="2025">2025</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="commentaries-list">
                         <!-- Commentaries inserted by JavaScript -->
