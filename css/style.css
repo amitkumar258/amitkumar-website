@@ -600,7 +600,7 @@ a:hover {
 
 /* Date: short muted label on the left */
 .comment-date {
-    width: 72px;
+    width: 95px;
     flex-shrink: 0;
     font-size: 0.78rem;
     color: var(--text-light);
@@ -662,7 +662,7 @@ a:hover {
     flex-wrap: wrap;
     margin-top: 0.4rem;
     /* indent tags to align with title (date-column width + gap) */
-    padding-left: calc(72px + 1.25rem);
+    padding-left: calc(95px + 1.25rem);
 }
 
 .comment-tag,
@@ -744,7 +744,7 @@ a:hover {
     color: var(--text-light);
     font-style: italic;
     margin-top: 0.2rem;
-    padding-left: calc(72px + 1.25rem);
+    padding-left: calc(95px + 1.25rem);
 }
 
 /* ==================== Media Section ==================== */

@@ -446,14 +446,6 @@ const papersData = [
         tags: ["china", "US", "geoeconomics", "critical-minerals"]
     },
     {
-        title: "The Pulls and Pushes Within the Chinese Economy",
-        publication: "Carnegie Endowment",
-        date: "29/04/2025",
-        coAuthor: "",
-        url: "https://carnegieendowment.org/research/2025/04/views-from-taipei-essays-by-young-indian-scholars-on-china",
-        tags: ["china", "economy"]
-    },
-    {
         title: "Previewing China's 15th Five-Year Plan",
         publication: "Takshashila Institution",
         date: "04/03/2026",
@@ -483,6 +475,14 @@ const papersData = [
         date: "14/05/2025",
         coAuthor: "",
         url: "https://takshashila.org.in/content/publications/20250514-chinas-local-governments.html",
+        tags: ["china", "economy"]
+    },
+    {
+        title: "The Pulls and Pushes Within the Chinese Economy",
+        publication: "Carnegie Endowment",
+        date: "29/04/2025",
+        coAuthor: "",
+        url: "https://carnegieendowment.org/research/2025/04/views-from-taipei-essays-by-young-indian-scholars-on-china",
         tags: ["china", "economy"]
     },
     {

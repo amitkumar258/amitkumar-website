@@ -176,7 +176,10 @@ class Router {
         const parts = dateStr.split('/');
         if (parts.length !== 3) return dateStr;
         const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        return `${months[parseInt(parts[1], 10) - 1]} ${parts[2]}`;
+        const day = parseInt(parts[0], 10);
+        const month = months[parseInt(parts[1], 10) - 1];
+        const year = parts[2];
+        return day ? `${day} ${month} ${year}` : `${month} ${year}`;
     }
 
     renderCommentaries() {
