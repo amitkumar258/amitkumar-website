@@ -338,10 +338,10 @@ a:hover {
     font-weight: 600;
 }
 
-/* ==================== Commentaries Three-Column Layout ==================== */
+/* ==================== Commentaries Layout ==================== */
 .commentaries-wrapper {
     display: grid;
-    grid-template-columns: 200px 1fr 120px;
+    grid-template-columns: 200px 1fr;
     gap: 2rem;
     max-width: var(--max-width);
     margin: 0 auto;
@@ -396,9 +396,72 @@ a:hover {
     display: flex;
 }
 
-.year-sidebar {
-    position: sticky;
-    top: 100px;
+/* ==================== Section header row (h2 + year dropdown) ==================== */
+.section-header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.section-header-row h2 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+}
+
+.section-header-row .section-intro {
+    margin-bottom: 0;
+}
+
+.year-select {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    outline: none;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+}
+
+.year-select:focus {
+    border-color: var(--primary-color);
+}
+
+/* ==================== Navbar Search ==================== */
+.nav-search {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+.nav-search-input {
+    padding: 0.35rem 0.75rem;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 4px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 0.85rem;
+    width: 170px;
+    outline: none;
+    transition: all var(--transition);
+}
+
+.nav-search-input::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+.nav-search-input:focus {
+    background: rgba(255,255,255,0.18);
+    border-color: rgba(255,255,255,0.6);
+    width: 210px;
 }
 
 .sidebar-filter-header {
@@ -835,14 +898,17 @@ a:hover {
         gap: 1.5rem;
     }
 
-    .pub-sidebar,
-    .year-sidebar {
+    .pub-sidebar {
         position: static;
     }
 
     .pub-tabs {
         flex-direction: row;
         flex-wrap: wrap;
+    }
+
+    .nav-search {
+        display: none;
     }
 }
 

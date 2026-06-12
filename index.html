@@ -8,13 +8,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=6">
+    <link rel="stylesheet" href="css/style.css?v=7">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="#home" class="nav-brand" data-section="home">Amit Kumar</a>
+            <div class="nav-search">
+                <input type="text" id="globalSearch" class="nav-search-input" placeholder="Search…">
+            </div>
             <button class="nav-toggle" id="navToggle">☰</button>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#commentaries" class="nav-link" data-section="commentaries">Commentaries</a></li>
@@ -118,24 +121,23 @@
 
                 <!-- Centre: Commentaries list -->
                 <div class="section-content">
-                    <h2>Commentaries</h2>
-                    <p class="section-intro">Following is a list of opinion and commentaries I have published with national and international media publications.</p>
+                    <div class="section-header-row">
+                        <div>
+                            <h2>Commentaries</h2>
+                            <p class="section-intro">Following is a list of opinion and commentaries I have published with national and international media publications.</p>
+                        </div>
+                        <select class="year-select" id="yearSelect">
+                            <option value="all">All Years</option>
+                            <option value="2026">2026</option>
+                            <option value="2025">2025</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                        </select>
+                    </div>
                     <div class="commentaries-list">
                         <!-- Commentaries inserted by JavaScript -->
-                    </div>
-                </div>
-
-                <!-- Right: Year filter -->
-                <div class="year-sidebar">
-                    <div class="sidebar-filter-header">Year</div>
-                    <div class="sidebar-filter-list">
-                        <button class="filter-btn sidebar-btn year-btn active" data-year="all">All</button>
-                        <button class="filter-btn sidebar-btn year-btn" data-year="2026">2026</button>
-                        <button class="filter-btn sidebar-btn year-btn" data-year="2025">2025</button>
-                        <button class="filter-btn sidebar-btn year-btn" data-year="2024">2024</button>
-                        <button class="filter-btn sidebar-btn year-btn" data-year="2023">2023</button>
-                        <button class="filter-btn sidebar-btn year-btn" data-year="2022">2022</button>
-                        <button class="filter-btn sidebar-btn year-btn" data-year="2021">2021</button>
                     </div>
                 </div>
 

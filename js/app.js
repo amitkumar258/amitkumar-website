@@ -71,15 +71,22 @@ class Router {
             });
         });
 
-        // Year filter buttons
-        document.querySelectorAll('.year-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                this.activeYearFilter = btn.getAttribute('data-year');
+        // Year dropdown
+        const yearSelect = document.getElementById('yearSelect');
+        if (yearSelect) {
+            yearSelect.addEventListener('change', () => {
+                this.activeYearFilter = yearSelect.value;
                 this.applyCommentaryFilters();
             });
-        });
+        }
+
+        // Global search
+        const searchInput = document.getElementById('globalSearch');
+        if (searchInput) {
+            searchInput.addEventListener('input', () => {
+                this.applySearch(searchInput.value.toLowerCase().trim());
+            });
+        }
 
         // Papers filter buttons
         document.querySelectorAll('.filter-btn[data-filter^="papers-"]').forEach(btn => {
@@ -109,6 +116,34 @@ class Router {
 
             const yearMatch = this.activeYearFilter === 'all' || year === this.activeYearFilter;
             item.style.display = pubMatch && yearMatch ? 'block' : 'none';
+        });
+    }
+
+    applySearch(query) {
+        const activeSection = document.querySelector('.section.active');
+        if (!activeSection) return;
+
+        if (!query) {
+            // Re-apply existing filters when search is cleared
+            if (activeSection.id === 'commentaries') this.applyCommentaryFilters();
+            else {
+                activeSection.querySelectorAll('.paper-card, .media-item').forEach(el => el.style.display = '');
+            }
+            return;
+        }
+
+        const selectors = {
+            commentaries: '.commentary-item',
+            papers: '.paper-card',
+            media: '.media-item'
+        };
+
+        const selector = selectors[activeSection.id];
+        if (!selector) return;
+
+        activeSection.querySelectorAll(selector).forEach(item => {
+            const match = item.textContent.toLowerCase().includes(query);
+            item.style.display = match ? 'block' : 'none';
         });
     }
 
@@ -199,6 +234,9 @@ class Router {
 
     handleNavigation(sectionName) {
         this.closeMobileMenu();
+        // Clear search on navigation
+        const searchInput = document.getElementById('globalSearch');
+        if (searchInput) searchInput.value = '';
         this.showSection(sectionName);
         window.location.hash = sectionName;
         window.scrollTo({ top: 0, behavior: 'smooth' });
