@@ -437,11 +437,15 @@ a:hover {
 }
 
 .commentary-item {
-    padding: 1.5rem;
+    padding: 1rem 1.5rem;
     border-left: 4px solid var(--accent-color);
     background-color: var(--light-bg);
     border-radius: 4px;
     transition: transform var(--transition);
+    min-height: 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .commentary-item:hover {
@@ -450,23 +454,27 @@ a:hover {
 
 .comment-row {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 1rem;
-    margin-bottom: 0.75rem;
-    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+    flex-wrap: nowrap;
 }
 
 .comment-publication {
     font-weight: 600;
     color: var(--primary-color);
-    font-size: 0.95rem;
-    min-width: 150px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    width: 140px;
+    flex-shrink: 0;
 }
 
 .comment-row h3 {
     flex: 1;
-    min-width: 200px;
     margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .comment-date {
