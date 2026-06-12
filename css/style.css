@@ -586,12 +586,9 @@ a:hover {
     background-color: var(--light-bg);
     border-radius: 4px;
     transition: transform var(--transition);
-    min-height: 72px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    overflow: hidden; /* clip anything that overflows the card */
-    min-width: 0;
 }
 
 .commentary-item:hover {
@@ -600,12 +597,11 @@ a:hover {
 
 .comment-row {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
     margin-bottom: 0.4rem;
     flex-wrap: nowrap;
     min-width: 0;
-    overflow: hidden;
 }
 
 /* Left column: publication name + date stacked */
@@ -633,16 +629,14 @@ a:hover {
     white-space: nowrap;
 }
 
-/* Right: title — inline anchor so h3 text-overflow applies correctly */
+/* Right: title — wraps to multiple lines so full title is always visible */
 .comment-title {
     flex: 1;
     min-width: 0;
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 600;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    line-height: 1.4;
 }
 
 .comment-title a {
