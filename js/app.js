@@ -12,6 +12,8 @@ class Router {
         this.itemsPerPage = 20;
         this.currentPapersPage = 1;
         this.papersPerPage = 10;
+        this.currentMediaPage = 1;
+        this.mediaPerPage = 10;
         this.init();
     }
 
@@ -304,15 +306,75 @@ class Router {
         });
     }
 
+    getYouTubeId(url) {
+        if (!url) return null;
+        const patterns = [
+            /youtu\.be\/([^?&]+)/,
+            /[?&]v=([^&]+)/,
+            /youtube\.com\/embed\/([^?&]+)/
+        ];
+        for (const re of patterns) {
+            const m = url.match(re);
+            if (m) return m[1];
+        }
+        return null;
+    }
+
     renderMedia() {
         const container = document.querySelector('.media-list');
         if (!container) return;
 
-        container.innerHTML = mediaData.map(media => `
-            <div class="media-item">
-                ${media.url ? `<a href="${media.url}" target="_blank" class="media-title">${media.title}</a>` : `<span class="media-title">${media.title}</span>`}
-                <p class="media-outlet">${media.outlet}</p>
-            </div>`).join('');
+        const totalPages = Math.max(1, Math.ceil(mediaData.length / this.mediaPerPage));
+        if (this.currentMediaPage > totalPages) this.currentMediaPage = totalPages;
+
+        const start = (this.currentMediaPage - 1) * this.mediaPerPage;
+        const pageItems = mediaData.slice(start, start + this.mediaPerPage);
+
+        container.innerHTML = pageItems.map(media => {
+            const ytId = this.getYouTubeId(media.url);
+            const thumbSrc = ytId
+                ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`
+                : `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='90' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23f0f0f0'/%3E%3Ctext x='80' y='50' font-size='28' text-anchor='middle' fill='%23bbb'%3E%E2%96%B6%3C/text%3E%3C/svg%3E`;
+            const fmtDate = media.date ? this.formatDate(media.date) : '';
+            return `
+                <a href="${media.url || '#'}" target="_blank" class="media-row">
+                    <img class="media-thumb" src="${thumbSrc}" alt="${media.title}" loading="lazy">
+                    <div class="media-row-body">
+                        <span class="media-row-title">${media.title}</span>
+                        <span class="media-row-outlet">${media.outlet}</span>
+                        ${fmtDate ? `<span class="media-row-date">${fmtDate}</span>` : ''}
+                    </div>
+                </a>`;
+        }).join('');
+
+        this.renderMediaPagination(mediaData.length, totalPages);
+    }
+
+    renderMediaPagination(total, totalPages) {
+        const container = document.getElementById('media-pagination');
+        if (!container) return;
+
+        if (totalPages <= 1) { container.innerHTML = ''; return; }
+
+        const cur = this.currentMediaPage;
+        const pageNums = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+        container.innerHTML = `
+            <button class="page-btn" data-page="${cur - 1}" ${cur === 1 ? 'disabled' : ''}>‹</button>
+            ${pageNums.map(p => `<button class="page-btn ${p === cur ? 'active' : ''}" data-page="${p}">${p}</button>`).join('')}
+            <button class="page-btn" data-page="${cur + 1}" ${cur === totalPages ? 'disabled' : ''}>›</button>
+        `;
+
+        container.querySelectorAll('.page-btn:not([disabled])').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const page = parseInt(btn.getAttribute('data-page'));
+                if (page >= 1 && page <= totalPages) {
+                    this.currentMediaPage = page;
+                    this.renderMedia();
+                    document.querySelector('.media-list').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
     }
 
     updateStatistics() {
@@ -320,6 +382,8 @@ class Router {
         if (el) el.textContent = commentariesData.length;
         const ep = document.getElementById('papers-count');
         if (ep) ep.textContent = papersData.length;
+        const em = document.getElementById('media-count');
+        if (em) em.textContent = mediaData.length;
     }
 
     toggleMobileMenu() {

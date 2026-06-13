@@ -748,33 +748,61 @@ a:hover {
 }
 
 /* ==================== Media Section ==================== */
+/* ==================== Media Section (Quarto-style list) ==================== */
 .media-list {
-    display: grid;
-    gap: 1rem;
+    border-top: 1px solid var(--border-color);
+    min-width: 0;
 }
 
-.media-item {
-    padding: 1.25rem;
+.media-row {
+    display: flex;
+    gap: 1.25rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--border-color);
+    text-decoration: none;
+    color: inherit;
+    align-items: center;
+}
+
+.media-row:hover .media-row-title {
+    color: var(--accent-color);
+}
+
+.media-thumb {
+    width: 150px;
+    min-width: 150px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 3px;
+    border: 1px solid var(--border-color);
     background-color: var(--light-bg);
-    border-radius: 6px;
-    border-left: 4px solid var(--accent-color);
-    transition: transform var(--transition);
 }
 
-.media-item:hover {
-    transform: translateX(8px);
+.media-row-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
 }
 
-.media-title {
+.media-row-title {
+    font-size: 0.88rem;
     font-weight: 600;
+    line-height: 1.45;
     color: var(--primary-color);
-    margin-bottom: 0.5rem;
+    transition: color var(--transition);
 }
 
-.media-outlet {
+.media-row-outlet {
+    font-size: 0.78rem;
     color: var(--text-light);
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-style: italic;
+}
+
+.media-row-date {
+    font-size: 0.74rem;
+    color: #aaa;
 }
 
 /* ==================== Books Section (Quarto-style grid) ==================== */
@@ -959,6 +987,9 @@ a:hover {
     /* Books: stack to single column on mobile */
     .books-grid { grid-template-columns: 1fr; }
     .book-cover { height: 220px; }
+
+    /* Media: shrink thumbnail on mobile */
+    .media-thumb { width: 100px; min-width: 100px; }
 
     /* Filter buttons */
     .filter-controls { flex-wrap: wrap; }

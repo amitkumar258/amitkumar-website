@@ -607,60 +607,102 @@ const papersData = [
     }
 ];
 // Media appearances data
+// Media data — newest to oldest
 const mediaData = [
     {
+        title: "Why is China's Xi Jinping visiting North Korea now?",
+        outlet: "TRT World Now",
+        date: "09/06/2026",
+        url: "https://www.youtube.com/watch?v=LNnbeGNljx0"
+    },
+    {
+        title: "Taming the Dragon",
+        outlet: "Puliyabaazi Podcast",
+        date: "28/05/2026",
+        url: "https://www.youtube.com/watch?v=gwJ20Q_-izE"
+    },
+    {
+        title: "Rare Earth को लेकर China से आई गुड न्यूज़, भारतीय कंपनियों को मिला लाइसेंस",
+        outlet: "ET NOW Swadesh Videsh",
+        date: "31/10/2025",
+        url: "https://www.youtube.com/watch?v=640i4vouzYM"
+    },
+    {
+        title: "REAL HISTORY of India-China Relations | Trump vs Modi",
+        outlet: "Jai Hind with Aditya",
+        date: "31/10/2025",
+        url: "https://www.youtube.com/watch?v=4xUglOJMabU"
+    },
+    {
+        title: "Swadesh Vishesh: क्या India और China फिर बन रहे दोस्त या बात कुछ और है?",
+        outlet: "ET NOW Swadesh Videsh",
+        date: "19/08/2025",
+        url: "https://www.youtube.com/watch?v=_TFiK5GSJVU"
+    },
+    {
         title: "Who Will Be the Next Dalai Lama… And Why Is It So Political?",
-        outlet: "ET Now Swadesh",
-        url: "https://www.youtube.com/watch?si=oHYGOkMO4Wk-KNFi&v=LNnbeGNljx0&feature=youtu.be"
+        outlet: "BFM 89.9",
+        date: "18/08/2025",
+        url: "https://www.bfm.my/content/podcast/who-will-be-the-next-dalai-lama-and-why-is-it-so-political"
     },
     {
-        title: "Swadesh Videsh: China's Economic Warfare",
-        outlet: "ET Now Swadesh (Hindi)",
-        url: "https://www.youtube.com"
+        title: "Swadesh Vishesh: कितना बड़ा है Rare Earth मिनरल्स का संकट?",
+        outlet: "ET NOW Swadesh Videsh",
+        date: "04/07/2025",
+        url: "https://www.youtube.com/watch?v=S6rAolH4xDg"
     },
     {
-        title: "Interpreting China: The Economy and its Impact on Foreign Policy",
+        title: "G7 & the Great Game: Canada PM Carney to paper over Khalistan cracks for Modi's visit?",
+        outlet: "The New Indian Express",
+        date: "14/06/2025",
+        url: "https://www.youtube.com/watch?v=MKjumw5o0RM"
+    },
+    {
+        title: "Global Express | Who's Actually Behind Ukraine's Drone Attack on Russia?",
+        outlet: "The New Indian Express",
+        date: "07/06/2025",
+        url: "https://www.youtube.com/watch?v=XV8MzwDf4MA"
+    },
+    {
+        title: "Interpreting China: The Economy and Its Impact on Foreign Policy",
         outlet: "Carnegie India",
-        url: "https://www.youtube.com"
+        date: "15/05/2025",
+        url: "https://carnegieendowment.org/india/podcasts/interpreting-india/interpreting-china-the-economy-and-its-impact-on-foreign-policy"
     },
     {
-        title: "Can Trump wean Putin away from China?",
-        outlet: "STRATNEWSGLOBAL",
-        url: "https://www.youtube.com"
+        title: "How The Oval Office Row Impacts A Ukraine Peace Deal",
+        outlet: "StratNewsGlobal",
+        date: "02/03/2025",
+        url: "https://www.youtube.com/watch?v=NrXXIkV-y1c"
     },
     {
         title: "Comparing India-China Consumption Trends",
-        outlet: "PULIYABAAZI",
-        url: "https://www.youtube.com"
+        outlet: "Puliyabaazi Podcast",
+        date: "22/11/2024",
+        url: "https://www.youtube.com/watch?v=7GNdB53GbHE"
     },
     {
-        title: "Young Scholars Analyse China's Politics, Economy And The Military",
-        outlet: "STRATNEWSGLOBAL",
-        url: "https://www.youtube.com"
+        title: "China's Politics, Economy And The Military || SNG Roundtable",
+        outlet: "StratNewsGlobal",
+        date: "04/07/2024",
+        url: "https://www.youtube.com/watch?v=Bu32wqYh24Q"
     },
     {
-        title: "The Biden-Xi meet: China trap? Or lukewarm re-engagement?",
-        outlet: "GLOBAL EXPRESS",
-        url: "https://www.youtube.com"
+        title: "Global Express: The Biden-Xi meet: China trap? Or lukewarm re-engagement?",
+        outlet: "The New Indian Express",
+        date: "19/11/2023",
+        url: "https://www.youtube.com/watch?v=9xljeeWwWrg"
     },
     {
         title: "China Has Not Weaponised Its Trade Leverage Against India",
-        outlet: "STRATNEWSGLOBAL",
-        url: "https://www.youtube.com"
-    },
-    {
-        title: "Taiwan Stirs Chinese Nationalism In A Way India Does Not",
-        outlet: "STRATNEWSGLOBAL",
-        url: "https://www.youtube.com"
+        outlet: "StratNewsGlobal",
+        date: "08/08/2023",
+        url: "https://www.youtube.com/watch?v=Pz1whcM-Et8"
     },
     {
         title: "No Thaw In Ties With India Till China-U.S. Rapprochement Happens",
-        outlet: "BHARATSHAKTI.IN",
-        url: "https://www.youtube.com"
-    },
-    {
-        title: "Global Express: Ukraine's Spiderweb Operations",
-        outlet: "The New Indian Express",
-        url: "https://www.youtube.com"
+        outlet: "Bharat Shakti",
+        date: "21/03/2023",
+        url: "https://www.youtube.com/watch?v=2B6Uyk7FvX0"
     }
 ];
