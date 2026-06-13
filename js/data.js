@@ -87,7 +87,7 @@ const commentariesData = [
         date: "12/09/2025",
         pubCategory: "national",
         url: "https://indianexpress.com/article/opinion/china-wants-control/",
-        tags: ["security", "china", "russia", "SCO"]
+        tags: ["security", "china", "russia"]
     },
     {
         title: "China's official trade surplus remains as high as at its peak",
@@ -167,7 +167,7 @@ const commentariesData = [
         date: "22/01/2025",
         pubCategory: "national",
         url: "https://takshashila.org.in/content/blogs/digging-deep.html",
-        tags: ["security", "india", "china", "geopolitics"]
+        tags: ["security", "india", "china"]
     },
     {
         title: "Trump-Xi talks: Short-term truce, long-term friction",
@@ -183,7 +183,7 @@ const commentariesData = [
         date: "03/12/2024",
         pubCategory: "national",
         url: "https://takshashila.org.in/content/blogs/silicon-curtain.html",
-        tags: ["technology", "security", "geopolitics", "china", "US", "semiconductors"]
+        tags: ["technology", "security", "china", "US"]
     },
     {
         title: "India warming to Chinese investment?",
@@ -247,7 +247,7 @@ const commentariesData = [
         date: "28/04/2024",
         pubCategory: "national",
         url: "https://legion.takshashila.org.in/blogs/chinas-electronics-domestic-substitution-mandate-is-a-sign-of-weakness",
-        tags: ["china", "technology", "geoeconomics"]
+        tags: ["china", "technology", "economy"]
     },
     {
         title: "How recent Maldives parliamentary election results are a silver lining for India",
@@ -443,7 +443,7 @@ const papersData = [
         date: "30/03/2026",
         coAuthor: "Pranay Kotasthane",
         url: "https://takshashila.org.in/content/publications/China-Ga-Ge-Export-Restrictions-29032026.html",
-        tags: ["china", "US", "geoeconomics", "critical-minerals"]
+        tags: ["china", "US", "economy", "critical-minerals"]
     },
     {
         title: "Previewing China's 15th Five-Year Plan",
@@ -451,7 +451,7 @@ const papersData = [
         date: "04/03/2026",
         coAuthor: "Manoj Kewalramani",
         url: "https://takshashila.org.in/content/publications/15-FYP-China-04-03-2026.html",
-        tags: ["china", "economy", "domestic-politics", "geopolitics"]
+        tags: ["china", "economy", "domestic-politics", "security"]
     },
     {
         title: "Faultlines & Fallouts",
@@ -459,7 +459,7 @@ const papersData = [
         date: "19/12/2025",
         coAuthor: "Anushka Saxena, Manoj Kewalramani",
         url: "https://takshashila.org.in/content/publications/20251219-Taiwan-Workshop-Report.html",
-        tags: ["china", "geopolitics", "technology", "economy", "taiwan"]
+        tags: ["china", "security", "technology", "economy", "taiwan"]
     },
     {
         title: "India Must Look Beyond Main Battle Tanks",
@@ -467,7 +467,7 @@ const papersData = [
         date: "12/10/2025",
         coAuthor: "Satya S. Sahu",
         url: "https://takshashila.org.in/content/publications/20251013_Main_Battle_Tanks.html",
-        tags: ["defence", "security", "geopolitics", "china", "pakistan"]
+        tags: ["defence", "security", "china", "pakistan"]
     },
     {
         title: "China's Local Governments: Can They Pull the Weight of the Country's Economy?",
@@ -499,7 +499,7 @@ const papersData = [
         date: "17/12/2024",
         coAuthor: "Anushka Saxena, Manoj Kewalramani",
         url: "https://takshashila.org.in/content/publications/20241217-pulse-of-the-people.html",
-        tags: ["india", "china", "geopolitics"]
+        tags: ["india", "china", "security"]
     },
     {
         title: "USA's Options to Counter China's Increasing Dominance in Legacy Chips",
@@ -507,7 +507,7 @@ const papersData = [
         date: "07/10/2024",
         coAuthor: "Satya S. Sahu",
         url: "https://takshashila.org.in/content/publications/20241007-usa-counter-chinas-dominance-chips.html",
-        tags: ["china", "technology", "security", "semiconductors"]
+        tags: ["china", "technology", "security"]
     },
     {
         title: "China-Russia Relationship: Assessing the Power Asymmetry",
@@ -515,7 +515,7 @@ const papersData = [
         date: "03/09/2024",
         coAuthor: "",
         url: "https://takshashila.org.in/content/publications/20240903-china-russia-power-asymmetry.html",
-        tags: ["china", "russia", "geopolitics"]
+        tags: ["china", "russia", "security"]
     },
     {
         title: "Geo-consumerism and India-China Competition: A Comparative Assessment of Consumption Data",
@@ -523,7 +523,7 @@ const papersData = [
         date: "09/03/2024",
         coAuthor: "",
         url: "https://takshashila.org.in/content/publications/20240309-geoconsumerism-india-china-competition.html",
-        tags: ["india", "china", "geopolitics", "geoeconomics"]
+        tags: ["india", "china", "security", "economy"]
     },
     {
         title: "Assessing the Global and Local Landscape of Critical Technologies",
@@ -547,7 +547,7 @@ const papersData = [
         date: "01/08/2023",
         coAuthor: "",
         url: "https://ippr.in/index.php/ippr/article/view/214",
-        tags: ["geopolitics", "geoeconomics", "trade", "dependence"]
+        tags: ["security", "economy", "trade", "dependence"]
     },
     {
         title: "Defining Dependence-Induced Vulnerabilities in Asymmetrical Trade Interdependence: A Conceptual Framework",
@@ -555,7 +555,7 @@ const papersData = [
         date: "20/07/2023",
         coAuthor: "",
         url: "https://takshashila.org.in/content/publications/20230720-vulnerabilities-asymmetrical-trade-independence.html",
-        tags: ["geopolitics", "geoeconomics", "trade", "dependence"]
+        tags: ["security", "economy", "trade", "dependence"]
     },
     {
         title: "Reducing Data Asymmetry to Strengthen Supply Chains",

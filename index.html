@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=22">
+    <link rel="stylesheet" href="css/style.css?v=23">
 </head>
 <body>
     <!-- Navigation -->
@@ -84,45 +84,46 @@
         <section id="commentaries" class="section">
             <div class="commentaries-wrapper">
 
-                <!-- Left: Publication tabs + bio -->
+                <!-- Left: Photo + bio -->
                 <div class="pub-sidebar">
+                    <img src="assets/images/Amit.jpg" alt="Amit Kumar" class="sidebar-photo">
                     <div class="bio-blurb">
                         <p>Policy researcher at Takshashila Institution's Geostrategy Programme and doctoral scholar at MAHE. Research focuses on China's economy, technology policy, and India-China relations.</p>
-                    </div>
-                    <div class="pub-tabs">
-                        <button class="pub-tab active" data-pub-filter="all">All</button>
-                        <button class="pub-tab" data-pub-filter="national">National</button>
-                        <button class="pub-tab" data-pub-filter="international">International</button>
-                    </div>
-                    <div class="pub-sub-list" id="national-pubs">
-                        <button class="filter-btn pub-btn" data-filter="national-indian-express">Indian Express</button>
-                        <button class="filter-btn pub-btn" data-filter="national-the-hindu">The Hindu</button>
-                        <button class="filter-btn pub-btn" data-filter="national-hindustan-times">Hindustan Times</button>
-                        <button class="filter-btn pub-btn" data-filter="national-the-print">The Print</button>
-                        <button class="filter-btn pub-btn" data-filter="national-the-quint">The Quint</button>
-                        <button class="filter-btn pub-btn" data-filter="national-moneycontrol">Moneycontrol</button>
-                        <button class="filter-btn pub-btn" data-filter="national-deccan-herald">Deccan Herald</button>
-                        <button class="filter-btn pub-btn" data-filter="national-firstpost">Firstpost</button>
-                        <button class="filter-btn pub-btn" data-filter="national-orf-expert-speak">ORF Expert Speak</button>
-                        <button class="filter-btn pub-btn" data-filter="national-vif-india">VIF India</button>
-                        <button class="filter-btn pub-btn" data-filter="national-the-diplomatist">The Diplomatist</button>
-                        <button class="filter-btn pub-btn" data-filter="national-stratnewsglobal">StratNewsGlobal</button>
-                        <button class="filter-btn pub-btn" data-filter="national-takshashila-institution">Takshashila</button>
-                    </div>
-                    <div class="pub-sub-list" id="international-pubs">
-                        <button class="filter-btn pub-btn" data-filter="international-foreign-policy">Foreign Policy</button>
-                        <button class="filter-btn pub-btn" data-filter="international-nikkei-asia">Nikkei Asia</button>
-                        <button class="filter-btn pub-btn" data-filter="international-thinkchina">ThinkChina</button>
-                        <button class="filter-btn pub-btn" data-filter="international-the-diplomat">The Diplomat</button>
                     </div>
                 </div>
 
                 <!-- Centre: Commentaries list -->
                 <div class="section-content">
-                    <div class="section-header-row">
-                        <div>
-                            <h2>Commentaries</h2>
-                            <p class="section-intro">The following list contains the opinion and commentaries published in national and international media publications.</p>
+                    <h2>Commentaries</h2>
+                    <p class="section-intro">The following list contains the opinion and commentaries published in national and international media publications.</p>
+
+                    <!-- Filter bar: moved here from sidebar -->
+                    <div class="content-filter-bar">
+                        <div class="pub-tabs">
+                            <button class="pub-tab active" data-pub-filter="all">All</button>
+                            <button class="pub-tab" data-pub-filter="national">National</button>
+                            <button class="pub-tab" data-pub-filter="international">International</button>
+                        </div>
+                        <div class="pub-sub-list" id="national-pubs">
+                            <button class="filter-btn pub-btn" data-filter="national-indian-express">Indian Express</button>
+                            <button class="filter-btn pub-btn" data-filter="national-the-hindu">The Hindu</button>
+                            <button class="filter-btn pub-btn" data-filter="national-hindustan-times">Hindustan Times</button>
+                            <button class="filter-btn pub-btn" data-filter="national-the-print">The Print</button>
+                            <button class="filter-btn pub-btn" data-filter="national-the-quint">The Quint</button>
+                            <button class="filter-btn pub-btn" data-filter="national-moneycontrol">Moneycontrol</button>
+                            <button class="filter-btn pub-btn" data-filter="national-deccan-herald">Deccan Herald</button>
+                            <button class="filter-btn pub-btn" data-filter="national-firstpost">Firstpost</button>
+                            <button class="filter-btn pub-btn" data-filter="national-orf-expert-speak">ORF Expert Speak</button>
+                            <button class="filter-btn pub-btn" data-filter="national-vif-india">VIF India</button>
+                            <button class="filter-btn pub-btn" data-filter="national-the-diplomatist">The Diplomatist</button>
+                            <button class="filter-btn pub-btn" data-filter="national-stratnewsglobal">StratNewsGlobal</button>
+                            <button class="filter-btn pub-btn" data-filter="national-takshashila-institution">Takshashila</button>
+                        </div>
+                        <div class="pub-sub-list" id="international-pubs">
+                            <button class="filter-btn pub-btn" data-filter="international-foreign-policy">Foreign Policy</button>
+                            <button class="filter-btn pub-btn" data-filter="international-nikkei-asia">Nikkei Asia</button>
+                            <button class="filter-btn pub-btn" data-filter="international-thinkchina">ThinkChina</button>
+                            <button class="filter-btn pub-btn" data-filter="international-the-diplomat">The Diplomat</button>
                         </div>
                         <div class="section-header-controls">
                             <input type="text" id="globalSearch" class="section-search-input" placeholder="Search…">
@@ -137,9 +138,8 @@
                             </select>
                         </div>
                     </div>
-                    <div class="commentaries-list">
-                        <!-- Commentaries inserted by JavaScript -->
-                    </div>
+
+                    <div class="commentaries-list"></div>
                     <div class="pagination" id="commentaries-pagination"></div>
                 </div>
 
@@ -156,6 +156,7 @@
         <section id="papers" class="section">
             <div class="section-wrapper">
                 <div class="section-sidebar">
+                    <img src="assets/images/Amit.jpg" alt="Amit Kumar" class="sidebar-photo">
                     <div class="bio-blurb">
                         <p>Policy researcher at Takshashila Institution's Geostrategy Programme and doctoral scholar at MAHE. Research focuses on China's economy, technology policy, and India-China relations.</p>
                     </div>
@@ -201,6 +202,7 @@
         <section id="media" class="section">
             <div class="section-wrapper">
                 <div class="section-sidebar">
+                    <img src="assets/images/Amit.jpg" alt="Amit Kumar" class="sidebar-photo">
                     <div class="bio-blurb">
                         <p>Policy researcher at Takshashila Institution's Geostrategy Programme and doctoral scholar at MAHE. Research focuses on China's economy, technology policy, and India-China relations.</p>
                     </div>

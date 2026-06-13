@@ -356,25 +356,25 @@ a:hover {
     top: 100px;
 }
 
+/* ── Sidebar photo ── */
+.sidebar-photo {
+    width: 100%;
+    border-radius: 4px;
+    display: block;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
 /* ── Bio blurb (left sidebar, all pages) ── */
 .bio-blurb {
     font-size: 0.78rem;
     color: var(--text-light);
-    line-height: 1.6;
-    border-top: 2px solid var(--border-color);
-    padding-top: 0.75rem;
-    margin-top: 1.5rem;
+    line-height: 1.65;
+    border-left: 2px solid var(--border-color);
+    padding-left: 0.75rem;
 }
 
 .bio-blurb p { margin: 0; }
-
-/* First appearance of bio-blurb in section-sidebar (Papers, Media) */
-.section-sidebar .bio-blurb {
-    margin-top: 0;
-    border-top: none;
-    border-left: 2px solid var(--border-color);
-    padding: 0 0 0 0.75rem;
-}
 
 /* ── Tag counts (right sidebar, Commentaries) ── */
 .tag-sidebar {
@@ -408,8 +408,7 @@ a:hover {
     text-transform: capitalize;
 }
 
-.tag-count-label.US,
-.tag-count-label.SCO {
+.tag-count-label.US {
     text-transform: uppercase;
 }
 
@@ -419,24 +418,31 @@ a:hover {
     flex-shrink: 0;
 }
 
-.pub-tabs {
+/* ── Content filter bar (below intro text in Commentaries) ── */
+.content-filter-bar {
+    margin: 1.25rem 0 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
-    margin-bottom: 1rem;
+    gap: 0.6rem;
+}
+
+.pub-tabs {
+    display: flex;
+    flex-direction: row;
+    gap: 0.4rem;
+    flex-wrap: wrap;
 }
 
 .pub-tab {
-    padding: 0.5rem 0.75rem;
+    padding: 0.35rem 0.85rem;
     background: none;
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: 20px;
     cursor: pointer;
     font-family: 'Lora', Georgia, serif;
-    font-size: 0.9rem;
+    font-size: 0.82rem;
     font-weight: 600;
     color: var(--text-color);
-    text-align: left;
     transition: all var(--transition);
 }
 
@@ -452,9 +458,10 @@ a:hover {
 
 .pub-sub-list {
     display: none;
-    flex-direction: column;
-    gap: 0.25rem;
-    margin-top: 0.25rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    padding-top: 0.25rem;
 }
 
 .pub-sub-list.visible {
@@ -516,12 +523,10 @@ a:hover {
 
 /* ==================== Section search + year controls ==================== */
 .section-header-controls {
-    position: absolute;
-    right: 0;
-    top: 0;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .section-search-input {
@@ -1035,14 +1040,9 @@ a:hover {
         justify-content: flex-start;
         text-align: left;
     }
-    .section-header-row > div { text-align: left; }
-    .section-header-controls {
-        position: static;
-        width: 100%;
-        margin-top: 0.75rem;
-        justify-content: flex-start;
-    }
+    .section-header-controls { width: 100%; }
     .section-search-input { width: 100%; flex: 1; }
+    .sidebar-photo { max-width: 120px; }
 
     /* Commentary: tighten date column on mobile */
     .comment-date { width: 58px; font-size: 0.72rem; }
