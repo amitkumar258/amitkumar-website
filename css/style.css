@@ -343,7 +343,7 @@ a:hover {
 /* ==================== Commentaries Layout ==================== */
 .commentaries-wrapper {
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 200px 1fr 180px;
     gap: 2rem;
     max-width: var(--max-width);
     margin: 0 auto;
@@ -354,6 +354,69 @@ a:hover {
 .pub-sidebar {
     position: sticky;
     top: 100px;
+}
+
+/* ── Bio blurb (left sidebar, all pages) ── */
+.bio-blurb {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    border-top: 2px solid var(--border-color);
+    padding-top: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.bio-blurb p { margin: 0; }
+
+/* First appearance of bio-blurb in section-sidebar (Papers, Media) */
+.section-sidebar .bio-blurb {
+    margin-top: 0;
+    border-top: none;
+    border-left: 2px solid var(--border-color);
+    padding: 0 0 0 0.75rem;
+}
+
+/* ── Tag counts (right sidebar, Commentaries) ── */
+.tag-sidebar {
+    position: sticky;
+    top: 100px;
+}
+
+.tag-sidebar-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tag-count-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.2rem 0;
+    font-size: 0.76rem;
+    border-bottom: 1px solid var(--border-color);
+    gap: 0.4rem;
+}
+
+.tag-count-label {
+    color: var(--text-color);
+    text-transform: capitalize;
+}
+
+.tag-count-label.US,
+.tag-count-label.SCO {
+    text-transform: uppercase;
+}
+
+.tag-count-num {
+    color: var(--text-light);
+    font-size: 0.72rem;
+    flex-shrink: 0;
 }
 
 .pub-tabs {
@@ -896,11 +959,13 @@ a:hover {
 
 /* ==================== Responsive Design ==================== */
 @media (max-width: 900px) {
-    /* Commentaries sidebar collapses below content on medium screens */
+    /* Commentaries: drop to single column on medium screens */
     .commentaries-wrapper {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
+
+    .tag-sidebar { position: static; }
 
     .pub-sidebar {
         position: static;

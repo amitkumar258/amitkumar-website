@@ -171,6 +171,28 @@ class Router {
         this.renderCommentaries();
         this.renderPapers();
         this.renderMedia();
+        this.renderTagCounts();
+    }
+
+    renderTagCounts() {
+        const container = document.getElementById('tag-counts');
+        if (!container) return;
+
+        const counts = {};
+        commentariesData.forEach(c => {
+            (c.tags || []).forEach(tag => {
+                counts[tag] = (counts[tag] || 0) + 1;
+            });
+        });
+
+        const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+
+        container.innerHTML = sorted.map(([tag, count]) =>
+            `<div class="tag-count-item">
+                <span class="tag-count-label ${tag}">${tag}</span>
+                <span class="tag-count-num">(${count})</span>
+            </div>`
+        ).join('');
     }
 
     formatDate(dateStr) {
