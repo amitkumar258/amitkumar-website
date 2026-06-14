@@ -1284,61 +1284,73 @@ a:hover {
     .home-left { position: static; }
     .profile-photo { max-width: 260px; }
 
-    /* ── Navbar: two-row layout on mobile ── */
-    .navbar { padding: 0.6rem 0 0; }
-
+    /* ── Navbar: mobile layout ── */
     .nav-container {
         flex-wrap: wrap;
-        align-items: center;
-        gap: 0;
         padding: 0 0.75rem;
     }
 
-    /* Row 1: brand (left) + social group (right) */
+    /* Row 1: brand (flex:1) | toggle + social (right) */
     .nav-brand {
         flex: 1;
         font-size: 1.1rem;
         margin-right: 0;
-    }
-
-    .nav-social-group {
-        margin-left: 0;
-        gap: 0.25rem;
         order: 1;
     }
 
+    .nav-social-group {
+        order: 2;
+        margin-left: 0;
+        gap: 0.2rem;
+    }
+
     .nav-social-link {
-        font-size: 0.7rem;
-        padding: 0.2rem 0.4rem;
+        font-size: 0.65rem;
+        padding: 0.15rem 0.3rem;
+    }
+
+    .nav-icon-link svg {
+        width: 11px;
+        height: 11px;
     }
 
     .nav-search-btn {
-        padding: 0.2rem 0.4rem;
+        padding: 0.15rem 0.35rem;
     }
 
-    /* Row 2: nav links always visible, wrap naturally */
+    /* Hamburger toggle — visible on mobile, after social group */
+    .nav-toggle {
+        display: flex;
+        align-items: center;
+        order: 3;
+        margin-left: 0.3rem;
+        font-size: 1.1rem;
+    }
+
+    /* Row 2: page links — hidden until toggle clicked */
     .nav-menu {
-        display: flex !important;
-        position: static;
+        display: none;
+        order: 4;
         width: 100%;
-        order: 2;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 0.15rem 0.5rem;
-        padding: 0.5rem 0 0.6rem;
+        flex-direction: column;
+        gap: 0;
+        padding: 0.4rem 0 0.5rem;
         margin-top: 0.4rem;
-        border-top: 1px solid rgba(255,255,255,0.12);
+        border-top: 1px solid rgba(255,255,255,0.15);
         background: transparent;
         box-shadow: none;
+        position: static;
     }
+
+    .nav-menu.active { display: flex; }
 
     .nav-link {
-        font-size: 0.72rem;
-        padding: 0.2rem 0;
+        font-size: 0.82rem;
+        padding: 0.45rem 0;
         font-weight: 500;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
     }
 
-    .nav-toggle { display: none; }
     .nav-divider { display: none; }
 
     /* Papers / section sidebar */
