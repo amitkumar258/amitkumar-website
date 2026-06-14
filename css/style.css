@@ -1098,6 +1098,7 @@ a:hover {
 
 /* Mobile filter bar — hidden on desktop, shown only via mobile media query */
 .mobile-filter-bar { display: none; }
+#mobileSecondaryFilter { display: none; }
 
 /* ==================== Dashboards Section ==================== */
 .dashboards-grid {

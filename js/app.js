@@ -117,22 +117,31 @@ class Router {
         if (mobilePrimary) {
             mobilePrimary.addEventListener('change', () => {
                 const val = mobilePrimary.value;
-                // Reset secondary
-                mobileSecondary.innerHTML = '<option value="">All in category</option>';
-                const pubs = val === 'national' ? nationalPubs : val === 'international' ? internationalPubs : [];
-                pubs.forEach(p => {
-                    const opt = document.createElement('option');
-                    opt.value = p.value;
-                    opt.textContent = p.label;
-                    mobileSecondary.appendChild(opt);
-                });
-                mobileSecondary.style.display = pubs.length ? '' : 'none';
+
+                if (val === 'national' || val === 'international') {
+                    const pubs = val === 'national' ? nationalPubs : internationalPubs;
+                    const label = val === 'national' ? 'All National' : 'All International';
+
+                    // Default option value = category so "All" still filters by category
+                    mobileSecondary.innerHTML = `<option value="${val}">${label}</option>`;
+                    pubs.forEach(p => {
+                        const opt = document.createElement('option');
+                        opt.value = p.value;
+                        opt.textContent = p.label;
+                        mobileSecondary.appendChild(opt);
+                    });
+                    mobileSecondary.style.display = 'block';
+                } else {
+                    mobileSecondary.style.display = 'none';
+                }
+
                 this.activePubFilter = val;
                 this.currentPage = 1;
                 this.renderCommentaries();
             });
+
             mobileSecondary.addEventListener('change', () => {
-                this.activePubFilter = mobileSecondary.value || mobilePrimary.value;
+                this.activePubFilter = mobileSecondary.value;
                 this.currentPage = 1;
                 this.renderCommentaries();
             });
