@@ -1411,6 +1411,47 @@ a:hover {
     .comment-link { font-size: 0.84rem; }
     .comment-tags { padding-left: calc(58px + 1.25rem); }
 
+    /* ── Papers: stacked layout on mobile ── */
+    .paper-item .comment-row {
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    .paper-item .comment-date {
+        width: auto;
+        order: 3;
+        font-size: 0.7rem;
+        color: #bbb;
+    }
+
+    .paper-item .comment-body {
+        flex-direction: column;
+        order: 1;
+        gap: 0.15rem;
+    }
+
+    .paper-item .comment-link {
+        font-size: 0.88rem;
+        line-height: 1.45;
+        white-space: normal;
+    }
+
+    .paper-item .comment-publication {
+        white-space: normal;
+        padding-top: 0;
+        font-size: 0.76rem;
+    }
+
+    .paper-item .paper-coauthor {
+        padding-left: 0;
+        font-size: 0.74rem;
+    }
+
+    .paper-item .comment-tags {
+        padding-left: 0;
+        margin-top: 0.2rem;
+    }
+
     /* Filter tabs: smaller pills, no overflow */
     .pub-tab {
         font-size: 0.72rem;
