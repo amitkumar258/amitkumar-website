@@ -1406,10 +1406,41 @@ a:hover {
     .section-search-input { width: 100%; flex: 1; }
     .sidebar-photo { max-width: 120px; }
 
-    /* Commentary: tighten date column on mobile */
-    .comment-date { width: 58px; font-size: 0.72rem; }
-    .comment-link { font-size: 0.84rem; }
-    .comment-tags { padding-left: calc(58px + 1.25rem); }
+    /* ── Commentaries: stacked layout on mobile ── */
+    .commentary-item .comment-row {
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    .commentary-item .comment-date {
+        width: auto;
+        order: 3;
+        font-size: 0.7rem;
+        color: #bbb;
+    }
+
+    .commentary-item .comment-body {
+        flex-direction: column;
+        order: 1;
+        gap: 0.15rem;
+    }
+
+    .commentary-item .comment-link {
+        font-size: 0.88rem;
+        line-height: 1.45;
+        white-space: normal;
+    }
+
+    .commentary-item .comment-publication {
+        white-space: normal;
+        padding-top: 0;
+        font-size: 0.76rem;
+    }
+
+    .commentary-item .comment-tags {
+        padding-left: 0;
+        margin-top: 0.2rem;
+    }
 
     /* ── Papers: stacked layout on mobile ── */
     .paper-item .comment-row {
