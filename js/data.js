@@ -90,6 +90,14 @@ const commentariesData = [
         tags: ["security", "china", "russia"]
     },
     {
+        title: "Trouble Triangulating: The US, China and Russia",
+        publication: "Eye on China",
+        date: "27/08/2025",
+        pubCategory: "national",
+        url: "https://eyeonchina.substack.com/p/trouble-triangulating?utm_source=publication-search",
+        tags: ["US", "china", "russia", "security"]
+    },
+    {
         title: "China's official trade surplus remains as high as at its peak",
         publication: "Nikkei Asia",
         date: "12/08/2025",
@@ -643,7 +651,8 @@ const mediaData = [
         title: "Who Will Be the Next Dalai Lama… And Why Is It So Political?",
         outlet: "BFM 89.9",
         date: "18/08/2025",
-        url: "https://www.bfm.my/content/podcast/who-will-be-the-next-dalai-lama-and-why-is-it-so-political"
+        url: "https://www.bfm.my/content/podcast/who-will-be-the-next-dalai-lama-and-why-is-it-so-political",
+        thumbnail: "https://www.bfm.my/images/bfm_share.jpg"
     },
     {
         title: "Swadesh Vishesh: कितना बड़ा है Rare Earth मिनरल्स का संकट?",
@@ -667,7 +676,8 @@ const mediaData = [
         title: "Interpreting China: The Economy and Its Impact on Foreign Policy",
         outlet: "Carnegie India",
         date: "15/05/2025",
-        url: "https://carnegieendowment.org/india/podcasts/interpreting-india/interpreting-china-the-economy-and-its-impact-on-foreign-policy"
+        url: "https://carnegieendowment.org/india/podcasts/interpreting-india/interpreting-china-the-economy-and-its-impact-on-foreign-policy",
+        thumbnail: "https://assets.carnegieendowment.org/_/eyJrZXkiOiJzdGF0aWMvbWVkaWEvaW1hZ2VzL0ludGVycHJldGluZyBJbmRpYSBhamRrLTMucG5nIn0="
     },
     {
         title: "How The Oval Office Row Impacts A Ukraine Peace Deal",

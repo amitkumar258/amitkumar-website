@@ -96,6 +96,18 @@ class Router {
             });
         }
 
+        // Nav search button — navigate to commentaries and focus search
+        const navSearchBtn = document.getElementById('navSearchBtn');
+        if (navSearchBtn) {
+            navSearchBtn.addEventListener('click', () => {
+                this.handleNavigation('commentaries');
+                setTimeout(() => {
+                    const s = document.getElementById('globalSearch');
+                    if (s) s.focus();
+                }, 300);
+            });
+        }
+
         // Papers filter buttons
         document.querySelectorAll('.filter-btn[data-filter^="papers-"]').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -354,9 +366,11 @@ class Router {
 
         container.innerHTML = pageItems.map(media => {
             const ytId = this.getYouTubeId(media.url);
-            const thumbSrc = ytId
-                ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`
-                : `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='90' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23f0f0f0'/%3E%3Ctext x='80' y='50' font-size='28' text-anchor='middle' fill='%23bbb'%3E%E2%96%B6%3C/text%3E%3C/svg%3E`;
+            const thumbSrc = media.thumbnail
+                ? media.thumbnail
+                : ytId
+                    ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`
+                    : `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='90' viewBox='0 0 160 90'%3E%3Crect width='160' height='90' fill='%23f0f0f0'/%3E%3Ctext x='80' y='50' font-size='28' text-anchor='middle' fill='%23bbb'%3E%E2%96%B6%3C/text%3E%3C/svg%3E`;
             const fmtDate = media.date ? this.formatDate(media.date) : '';
             return `
                 <a href="${media.url || '#'}" target="_blank" class="media-row">
