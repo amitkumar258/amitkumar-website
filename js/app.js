@@ -88,6 +88,56 @@ class Router {
             });
         }
 
+        // Mobile dual-dropdown filter (commentaries)
+        const mobilePrimary = document.getElementById('mobilePrimaryFilter');
+        const mobileSecondary = document.getElementById('mobileSecondaryFilter');
+        const nationalPubs = [
+            { value: 'national-indian-express',      label: 'Indian Express' },
+            { value: 'national-the-hindu',           label: 'The Hindu' },
+            { value: 'national-hindustan-times',     label: 'Hindustan Times' },
+            { value: 'national-the-print',           label: 'The Print' },
+            { value: 'national-the-quint',           label: 'The Quint' },
+            { value: 'national-moneycontrol',        label: 'Moneycontrol' },
+            { value: 'national-deccan-herald',       label: 'Deccan Herald' },
+            { value: 'national-firstpost',           label: 'Firstpost' },
+            { value: 'national-orf-expert-speak',    label: 'ORF Expert Speak' },
+            { value: 'national-vif-india',           label: 'VIF India' },
+            { value: 'national-the-diplomatist',     label: 'The Diplomatist' },
+            { value: 'national-stratnewsglobal',     label: 'StratNewsGlobal' },
+            { value: 'national-takshashila-institution', label: 'Takshashila' },
+            { value: 'national-eye-on-china',        label: 'Eye on China' },
+        ];
+        const internationalPubs = [
+            { value: 'international-foreign-policy', label: 'Foreign Policy' },
+            { value: 'international-nikkei-asia',    label: 'Nikkei Asia' },
+            { value: 'international-thinkchina',     label: 'ThinkChina' },
+            { value: 'international-the-diplomat',   label: 'The Diplomat' },
+        ];
+
+        if (mobilePrimary) {
+            mobilePrimary.addEventListener('change', () => {
+                const val = mobilePrimary.value;
+                // Reset secondary
+                mobileSecondary.innerHTML = '<option value="">All in category</option>';
+                const pubs = val === 'national' ? nationalPubs : val === 'international' ? internationalPubs : [];
+                pubs.forEach(p => {
+                    const opt = document.createElement('option');
+                    opt.value = p.value;
+                    opt.textContent = p.label;
+                    mobileSecondary.appendChild(opt);
+                });
+                mobileSecondary.style.display = pubs.length ? '' : 'none';
+                this.activePubFilter = val;
+                this.currentPage = 1;
+                this.renderCommentaries();
+            });
+            mobileSecondary.addEventListener('change', () => {
+                this.activePubFilter = mobileSecondary.value || mobilePrimary.value;
+                this.currentPage = 1;
+                this.renderCommentaries();
+            });
+        }
+
         // Global search overlay
         this.setupGlobalSearch();
 

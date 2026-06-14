@@ -33,7 +33,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=29">
+    <link rel="stylesheet" href="css/style.css?v=30">
 </head>
 <body>
     <!-- Navigation -->
@@ -133,6 +133,18 @@
                 <div class="section-content">
                     <h2>Commentaries</h2>
                     <p class="section-intro">The following list contains the opinion and commentaries published in national and international media publications.</p>
+
+                    <!-- Mobile-only dual dropdown filter -->
+                    <div class="mobile-filter-bar">
+                        <select class="mobile-select" id="mobilePrimaryFilter">
+                            <option value="all">All Publications</option>
+                            <option value="national">National</option>
+                            <option value="international">International</option>
+                        </select>
+                        <select class="mobile-select" id="mobileSecondaryFilter" style="display:none">
+                            <option value="">All in category</option>
+                        </select>
+                    </div>
 
                     <!-- Filter bar: moved here from sidebar -->
                     <div class="content-filter-bar">
