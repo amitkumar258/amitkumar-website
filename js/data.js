@@ -652,7 +652,7 @@ const mediaData = [
         outlet: "BFM 89.9",
         date: "18/08/2025",
         url: "https://www.bfm.my/content/podcast/who-will-be-the-next-dalai-lama-and-why-is-it-so-political",
-        thumbnail: "https://www.bfm.my/images/bfm_share.jpg"
+        thumbnail: "assets/images/bfm-thumb.jpg"
     },
     {
         title: "Swadesh Vishesh: कितना बड़ा है Rare Earth मिनरल्स का संकट?",
