@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=24">
+    <link rel="stylesheet" href="css/style.css?v=25">
 </head>
 <body>
     <!-- Navigation -->
@@ -33,6 +33,16 @@
             </ul>
         </div>
     </nav>
+
+    <!-- Global search overlay -->
+    <div class="nav-search-overlay" id="navSearchOverlay">
+        <div class="nav-search-bar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:#888"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="navSearchInput" class="nav-search-input" placeholder="Search commentaries, papers, media…" autocomplete="off">
+            <button class="nav-search-close" id="navSearchClose" aria-label="Close search">✕</button>
+        </div>
+        <div class="nav-search-results" id="navSearchResults"></div>
+    </div>
 
     <main class="main-container">
         <!-- Home Section -->
@@ -129,7 +139,6 @@
                             <button class="filter-btn pub-btn" data-filter="international-the-diplomat">The Diplomat</button>
                         </div>
                         <div class="section-header-controls">
-                            <input type="text" id="globalSearch" class="section-search-input" placeholder="Search…">
                             <select class="year-select" id="yearSelect">
                                 <option value="all">All Years</option>
                                 <option value="2026">2026</option>

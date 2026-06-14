@@ -88,25 +88,8 @@ class Router {
             });
         }
 
-        // Global search
-        const searchInput = document.getElementById('globalSearch');
-        if (searchInput) {
-            searchInput.addEventListener('input', () => {
-                this.applySearch(searchInput.value.toLowerCase().trim());
-            });
-        }
-
-        // Nav search button — navigate to commentaries and focus search
-        const navSearchBtn = document.getElementById('navSearchBtn');
-        if (navSearchBtn) {
-            navSearchBtn.addEventListener('click', () => {
-                this.handleNavigation('commentaries');
-                setTimeout(() => {
-                    const s = document.getElementById('globalSearch');
-                    if (s) s.focus();
-                }, 300);
-            });
-        }
+        // Global search overlay
+        this.setupGlobalSearch();
 
         // Papers filter buttons
         document.querySelectorAll('.filter-btn[data-filter^="papers-"]').forEach(btn => {
@@ -137,44 +120,112 @@ class Router {
             const year = c.date ? c.date.split('/')[2] : '';
             const yearMatch = this.activeYearFilter === 'all' || year === this.activeYearFilter;
 
-            const searchMatch = !this.searchQuery ||
-                c.title.toLowerCase().includes(this.searchQuery) ||
-                c.publication.toLowerCase().includes(this.searchQuery) ||
-                (c.tags || []).some(t => t.toLowerCase().includes(this.searchQuery));
-
-            return pubMatch && yearMatch && searchMatch;
+            return pubMatch && yearMatch;
         });
     }
 
-    applySearch(query) {
-        this.searchQuery = query;
-        const activeSection = document.querySelector('.section.active');
-        if (!activeSection) return;
+    setupGlobalSearch() {
+        const overlay  = document.getElementById('navSearchOverlay');
+        const input    = document.getElementById('navSearchInput');
+        const results  = document.getElementById('navSearchResults');
+        const closeBtn = document.getElementById('navSearchClose');
+        const searchBtn = document.getElementById('navSearchBtn');
+        if (!overlay || !input || !searchBtn) return;
 
-        if (activeSection.id === 'commentaries') {
-            this.currentPage = 1;
-            this.renderCommentaries();
-        } else {
-            const selectors = { papers: '.paper-card', media: '.media-item' };
-            const selector = selectors[activeSection.id];
-            if (!selector) return;
-            activeSection.querySelectorAll(selector).forEach(item => {
-                const match = !query || item.textContent.toLowerCase().includes(query);
-                item.style.display = match ? '' : 'none';
-            });
-        }
+        const open = () => {
+            overlay.classList.add('active');
+            input.focus();
+        };
+        const close = () => {
+            overlay.classList.remove('active');
+            input.value = '';
+            results.innerHTML = '';
+        };
+
+        searchBtn.addEventListener('click', () => {
+            overlay.classList.contains('active') ? close() : open();
+        });
+        closeBtn.addEventListener('click', close);
+
+        // Close on Escape
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') close();
+        });
+
+        // Close when clicking outside the overlay
+        overlay.addEventListener('click', e => {
+            if (e.target === overlay) close();
+        });
+
+        input.addEventListener('input', () => {
+            this.renderGlobalResults(input.value.trim(), results, close);
+        });
     }
 
-    filterPapers(filter) {
-        document.querySelectorAll('.paper-card').forEach(item => {
-            if (filter === 'papers-all') {
-                item.style.display = '';
-            } else {
-                const tags = item.getAttribute('data-tags');
-                const filterTag = filter.replace('papers-', '');
-                item.style.display = tags && tags.includes(filterTag) ? '' : 'none';
+    renderGlobalResults(query, container, closeFn) {
+        if (!query) { container.innerHTML = ''; return; }
+        const q = query.toLowerCase();
+        const hits = [];
+
+        commentariesData.forEach((item, idx) => {
+            if (item.title.toLowerCase().includes(q) ||
+                item.publication.toLowerCase().includes(q) ||
+                (item.tags || []).some(t => t.toLowerCase().includes(q))) {
+                hits.push({ type: 'Commentary', title: item.title, meta: item.publication, date: item.date, section: 'commentaries', idx });
             }
         });
+
+        papersData.forEach((item, idx) => {
+            if (item.title.toLowerCase().includes(q) ||
+                item.publication.toLowerCase().includes(q) ||
+                (item.tags || []).some(t => t.toLowerCase().includes(q))) {
+                hits.push({ type: 'Paper', title: item.title, meta: item.publication, date: item.date, section: 'papers', idx });
+            }
+        });
+
+        mediaData.forEach((item, idx) => {
+            if (item.title.toLowerCase().includes(q) ||
+                item.outlet.toLowerCase().includes(q)) {
+                hits.push({ type: 'Media', title: item.title, meta: item.outlet, date: item.date, section: 'media', idx });
+            }
+        });
+
+        if (hits.length === 0) {
+            container.innerHTML = '<p class="search-no-results">No results found.</p>';
+            return;
+        }
+
+        container.innerHTML = hits.slice(0, 20).map((h, i) => `
+            <div class="search-result-item" data-i="${i}">
+                <span class="search-result-type">${h.type}</span>
+                <span class="search-result-title">${h.title}</span>
+                <span class="search-result-meta">${h.meta}${h.date ? ' · ' + this.formatDate(h.date) : ''}</span>
+            </div>`).join('');
+
+        container.querySelectorAll('.search-result-item').forEach(el => {
+            el.addEventListener('click', () => {
+                const h = hits[parseInt(el.getAttribute('data-i'))];
+                this.navigateToResult(h);
+                closeFn();
+            });
+        });
+    }
+
+    navigateToResult(h) {
+        this.handleNavigation(h.section);
+        if (h.section === 'commentaries') {
+            this.activePubFilter = 'all';
+            this.activeYearFilter = 'all';
+            this.searchQuery = '';
+            this.currentPage = Math.ceil((h.idx + 1) / this.itemsPerPage);
+            this.renderCommentaries();
+        } else if (h.section === 'papers') {
+            this.currentPapersPage = Math.ceil((h.idx + 1) / this.papersPerPage);
+            this.renderPapers();
+        } else if (h.section === 'media') {
+            this.currentMediaPage = Math.ceil((h.idx + 1) / this.mediaPerPage);
+            this.renderMedia();
+        }
     }
 
     // ── Rendering ────────────────────────────────────────────────────────────
