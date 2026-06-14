@@ -259,6 +259,14 @@ a:hover {
     display: flex;
     gap: 0.35rem;
     align-items: center;
+    margin-left: 0.6rem;
+}
+
+.nav-social-divider {
+    width: 1px;
+    height: 1.1rem;
+    background-color: rgba(255,255,255,0.25);
+    margin: 0 0.2rem;
 }
 
 .nav-search-btn {
@@ -301,6 +309,7 @@ a:hover {
 
 #home,
 #books,
+#dashboards,
 #media,
 #conference {
     padding: 3rem var(--spacing);
@@ -1087,6 +1096,109 @@ a:hover {
     margin: 0;
 }
 
+/* ==================== Dashboards Section ==================== */
+.dashboards-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+}
+
+.dashboard-card {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: box-shadow var(--transition);
+}
+
+.dashboard-card:hover {
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+}
+
+/* Left: thumbnail preview pane */
+.dashboard-preview {
+    overflow: hidden;
+    min-height: 200px;
+    display: flex;
+}
+
+.dashboard-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.dashboard-card:hover .dashboard-thumb {
+    transform: scale(1.03);
+}
+
+/* Right: content */
+.dashboard-card-body {
+    padding: 1.75rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.dashboard-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.dashboard-desc {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.dashboard-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.dashboard-tag {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    background-color: var(--light-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.dashboard-cta {
+    display: inline-block;
+    margin-top: 0.25rem;
+    padding: 0.5rem 1.25rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: 'Lora', Georgia, serif;
+    transition: background-color var(--transition);
+    align-self: flex-start;
+    text-decoration: none;
+}
+
+.dashboard-cta:hover {
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+}
+
 /* ==================== Empty Section ==================== */
 .empty-section {
     padding: 2rem;
@@ -1222,6 +1334,11 @@ a:hover {
     /* Books: stack to single column on mobile */
     .books-grid { grid-template-columns: 1fr; }
     .book-cover { height: 220px; }
+
+    /* Dashboards: stack preview above content */
+    .dashboard-card { grid-template-columns: 1fr; }
+    .dashboard-preview { min-height: 160px; }
+    .dashboard-card-body { padding: 1.25rem 1.5rem; }
 
     /* Media: shrink thumbnail on mobile */
     .media-thumb { width: 100px; min-width: 100px; }
