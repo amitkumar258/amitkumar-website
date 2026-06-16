@@ -344,6 +344,9 @@ class Router {
             const filterKey = `${pubCategory}-${c.publication.toLowerCase().replace(/\s+/g, '-')}`;
             const year = c.date ? c.date.split('/')[2] : '';
             const fmtDate = this.formatDate(c.date);
+            const coAuthorHtml = c.coAuthor
+                ? `<span class="paper-coauthor">with ${c.coAuthor}</span>`
+                : '';
             return `
                 <div class="commentary-item" data-category="${filterKey}" data-year="${year}">
                     <div class="comment-row">
@@ -353,6 +356,7 @@ class Router {
                             <span class="comment-publication">${c.publication}</span>
                         </div>
                     </div>
+                    ${coAuthorHtml}
                     <div class="comment-tags">
                         ${(c.tags || []).map(tag => `<span class="comment-tag ${tag}">${tag}</span>`).join('')}
                     </div>

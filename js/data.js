@@ -2,6 +2,15 @@
 // Updated from user-provided document with 45 commentaries
 const commentariesData = [
     {
+        title: "From Chips to LLMs: Have the Export Controls Prevented China from Catching Up?",
+        publication: "Eye on China",
+        date: "15/06/2026",
+        pubCategory: "national",
+        url: "https://eyeonchina.substack.com/p/where-are-they-now",
+        coAuthor: "Satya S. Sahu",
+        tags: ["technology", "china", "US"]
+    },
+    {
         title: "China's critical minerals export ban falls short",
         publication: "ThinkChina",
         date: "21/04/2026",
