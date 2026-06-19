@@ -2,6 +2,14 @@
 // Updated from user-provided document with 45 commentaries
 const commentariesData = [
     {
+        title: "China's Involution-Innovation Paradox",
+        publication: "Eye on China",
+        date: "18/06/2026",
+        pubCategory: "national",
+        url: "https://eyeonchina.substack.com/p/chinas-involution-innovation-paradox",
+        tags: ["economy", "technology", "china"]
+    },
+    {
         title: "From Chips to LLMs: Have the Export Controls Prevented China from Catching Up?",
         publication: "Eye on China",
         date: "15/06/2026",
