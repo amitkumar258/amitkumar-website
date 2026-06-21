@@ -412,11 +412,7 @@ ul.task-list li input[type="checkbox"] {
   <div id="lead-section">
     <div class="lead-card fade-in">
       <h2 class="anchored">Before we begin</h2>
-      <p>Tell us a little about your organisation. Your details help us contextualise the assessment and are kept confidential.</p>
-      <div class="form-field">
-        <label for="f-company">Organisation / Company Name</label>
-        <input type="text" id="f-company" placeholder="e.g. Acme Technologies Ltd" autocomplete="organization">
-      </div>
+      <p>Select your primary sector to contextualise the assessment.</p>
       <div class="form-field">
         <label for="f-sector">Primary Sector</label>
         <select id="f-sector">
@@ -440,12 +436,7 @@ ul.task-list li input[type="checkbox"] {
         <label for="f-sector-other">Please specify your sector</label>
         <input type="text" id="f-sector-other" placeholder="e.g. Pharmaceutical / Biotech">
       </div>
-      <div class="form-field">
-        <label for="f-email">Work Email Address</label>
-        <input type="email" id="f-email" placeholder="you@organisation.com" autocomplete="email">
-      </div>
       <button class="btn-submit" id="lead-submit-btn" onclick="submitLead()" disabled="">Continue →</button>
-      <p class="submit-note">Your details are stored securely and will not be shared with third parties.</p>
     </div>
   </div>
 
@@ -480,7 +471,7 @@ const SHEETS_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
 let step=0, ans={}, leadData={};
 
 // ── FORM VALIDATION ──
-['f-company','f-sector','f-email','f-sector-other'].forEach(id=>{
+['f-sector','f-sector-other'].forEach(id=>{
   document.getElementById(id).addEventListener('input', validateLead);
   document.getElementById(id).addEventListener('change', validateLead);
 });
@@ -490,12 +481,9 @@ document.getElementById('f-sector').addEventListener('change', function(){
   validateLead();
 });
 function validateLead(){
-  const c=document.getElementById('f-company').value.trim();
   const s=document.getElementById('f-sector').value;
   const sOther=document.getElementById('f-sector-other').value.trim();
-  const e=document.getElementById('f-email').value.trim();
-  const sectorOk = s.length>0 && (s!=='__other__' || sOther.length>0);
-  const valid = c.length>0 && sectorOk && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+  const valid = s.length>0 && (s!=='__other__' || sOther.length>0);
   document.getElementById('lead-submit-btn').disabled = !valid;
 }
 
@@ -515,9 +503,7 @@ async function submitLead(){
     ? document.getElementById('f-sector-other').value.trim()
     : rawSector;
   leadData={
-    company: document.getElementById('f-company').value.trim(),
     sector,
-    email:   document.getElementById('f-email').value.trim(),
     timestamp: new Date().toISOString()
   };
   try {
