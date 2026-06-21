@@ -195,18 +195,29 @@ if (isEmbed) {
   // Hide floating UI not needed in embed
   document.querySelectorAll('.map-title').forEach(el=>el.style.display='none');
 
-  // Kill drag-to-pan: block pointer/mouse/touch down on background (capture phase,
-  // so mind-elixir never receives it). Node clicks still pass through.
+  // Kill drag-to-pan on map background. Allow: node clicks, link clicks, popup interactions.
   ['pointerdown','mousedown','touchstart'].forEach(evt=>{
     window.addEventListener(evt, function(e){
-      if (!e.target.closest('me-tpc') && !e.target.closest('a[href]')) {
+      if (!e.target.closest('me-tpc') &&
+          !e.target.closest('a[href]') &&
+          !e.target.closest('#popup-overlay')) {
         e.preventDefault(); e.stopPropagation();
       }
     }, {capture:true, passive:false});
   });
 
-  // Kill scroll-zoom: intercept wheel in capture phase before mind-elixir,
-  // and forward the scroll to the parent page so it can still scroll.
+  // Kill mobile drag: block touchmove/pointermove on the map so a touch that
+  // started on a node can't be dragged into a pan. Allow moves inside the popup
+  // so the popup card remains scrollable.
+  ['touchmove','pointermove'].forEach(evt=>{
+    window.addEventListener(evt, function(e){
+      if (!e.target.closest('#popup-overlay')) {
+        e.preventDefault(); e.stopPropagation();
+      }
+    }, {capture:true, passive:false});
+  });
+
+  // Kill scroll-zoom: forward wheel delta to parent page so it can still scroll.
   window.addEventListener('wheel', function(e){
     e.preventDefault(); e.stopPropagation();
     try { window.parent.postMessage({type:'wheel', deltaX:e.deltaX, deltaY:e.deltaY}, '*'); } catch(_){}
