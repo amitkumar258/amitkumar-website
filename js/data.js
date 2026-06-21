@@ -471,6 +471,14 @@ const papersData = [
         tags: ["china", "US", "economy", "critical-minerals"]
     },
     {
+        title: "Self-Strengthening First: A Blueprint for Economic Engagement with China",
+        publication: "National Security, Vol. 9 Issue 2 (Apr–Jun 2026)",
+        date: "27/03/2026",
+        coAuthor: "Manoj Kewalramani",
+        url: "http://doi.org/10.32381/NS.2026.09.02.4",
+        tags: ["china", "economy", "trade", "india"]
+    },
+    {
         title: "Previewing China's 15th Five-Year Plan",
         publication: "Takshashila Institution",
         date: "04/03/2026",
