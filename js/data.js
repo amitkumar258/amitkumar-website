@@ -27,6 +27,14 @@ const commentariesData = [
         tags: ["economy", "technology", "china", "US"]
     },
     {
+        title: "Power Without Parity: India's Strategic Challenge in a China-Led Economic Order",
+        publication: "India's World",
+        date: "13/04/2026",
+        pubCategory: "national",
+        url: "https://indiasworld.in/power-without-parity-indias-strategic-challenge-in-a-china-led-economic-order/",
+        tags: ["india", "security", "economy", "china"]
+    },
+    {
         title: "Opening the doors for Chinese investment again, with caution",
         publication: "Hindustan Times",
         date: "01/04/2026",
