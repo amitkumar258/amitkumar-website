@@ -674,7 +674,7 @@ const talksData = [
     {
         event: "ICS Wednesday Seminar",
         host: "Institute of Chinese Studies",
-        venue: "Online",
+        venue: "Online (Delhi)",
         date: "28/05/2025",
         topic: "China's Local Governments: Can They Pull the Weight of the Country's Economy?",
         url: "https://www.youtube.com/watch?v=JnQwBrFRxA8&t=949s"
