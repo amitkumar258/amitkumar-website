@@ -2,6 +2,14 @@
 // Updated from user-provided document with 45 commentaries
 const commentariesData = [
     {
+        title: "Questions surrounding the Quad partnership's future",
+        publication: "The Hindu",
+        date: "07/07/2026",
+        pubCategory: "national",
+        url: "https://www.thehindu.com/data/questions-surrounding-the-quad-partnerships-future/article71193425.ece",
+        tags: ["security", "china", "india"]
+    },
+    {
         title: "China's Involution-Innovation Paradox",
         publication: "Eye on China",
         date: "18/06/2026",
