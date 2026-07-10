@@ -811,6 +811,30 @@ a:hover {
     border-color: var(--primary-color);
 }
 
+/* Publication sub-buttons: plain text, no box */
+.pub-btn {
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0.1rem 0.3rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+.pub-btn:hover {
+    background: none;
+    color: var(--primary-color);
+    border: none;
+}
+
+.pub-btn.active {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
 /* Sidebar-specific buttons: full-width, left-aligned, smaller */
 .sidebar-btn {
     border-radius: 4px;
