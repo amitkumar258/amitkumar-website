@@ -670,6 +670,22 @@ const talksData = [
             "assets/images/talks/citw-2026-2.jpg",
             "assets/images/talks/citw-2026-3.jpg"
         ]
+    },
+    {
+        event: "ICS Wednesday Seminar",
+        host: "Institute of Chinese Studies",
+        venue: "Online",
+        date: "28/05/2025",
+        topic: "China's Local Governments: Can They Pull the Weight of the Country's Economy?",
+        url: "https://www.youtube.com/watch?v=JnQwBrFRxA8&t=949s"
+    },
+    {
+        event: "ICS Wednesday Seminar",
+        host: "Institute of Chinese Studies",
+        venue: "Online (Delhi)",
+        date: "03/07/2024",
+        topic: "Comparative Assessment of India-China Consumption Patterns",
+        url: "https://www.youtube.com/watch?v=hO_AKEgzuH0"
     }
 ];
 
