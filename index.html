@@ -42,7 +42,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=33">
+    <link rel="stylesheet" href="css/style.css?v=35">
 </head>
 <body>
     <!-- Navigation -->
@@ -56,6 +56,7 @@
                 <li><a href="#books" class="nav-link" data-section="books">Book Chapters</a></li>
                 <li><a href="#dashboards" class="nav-link" data-section="dashboards">Dashboards</a></li>
                 <li><a href="#media" class="nav-link" data-section="media">Media Appearances</a></li>
+                <li><a href="#talks" class="nav-link" data-section="talks">Talks</a></li>
             </ul>
             <div class="nav-social-group">
                 <button class="nav-search-btn" id="navSearchBtn" title="Search" aria-label="Search"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
@@ -320,6 +321,23 @@
             </div>
         </section>
 
+        <!-- Talks Section -->
+        <section id="talks" class="section">
+            <div class="section-wrapper">
+                <div class="section-sidebar">
+                    <img src="assets/images/Amit.jpg" alt="Amit Kumar" class="sidebar-photo">
+                    <div class="bio-blurb">
+                        <p>Policy researcher at Takshashila Institution's Geostrategy Programme and doctoral scholar at MAHE. With a broader focus on China, his research explores issues at the intersection of economy, technology and security.</p>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <h2>Talks</h2>
+                    <p class="section-intro">Seminars, webinars, and conference presentations.</p>
+                    <div class="talks-list"></div>
+                </div>
+            </div>
+        </section>
+
         <!-- Conference Section -->
         <section id="conference" class="section">
             <div class="container">
@@ -331,6 +349,11 @@
             </div>
         </section>
     </main>
+
+    <!-- Lightbox overlay -->
+    <div id="lightbox-overlay" class="lightbox-overlay" onclick="closeLightbox()">
+        <img id="lightbox-img" class="lightbox-img" src="" alt="">
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -344,7 +367,7 @@
         </div>
     </footer>
 
-    <script src="js/data.js?v=2"></script>
-    <script src="js/app.js?v=2"></script>
+    <script src="js/data.js?v=3"></script>
+    <script src="js/app.js?v=3"></script>
 </body>
 </html>

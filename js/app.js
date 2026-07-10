@@ -293,6 +293,7 @@ class Router {
         this.renderCommentaries();
         this.renderPapers();
         this.renderMedia();
+        this.renderTalks();
         this.renderTagCounts();
     }
 
@@ -527,6 +528,47 @@ class Router {
         });
     }
 
+    renderTalks() {
+        const container = document.querySelector('.talks-list');
+        if (!container) return;
+
+        container.innerHTML = talksData.map(talk => {
+            const fmtDate = this.formatDate(talk.date);
+
+            const watchHtml = talk.url
+                ? `<a href="${talk.url}" target="_blank" rel="noopener noreferrer" class="talk-watch-btn">▶ Watch</a>`
+                : '';
+
+            const galleryHtml = talk.photos && talk.photos.length
+                ? `<div class="talk-gallery">
+                    ${talk.photos.map((src, i) =>
+                        `<img src="${src}" alt="${talk.event} photo ${i + 1}" class="talk-gallery-thumb" loading="lazy" onclick="openLightbox('${src}')">`
+                    ).join('')}
+                  </div>`
+                : '';
+
+            return `
+                <div class="talk-card">
+                    <div class="talk-header">
+                        <div class="talk-event-info">
+                            <span class="talk-event">${talk.event}</span>
+                            <span class="talk-host">Hosted by ${talk.host}</span>
+                        </div>
+                        <div class="talk-date-venue">
+                            <span class="talk-date">${fmtDate}</span>
+                            <span class="talk-venue">${talk.venue}</span>
+                        </div>
+                    </div>
+                    <div class="talk-topic">
+                        <span class="talk-topic-title">"${talk.topic}"</span>
+                        ${talk.subtitle ? `<span class="talk-subtitle">${talk.subtitle}</span>` : ''}
+                    </div>
+                    ${watchHtml}
+                    ${galleryHtml}
+                </div>`;
+        }).join('');
+    }
+
     updateStatistics() {
         const el = document.getElementById('commentaries-count');
         if (el) el.textContent = commentariesData.length;
@@ -566,6 +608,24 @@ class Router {
         this.navMenu.classList.remove('active');
     }
 }
+
+function openLightbox(src) {
+    const overlay = document.getElementById('lightbox-overlay');
+    const img = document.getElementById('lightbox-img');
+    if (overlay && img) {
+        img.src = src;
+        overlay.classList.add('active');
+    }
+}
+
+function closeLightbox() {
+    const overlay = document.getElementById('lightbox-overlay');
+    if (overlay) overlay.classList.remove('active');
+}
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof commentariesData !== 'undefined' && typeof papersData !== 'undefined' && typeof mediaData !== 'undefined') {

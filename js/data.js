@@ -655,6 +655,24 @@ const papersData = [
         tags: ["security", "china", "indo-pacific"]
     }
 ];
+// Talks data — seminars, webinars, conferences — newest to oldest
+const talksData = [
+    {
+        event: "China In The World 2026",
+        host: "Doublethink Lab",
+        venue: "Taipei, Taiwan",
+        date: "07/07/2026",
+        topic: "China's Coercive Economic Toolkit",
+        subtitle: "A Parallel Security Order: China's Militarisation, Defence Industrial Base and Economic Weaponisation",
+        url: "https://www.youtube.com/live/ACXACebjRno",
+        photos: [
+            "assets/images/talks/citw-2026-1.jpg",
+            "assets/images/talks/citw-2026-2.jpg",
+            "assets/images/talks/citw-2026-3.jpg"
+        ]
+    }
+];
+
 // Media appearances data
 // Media data — newest to oldest
 const mediaData = [
