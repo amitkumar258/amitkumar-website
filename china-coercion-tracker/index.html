@@ -186,71 +186,47 @@ ul.task-list li input[type="checkbox"] {
 }
 .hero-meta span { display: flex; align-items: center; gap: 5px; }
 
-/* ── LEAD FORM ── */
-#lead-section { display: none; padding: 2rem 0; }
-.lead-card {
-  background: #fff; border-radius: 16px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 24px rgba(0,0,0,.08);
-  padding: 36px 40px; max-width: 540px;
+/* ── RESULTS EXTRAS ── */
+.res-meta {
+  font-size: 11.5px !important; color: #94a3b8 !important;
+  margin-top: 10px !important; line-height: 1.6;
 }
-.lead-card h2 {
-  font-size: 20px; font-weight: 900; color: #0d1f3c;
-  margin-bottom: 6px;
+.res-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+.btn-print {
+  display: inline-flex; align-items: center; gap: 7px;
+  margin-top: 8px; padding: 9px 20px;
+  border-radius: 8px; font-size: 13px; font-weight: 700;
+  background: #0d1f3c; color: #fff; border: none;
+  cursor: pointer; font-family: inherit; transition: all .15s;
 }
-.lead-card p {
-  font-size: 13.5px; color: #64748b; margin-bottom: 28px; line-height: 1.6;
+.btn-print:hover { background: #162d55; }
+.cluster-wrap {
+  border: 1.5px dashed #f3b2bd; border-radius: 14px;
+  padding: 14px 14px 4px; margin-bottom: 14px; background: #fffbfb;
 }
-.form-field { margin-bottom: 18px; }
-.form-field label {
-  display: block; font-size: 12px; font-weight: 800;
-  text-transform: uppercase; letter-spacing: .08em;
-  color: #374151; margin-bottom: 7px;
+.cluster-head { font-size: 13.5px; font-weight: 900; color: #c8102e; margin-bottom: 4px; }
+.cluster-sub { font-size: 12.5px; color: #64748b; line-height: 1.6; margin-bottom: 12px; }
+.rc-role {
+  display: inline-block; font-size: 9px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .07em; padding: 4px 10px; border-radius: 6px;
+  background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe;
+  white-space: nowrap; flex-shrink: 0;
 }
-.form-field input, .form-field select {
-  width: 100%; padding: 11px 14px;
-  border: 1.5px solid #e2e8f0; border-radius: 8px;
-  font-size: 14px; color: #1a202c; background: #f8fafc;
-  font-family: inherit; transition: border-color .15s, background .15s;
-  box-sizing: border-box;
+.advisory-card {
+  background: #fffbeb; border: 1.5px solid #fde68a; border-left: 4px solid #d97706;
+  border-radius: 12px; padding: 20px 24px; margin-bottom: 12px;
 }
-.form-field input:focus, .form-field select:focus {
-  outline: none; border-color: #c8102e;
-  background: #fff; box-shadow: 0 0 0 3px rgba(200,16,46,.1);
-}
-.btn-submit {
-  width: 100%; padding: 13px; border-radius: 8px;
-  background: #c8102e; color: #fff; font-size: 14.5px;
-  font-weight: 800; border: none; cursor: pointer;
-  font-family: inherit; letter-spacing: .02em;
-  transition: all .15s; margin-top: 6px;
-}
-.btn-submit:hover { background: #a80d23; }
-.btn-submit:disabled { background: #e2e8f0; color: #94a3b8; cursor: not-allowed; }
-.submit-note {
-  font-size: 11px; color: #94a3b8; text-align: center;
-  margin-top: 12px; line-height: 1.5;
-}
+.advisory-card h4 { font-size: 14px; font-weight: 800; color: #92400e; margin: 0 0 8px; }
+.advisory-card p { font-size: 13px; color: #78350f; line-height: 1.65; margin: 0; }
 
-/* ── START SECTION (post-form) ── */
-#start-section { display: none; padding: 2.5rem 0; }
-.start-card {
-  background: linear-gradient(135deg, #0d1f3c 0%, #1a3a6b 100%);
-  border-radius: 16px; padding: 40px 44px; max-width: 560px;
-  color: #fff;
+/* ── PRINT (Save as PDF) ── */
+@media print {
+  #quarto-header, .navbar, #hero-section, .prog-wrap,
+  .res-actions, #quarto-footer, .page-footer, #quarto-search { display: none !important; }
+  #risk-root { max-width: 100% !important; padding: 0 !important; }
+  .risk-card, .advisory-card, .cluster-wrap { break-inside: avoid; box-shadow: none !important; }
+  #quiz-section { display: block !important; }
 }
-.start-card h2 { font-size: 22px; font-weight: 900; margin-bottom: 10px; color: #fff !important; }
-.start-card p { font-size: 14px; color: rgba(255,255,255,.82) !important; margin-bottom: 28px; line-height: 1.65; }
-.btn-start {
-  display: inline-flex; align-items: center; gap: 9px;
-  background: #c8102e; color: #fff;
-  font-size: 15px; font-weight: 800;
-  padding: 14px 30px; border-radius: 9px; border: none;
-  cursor: pointer; font-family: inherit;
-  box-shadow: 0 4px 16px rgba(200,16,46,.4);
-  transition: all .2s;
-}
-.btn-start:hover { background: #a80d23; transform: translateY(-1px); }
 
 /* ── QUESTIONNAIRE ── */
 #quiz-section { display: none; padding: 1.5rem 0; }
@@ -404,56 +380,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="risk-root">
   <div id="hero-section" class="fade-in">
     <h1 class="hero-title">Is your organisation exposed to China's coercive legal instruments?</h1>
-    <button class="btn-hero" onclick="showLead()">
+    <button class="btn-hero" onclick="startQuiz()">
       <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"></path><circle cx="12" cy="12" r="10"></circle></svg>
       Find if you are at risk
     </button>
     <div class="hero-meta">
       <span>⏱ Takes ~3 minutes</span>
-      <span>🔒 Confidential</span>
-      <span>📊 8 questions</span>
-    </div>
-  </div>
-
-  <div id="lead-section">
-    <div class="lead-card fade-in">
-      <h2 class="anchored">Before we begin</h2>
-      <p>Select your primary sector to contextualise the assessment.</p>
-      <div class="form-field">
-        <label for="f-sector">Primary Sector</label>
-        <select id="f-sector">
-          <option value="" disabled="" selected="">Select your sector</option>
-          <option value="Defence / Aerospace">Defence / Aerospace</option>
-          <option value="Semiconductors">Semiconductors</option>
-          <option value="Advanced Technology (AI/Quantum/Robotics)">Advanced Technology (AI / Quantum / Robotics)</option>
-          <option value="Telecommunications">Telecommunications</option>
-          <option value="Critical Minerals / Mining">Critical Minerals / Mining</option>
-          <option value="Advanced Materials / Chemicals">Advanced Materials / Chemicals</option>
-          <option value="Financial Services / Private Equity">Financial Services / Private Equity</option>
-          <option value="Research / Academia / Think Tank">Research / Academia / Think Tank</option>
-          <option value="Law / Trade Compliance / Sanctions">Law / Trade Compliance / Sanctions</option>
-          <option value="Media / Journalism">Media / Journalism</option>
-          <option value="Other Manufacturing / Industrial">Other Manufacturing / Industrial</option>
-          <option value="Other Services">Other Services</option>
-          <option value="__other__">Other (please specify)</option>
-        </select>
-      </div>
-      <div class="form-field" id="other-sector-field" style="display:none;">
-        <label for="f-sector-other">Please specify your sector</label>
-        <input type="text" id="f-sector-other" placeholder="e.g. Pharmaceutical / Biotech">
-      </div>
-      <button class="btn-submit" id="lead-submit-btn" onclick="submitLead()" disabled="">Continue →</button>
-    </div>
-  </div>
-
-  <div id="start-section">
-    <div class="start-card fade-in">
-      <h2 class="anchored">You're all set</h2>
-      <p>Answer 8 questions about your organisation's sector, commercial relationships, technology areas, and activities. You'll receive an instant exposure map at the end.</p>
-      <button class="btn-start" onclick="startQuiz()">
-        <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-        Find If I Am at Risk
-      </button>
+      <span>🔒 Confidential: answers never leave your browser</span>
+      <span>📊 9 questions</span>
     </div>
   </div>
 
@@ -470,61 +404,12 @@ ul.task-list li input[type="checkbox"] {
 </div>
 
 <script>
-// ── GOOGLE SHEETS ENDPOINT ──
-// Replace this URL with your deployed Google Apps Script web app URL
-const SHEETS_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
-
-let step=0, ans={}, leadData={};
-
-// ── FORM VALIDATION ──
-['f-sector','f-sector-other'].forEach(id=>{
-  document.getElementById(id).addEventListener('input', validateLead);
-  document.getElementById(id).addEventListener('change', validateLead);
-});
-document.getElementById('f-sector').addEventListener('change', function(){
-  const isOther = this.value === '__other__';
-  document.getElementById('other-sector-field').style.display = isOther ? 'block' : 'none';
-  validateLead();
-});
-function validateLead(){
-  const s=document.getElementById('f-sector').value;
-  const sOther=document.getElementById('f-sector-other').value.trim();
-  const valid = s.length>0 && (s!=='__other__' || sOther.length>0);
-  document.getElementById('lead-submit-btn').disabled = !valid;
-}
+// No data is collected or transmitted: answers live only in this browser tab.
+let step=0, ans={};
 
 // ── FLOW CONTROL ──
-function showLead(){
-  document.getElementById('hero-section').style.display='none';
-  const ls=document.getElementById('lead-section');
-  ls.style.display='block';
-  ls.querySelector('.lead-card').classList.add('fade-in');
-}
-
-async function submitLead(){
-  const btn=document.getElementById('lead-submit-btn');
-  btn.disabled=true; btn.textContent='Saving…';
-  const rawSector = document.getElementById('f-sector').value;
-  const sector = rawSector === '__other__'
-    ? document.getElementById('f-sector-other').value.trim()
-    : rawSector;
-  leadData={
-    sector,
-    timestamp: new Date().toISOString()
-  };
-  try {
-    if(SHEETS_URL !== 'YOUR_APPS_SCRIPT_URL_HERE'){
-      await fetch(SHEETS_URL, {method:'POST', body:JSON.stringify(leadData)});
-    }
-  } catch(e){ /* fail silently — don't block UX */ }
-  document.getElementById('lead-section').style.display='none';
-  const ss=document.getElementById('start-section');
-  ss.style.display='block';
-  ss.querySelector('.start-card').classList.add('fade-in');
-}
-
 function startQuiz(){
-  document.getElementById('start-section').style.display='none';
+  document.getElementById('hero-section').style.display='none';
   document.getElementById('quiz-section').style.display='block';
   renderQ();
 }
@@ -552,6 +437,7 @@ const RQs=[
      {v:'us',    l:'United States'},
      {v:'eu',    l:'European Union'},
      {v:'uk',    l:'United Kingdom'},
+     {v:'india', l:'India'},
      {v:'taiwan',l:'Taiwan'},
      {v:'allied',l:'Japan, South Korea, or Australia'},
      {v:'other', l:'Other / Global'},
@@ -581,7 +467,16 @@ const RQs=[
      {v:'bismuth',  l:'Bismuth (Bi) or tellurium (Te) materials'},
      {v:'hree',     l:'Heavy rare earth elements (Tb, Dy, Sm, Gd, Lu, Sc, Y, Ho, Er, Tm, Eu, Yb)'},
      {v:'lree',     l:'Light rare earth elements (La, Ce, Pr, Nd) or neodymium magnets'},
+     {v:'unsure',   l:'Not sure / we have not audited our inputs against China\'s control lists'},
      {v:'none',     l:'None of the above'},
+   ]},
+  {id:'down',multi:true,
+   text:'Where do your products go, and what goes into them? Select all that apply.',
+   opts:[
+     {v:'us_defence', l:'We supply US defence, military, or aerospace end-users (directly or through primes)'},
+     {v:'us_tech',    l:'We supply US semiconductor, AI, or advanced-technology manufacturers'},
+     {v:'cn_content', l:'Our products incorporate Chinese-origin critical materials or components (even via third-country distributors)'},
+     {v:'none',       l:'None of the above'},
    ]},
   {id:'tech',multi:true,
    text:'Which controlled technology areas are relevant to your work? Select all that apply.',
@@ -597,6 +492,7 @@ const RQs=[
      {v:'satellite',l:'Satellite navigation, guidance, or payload systems'},
      {v:'uav',      l:'Unmanned systems (drones, autonomous vehicles) core technology'},
      {v:'nuclear',  l:'Nuclear, chemical, or biological dual-use technology'},
+     {v:'unsure',   l:'Not sure / we have not mapped our technology against the Catalogue'},
      {v:'none',     l:'None of the above'},
    ]},
   {id:'actions',multi:true,
@@ -676,6 +572,8 @@ function renderQ(){
         </div>
       </div>
     </div>`;
+  const pw=document.querySelector('.prog-wrap');
+  if(pw && pw.getBoundingClientRect().top < 0) pw.scrollIntoView({behavior:'auto',block:'start'});
 }
 
 function selOpt(qid,val,el,isNone,isMulti){
@@ -713,12 +611,17 @@ function nextQ(){
 function calcRisk(){
   const sector=ans.sector||[],geo=ans.geo||'other',rel=ans.rel||[],
         mat=ans.mat||[],tech=ans.tech||[],actions=ans.actions||[],
-        capital=ans.capital||[],data=ans.data||[];
+        capital=ans.capital||[],data=ans.data||[],down=ans.down||[];
   const has=(arr,...v)=>v.some(x=>arr.includes(x));
   const none=arr=>arr.length===0||arr.includes('none');
   const risks=[];
 
-  if(!none(mat)||(has(sector,'defence','semi','minerals')&&!none(rel))){
+  // Materials exposure requires an actual China nexus: sourcing, selling, operating,
+  // or Chinese-origin content in products. Materials alone (e.g. sourced from
+  // Australia) do not put a firm inside MOFCOM's licensing net.
+  const cnNexus = has(rel,'import_materials','export_goods','ops','jv','china_customers') || has(down,'cn_content');
+
+  if((!none(mat)&&cnNexus)||(has(sector,'defence','semi','minerals')&&!none(rel))){
     const why=[],cons=[];
     if(has(mat,'gallium','germanium','graphite','antimony','superhard'))
       why.push('Your operations involve gallium, germanium, graphite, antimony, or synthetic diamonds — all requiring individual export licensing under MOFCOM Notice 2024 No. 46');
@@ -732,12 +635,25 @@ function calcRisk(){
       why.push('You export physical goods to Chinese entities — any controlled item requires an individual export licence per shipment');
     if(has(rel,'import_materials'))
       why.push('You source controlled materials from China; MOFCOM holds unilateral licensing authority and can suspend approvals without reason');
+    if(has(down,'cn_content'))
+      why.push('Chinese-origin content enters your products through suppliers; MOFCOM\'s licensing net follows the item, not the invoice');
     if(why.length>0){
       cons.push('Individual export licences required for every covered shipment; applications may be refused, delayed, or revoked after approval without appeal');
       cons.push('Supply disruption: China has demonstrated willingness to restrict gallium/germanium approvals to adversarial-country buyers since 2023');
       cons.push('GAC can detain cargo at port without judicial order; retroactive enforcement of prior unlicensed shipments is possible');
       risks.push({instrument:'Dual-Use Export Control Regulations (Dec 2024)',domain:'Domain 1 · Goods',why,cons,url:'https://picpolicy.mofcom.gov.cn/file/20241120/56691732080580306.pdf'});
     }
+  }
+
+  if(!none(mat)&&has(down,'us_defence')&&(has(down,'cn_content')||has(rel,'import_materials'))){
+    const why=[],cons=[];
+    why.push('Announcement No. 46 (Dec 2024) prohibits supplying dual-use items to US military end-users, and extends accountability to organisations in any country that transfer Chinese-origin items');
+    why.push('Your profile matches the prohibited chain: Chinese-origin controlled materials flowing to US defence end-users');
+    why.push('The blanket export denial to the US (Art. 2) is suspended until November 27, 2026, but the military end-user prohibition (Art. 1) remains fully in force');
+    cons.push('Chinese suppliers must disclose end-use chains in licence applications; a military end-use means near-certain denial');
+    cons.push('Third-country intermediaries do not launder exposure: the prohibition follows Chinese-origin content through the chain (Export Control Law, Art. 48)');
+    cons.push('The Art. 2 suspension is reversible without notice; contracts running past November 2026 carry snap-back risk');
+    risks.push({instrument:'Military End-User & Re-export Prohibition (Announcement No. 46, 2024)',domain:'Domain 1 · Goods',why,cons,url:'http://baike.taxrefund.com.cn/html/fg/2024/12/20241204103530-44471.html'});
   }
 
   if(!none(tech)&&!none(rel)&&has(rel,'export_tech','ip_license','ops','jv')){
@@ -783,7 +699,7 @@ function calcRisk(){
         cons.push('Chinese companies are legally prohibited from transacting with a listed entity; existing contracts are effectively void');
         cons.push('Executive travel to China becomes extremely high-risk; directors face personal visa bans, deportation, or asset seizure');
         cons.push('No independent appeals mechanism; reconsideration through MOFCOM is entirely discretionary');
-        risks.push({instrument:'Unreliable Entity List (UEL)',domain:'Domain 2 · Adversarial Entities',why,cons,url:'https://english.mofcom.gov.cn/Policies/GeneralPolicies/art/2020/art_1889a24134054b5b841134c3fba44654.html'});
+        risks.push({cluster:'cm',role:'The designation list',instrument:'Unreliable Entity List (UEL)',domain:'Domain 2 · Adversarial Entities',why,cons,url:'https://english.mofcom.gov.cn/Policies/GeneralPolicies/art/2020/art_1889a24134054b5b841134c3fba44654.html'});
       }
     }
   }
@@ -838,7 +754,7 @@ function calcRisk(){
       cons.push('Prohibition Execution Orders can make compliance with specific US/EU laws inside China a criminal offence — creating an impossible dual-compliance situation');
       cons.push('Malicious Entity List designation: asset freezes, visa bans for executives, deportation, prohibition on all transactions with Chinese entities');
       cons.push('Chinese courts have jurisdiction to award substantial damages against designated entities');
-      risks.push({instrument:'Decree 835 — Counter Extraterritorial Jurisdiction',domain:'Domain 5 · Counter Extraterritorial',why,cons,url:'https://cicc.court.gov.cn/html/1/218/62/83/12902.html'});
+      risks.push({cluster:'cm',role:'Blocking orders + Malicious Entity List',instrument:'Decree 835 — Counter Extraterritorial Jurisdiction',domain:'Domain 5 · Counter Extraterritorial',why,cons,url:'https://cicc.court.gov.cn/html/1/218/62/83/12902.html'});
     }
   }
 
@@ -854,7 +770,7 @@ function calcRisk(){
       cons.push('30-day notification obligation to MOFCOM whenever you receive government direction affecting your China business');
       cons.push('If a Prohibition Order is issued, complying with the foreign measure inside China becomes illegal — regardless of home-jurisdiction requirements');
       cons.push('Chinese courts can hear civil liability claims from Chinese counterparties for damages arising from your prohibited compliance');
-      risks.push({instrument:'MOFCOM Blocking Statute (Order No. 1 of 2021)',domain:'Domain 5 · Counter Extraterritorial',why,cons,url:'https://english.mofcom.gov.cn/Policies/GeneralPolicies/art/2021/art_98677d0ed28b41b9adeff27b00c9d001.html'});
+      risks.push({cluster:'cm',role:'The 30-day notification duty',instrument:'MOFCOM Blocking Statute (Order No. 1 of 2021)',domain:'Domain 5 · Counter Extraterritorial',why,cons,url:'https://english.mofcom.gov.cn/Policies/GeneralPolicies/art/2021/art_98677d0ed28b41b9adeff27b00c9d001.html'});
     }
   }
 
@@ -870,7 +786,7 @@ function calcRisk(){
       cons.push('Individuals and executives involved may be personally listed — exposing them to asset freezes and entry bans into China');
       cons.push('Chinese entities can file civil suits for damages in Chinese courts against listed persons, with punitive multipliers');
       cons.push('If executives travel to or hold assets in China, AFSL designation creates direct personal financial and liberty risk');
-      risks.push({instrument:'Anti-Foreign Sanctions Law (2021)',domain:'Foundational Legislation',why,cons,url:'https://npcobserver.com/legislation/anti-foreign-sanctions-law/'});
+      risks.push({cluster:'cm',role:'Personal countermeasures on executives',instrument:'Anti-Foreign Sanctions Law (2021)',domain:'Foundational Legislation',why,cons,url:'https://npcobserver.com/legislation/anti-foreign-sanctions-law/'});
     }
   }
 
@@ -921,47 +837,87 @@ function calcRisk(){
       risks.push({instrument:'Cross-Border Data Transfer Rules',domain:'Domain 7 · Data',why,cons,url:'https://openresearch-repository.anu.edu.au/server/api/core/bitstreams/7bba4ac6-0ee2-4890-b90c-f586f63de6e8/content'});
     }
   }
-  return risks;
+  return {risks, unsure: has(mat,'unsure')||has(tech,'unsure')};
+}
+
+function riskCard(r){
+  return `<div class="risk-card fade-in">
+    <div class="rc-header">
+      <div>
+        <div class="rc-title">${r.instrument}</div>
+        <div class="rc-domain">${r.domain}</div>
+      </div>
+      <div style="display:flex;gap:6px;align-items:center;flex-shrink:0;">
+        ${r.role?`<span class="rc-role">${r.role}</span>`:''}
+        <span class="rc-tag">At Risk</span>
+      </div>
+    </div>
+    <div class="rc-sect-lbl">Why this applies to you</div>
+    <ul class="rc-items rc-why">${r.why.map(w=>`<li>${w}</li>`).join('')}</ul>
+    <div class="rc-sep"></div>
+    <div class="rc-sect-lbl">Practical consequences</div>
+    <ul class="rc-items rc-cons">${r.cons.map(c=>`<li>${c}</li>`).join('')}</ul>
+    <div style="margin-top:10px;padding-top:8px;border-top:1px solid #f1f5f9;display:flex;gap:18px;flex-wrap:wrap;">
+      <a href="${r.url}" target="_blank" rel="noopener" class="c-link">↗ Read source document</a>
+      <a href="mindmap.html" class="c-link">🗺 View in Legal Architecture Map</a>
+    </div>
+  </div>`;
 }
 
 function renderResults(){
   document.getElementById('prog-fill').style.width='100%';
   document.getElementById('prog-pct').textContent='100%';
-  const risks=calcRisk();
+  const {risks,unsure}=calcRisk();
+  const cm=risks.filter(r=>r.cluster==='cm');
+  const rest=risks.filter(r=>r.cluster!=='cm');
   let html='';
-  if(risks.length===0){
+  if(risks.length===0 && !unsure){
     html=`<div class="none-card fade-in">
       <div class="ic">✅</div>
       <h3>No significant exposure identified</h3>
       <p>Based on your responses, your organisation does not appear to directly trigger the major instruments in China's coercive legal architecture. Re-run the assessment if your commercial relationships, technology areas, or activities change.</p>
+      <p class="res-meta">🔒 Your answers never left this browser; nothing was stored or transmitted. Assessment reflects instruments in force as of July 2026.</p>
     </div>`;
   } else {
-    html=`<div class="res-intro fade-in">
-      <h3>⚠ ${risks.length} instrument${risks.length>1?'s':''} applicable to your profile</h3>
-      <p>Based on your responses, the following elements of China's legal architecture of economic coercion are relevant to your organisation. Each entry explains why it applies and what the practical consequences are. <strong>This is not legal advice</strong> — engage a specialised trade compliance counsel for a detailed assessment.</p>
-    </div>`;
-    risks.forEach(r=>{
-      html+=`<div class="risk-card fade-in">
-        <div class="rc-header">
-          <div>
-            <div class="rc-title">${r.instrument}</div>
-            <div class="rc-domain">${r.domain}</div>
-          </div>
-          <span class="rc-tag">At Risk</span>
-        </div>
-        <div class="rc-sect-lbl">Why this applies to you</div>
-        <ul class="rc-items rc-why">${r.why.map(w=>`<li>${w}</li>`).join('')}</ul>
-        <div class="rc-sep"></div>
-        <div class="rc-sect-lbl">Practical consequences</div>
-        <ul class="rc-items rc-cons">${r.cons.map(c=>`<li>${c}</li>`).join('')}</ul>
-        <div style="margin-top:10px;padding-top:8px;border-top:1px solid #f1f5f9">
-          <a href="${r.url}" target="_blank" rel="noopener" class="c-link">↗ Read source document</a>
-        </div>
+    if(risks.length>0){
+      html=`<div class="res-intro fade-in">
+        <h3>⚠ ${risks.length} instrument${risks.length>1?'s':''} applicable to your profile</h3>
+        <p>Based on your responses, the following elements of China's legal architecture of economic coercion are relevant to your organisation. Each entry explains why it applies and what the practical consequences are. <strong>This is not legal advice</strong>: engage a specialised trade compliance counsel for a detailed assessment.</p>
+        <p class="res-meta">🔒 Your answers never left this browser; nothing was stored or transmitted. Assessment reflects instruments in force as of July 2026.</p>
       </div>`;
-    });
+    }
+    html+=rest.map(riskCard).join('');
+    if(cm.length>=2){
+      html+=`<div class="cluster-wrap fade-in">
+        <div class="cluster-head">⚖ The countermeasure cluster: one action, ${cm.length} instruments</div>
+        <div class="cluster-sub">These instruments key off the same conduct, namely complying with, or supporting, foreign restrictive measures against Chinese entities. Each adds a distinct layer of exposure.</div>
+        ${cm.map(riskCard).join('')}
+      </div>`;
+    } else {
+      html+=cm.map(riskCard).join('');
+    }
+    if(unsure){
+      html+=`<div class="advisory-card fade-in">
+        <h4>◑ Unverified exposure: controlled items not audited</h4>
+        <p>You answered &ldquo;Not sure&rdquo; on controlled materials or technologies. China's controls attach at item level, so exposure cannot be ruled in or out without an internal audit of your bill of materials and technology stack against MOFCOM's control lists.</p>
+      </div>`;
+    }
   }
-  html+=`<div style="margin-top:16px"><button class="btn-retake" onclick="restart()">← Retake Assessment</button></div>`;
+  html+=`<div class="res-actions">
+    <button class="btn-retake" onclick="reviewAnswers()">← Review my answers</button>
+    <button class="btn-retake" onclick="restart()">↺ Start afresh</button>
+    <button class="btn-print" onclick="window.print()">🖨 Print / Save as PDF</button>
+  </div>`;
   document.getElementById('qb').innerHTML=html;
+  const pw=document.querySelector('.prog-wrap');
+  if(pw) pw.scrollIntoView({behavior:'auto',block:'start'});
+}
+
+function reviewAnswers(){
+  step=0;
+  document.getElementById('prog-fill').style.width='0%';
+  document.getElementById('prog-pct').textContent='0%';
+  renderQ();
 }
 
 function restart(){
