@@ -387,7 +387,7 @@ ul.task-list li input[type="checkbox"] {
     <div class="hero-meta">
       <span>⏱ Takes ~3 minutes</span>
       <span>🔒 Confidential: answers never leave your browser</span>
-      <span>📊 9 questions</span>
+      <span>📊 10 questions</span>
     </div>
   </div>
 
@@ -429,6 +429,10 @@ const RQs=[
      {v:'research', l:'Research institution, university, or think tank'},
      {v:'law',      l:'Law firm or trade compliance / sanctions consultancy'},
      {v:'media',    l:'Media organisation or journalism outlet'},
+     {v:'agri',     l:'Agriculture, food, or beverages producer / exporter'},
+     {v:'consumer', l:'Consumer goods, luxury, or retail brand'},
+     {v:'auto',     l:'Automotive or mobility manufacturer'},
+     {v:'pharma',   l:'Pharmaceuticals or medical devices'},
      {v:'other',    l:'Other manufacturing, services, or industrial firm'},
    ]},
   {id:'geo',multi:false,
@@ -519,6 +523,15 @@ const RQs=[
      {v:'discussing',l:'Currently in active or recent discussions with Chinese investors'},
      {v:'subsidies', l:'Received Chinese government grants, loans, or subsidies'},
      {v:'none',      l:'None of the above'},
+   ]},
+  {id:'txn',multi:true,
+   text:'Is your organisation planning or executing a merger, acquisition, or joint venture? Select all that apply.',
+   opts:[
+     {v:'ma',          l:'Yes: a merger or acquisition (as buyer, seller, or target), anywhere in the world'},
+     {v:'jvform',      l:'Yes: forming a joint venture, including one entirely outside China'},
+     {v:'both_cn_rev', l:'At least two parties to the transaction each earn over ~RMB 800 million (~USD 110 million) a year in China'},
+     {v:'unsure_rev',  l:'A deal is planned but we have not measured the parties\' China revenues against the thresholds'},
+     {v:'none',        l:'No transaction planned or underway'},
    ]},
   {id:'data',multi:true,
    text:'Which data and digital operations apply to your organisation? Select all that apply.',
@@ -611,7 +624,7 @@ function nextQ(){
 function calcRisk(){
   const sector=ans.sector||[],geo=ans.geo||'other',rel=ans.rel||[],
         mat=ans.mat||[],tech=ans.tech||[],actions=ans.actions||[],
-        capital=ans.capital||[],data=ans.data||[],down=ans.down||[];
+        capital=ans.capital||[],data=ans.data||[],down=ans.down||[],txn=ans.txn||[];
   const has=(arr,...v)=>v.some(x=>arr.includes(x));
   const none=arr=>arr.length===0||arr.includes('none');
   const risks=[];
@@ -654,6 +667,50 @@ function calcRisk(){
     cons.push('Third-country intermediaries do not launder exposure: the prohibition follows Chinese-origin content through the chain (Export Control Law, Art. 48)');
     cons.push('The Art. 2 suspension is reversible without notice; contracts running past November 2026 carry snap-back risk');
     risks.push({instrument:'Military End-User & Re-export Prohibition (Announcement No. 46, 2024)',domain:'Domain 1 · Goods',why,cons,url:'http://baike.taxrefund.com.cn/html/fg/2024/12/20241204103530-44471.html'});
+  }
+
+  // Trade remedies: import-side coercion. Fires on the documented target profile
+  // (substitutable goods + China market exposure); framed as profile match with
+  // precedent, not prediction, since targeting is political and discretionary.
+  if(has(sector,'agri','consumer','auto','pharma','other')&&has(rel,'export_goods','china_customers')){
+    const why=[],cons=[];
+    why.push('You sell substitutable goods into the Chinese market: the exact profile of China\'s most-exercised coercion tool, the trade-remedy investigation');
+    if(geo==='allied')
+      why.push('Documented precedent in your region: Australian barley (80.5% duties) and wine (116–218%), both initiated within weeks of Canberra\'s 2020 COVID-inquiry call');
+    else if(geo==='eu'||geo==='uk')
+      why.push('Documented precedent in your region: EU brandy, pork, and dairy investigations (2024), opened in response to the EU\'s EV anti-subsidy probe, with sectors chosen for political pain in specific member states');
+    else if(geo==='taiwan')
+      why.push('Documented precedent in your region: the 2023–24 trade-barrier investigation used to suspend ECFA tariff concessions on 134+ product lines');
+    else if(geo==='us')
+      why.push('Documented precedent in your region: retaliatory anti-dumping actions, including sorghum (2018), deployed alongside tariff lists');
+    else
+      why.push('The pattern is cross-jurisdictional: Australia (barley, wine), the EU (brandy, pork, dairy), Taiwan (ECFA suspensions); targeting follows bilateral tension, not product economics');
+    if(has(rel,'china_customers'))
+      why.push('Chinese entities account for over 20% of your revenue; market-access denial is precisely the pressure point trade remedies are built to squeeze');
+    cons.push('Provisional duties can land within months of initiation, with cash deposits required at the border immediately');
+    cons.push('Documented duty levels of 80–218% effectively close the market overnight');
+    cons.push('Investigations run 12–18 months with discretionary extensions; resolution has historically tracked diplomatic thaw, not legal merit');
+    cons.push('Parallel administrative measures often accompany the formal case: customs holds, SPS inspections, import-registration suspensions');
+    risks.push({instrument:'Trade Remedies: Anti-Dumping & Countervailing Duties',domain:'Domain 8 · Market',why,cons,url:'https://www.wto.org/english/thewto_e/acc_e/chn_e/wtaccchn45_leg_1.pdf'});
+  }
+
+  // SAMR merger review: fires when an active transaction combines with a China
+  // turnover signal (verified threshold, unverified, or the >20% revenue proxy).
+  if(has(txn,'ma','jvform')&&(has(txn,'both_cn_rev','unsure_rev')||has(rel,'china_customers'))){
+    const why=[],cons=[];
+    why.push('A merger, acquisition, or JV between entirely non-Chinese parties still requires SAMR clearance if the parties have sufficient China turnover: the test is activity in China, not place of incorporation');
+    if(has(txn,'both_cn_rev'))
+      why.push('You meet the two-party element of the filing thresholds: at least two parties each above RMB 800 million in China turnover');
+    if(has(txn,'unsure_rev'))
+      why.push('You have not measured the parties\' China revenues against the thresholds (RMB 800 million each for at least two parties; RMB 12 billion combined worldwide); this is the first check any deal team should run');
+    if(!has(txn,'both_cn_rev','unsure_rev')&&has(rel,'china_customers'))
+      why.push('Chinese entities provide over 20% of your revenue; measure that against the RMB 800 million threshold before assuming you are outside SAMR\'s jurisdiction');
+    why.push('SAMR retains a call-in power below the thresholds where it suspects the deal may restrict competition');
+    cons.push('Closing anywhere in the world is illegal until SAMR clears the deal; gun-jumping fines reach 10% of prior-year turnover');
+    cons.push('Clearance can be conditioned on hold-separate orders and behavioural remedies that persist for years');
+    cons.push('The documented coercion pattern is deal-killing by inaction: Qualcomm/NXP (2018) and Intel/Tower (2023) collapsed when SAMR let the review clock run out during US-China tension');
+    cons.push('Review timing tracks the state of the bilateral relationship, and there is no meaningful appeal');
+    risks.push({instrument:'Merger Review under the Anti-Monopoly Law (SAMR)',domain:'Domain 8 · Market',why,cons,url:'https://npcobserver.com/legislation/anti-monopoly-law/'});
   }
 
   if(!none(tech)&&!none(rel)&&has(rel,'export_tech','ip_license','ops','jv')){
@@ -1359,8 +1416,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Sources: MOFCOM, State Council, CSET Georgetown. Last updated June 2026.</p>
-</div>   
+      &nbsp;
+    </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
