@@ -686,6 +686,20 @@ const talksData = [
         ]
     },
     {
+        event: "Book Talk: 'Taming the Dragon'",
+        host: "Pints of View",
+        venue: "Atta Galata, Bengaluru",
+        date: "10/05/2026",
+        topic: "Taming the Dragon",
+        photos: [
+            "assets/images/talks/bengaluru-2026-1.jpg",
+            "assets/images/talks/bengaluru-2026-2.jpg",
+            "assets/images/talks/bengaluru-2026-3.jpg",
+            "assets/images/talks/bengaluru-2026-4.jpg",
+            "assets/images/talks/bengaluru-2026-5.jpg"
+        ]
+    },
+    {
         event: "China Seminar",
         host: "Spear Corps, Indian Army",
         venue: "Likabali Military Station, Arunachal Pradesh",
