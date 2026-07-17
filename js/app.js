@@ -609,6 +609,136 @@ class Router {
     }
 }
 
+// ── Brain / Ask Widget ───────────────────────────────────────────────────────
+
+class BrainWidget {
+    constructor() {
+        this.btn    = document.getElementById('brainBtn');
+        this.panel  = document.getElementById('brainPanel');
+        this.body   = document.getElementById('brainBody');
+        this.input  = document.getElementById('brainInput');
+        this.send   = document.getElementById('brainSend');
+        this.close  = document.getElementById('brainClose');
+        if (!this.btn) return;
+        this.corpus = this.buildCorpus();
+        this.bindEvents();
+    }
+
+    buildCorpus() {
+        const items = [];
+        (typeof commentariesData !== 'undefined' ? commentariesData : []).forEach(c => {
+            items.push({ type: 'Commentary', title: c.title, meta: c.publication, date: c.date, url: c.url, terms: this.tokenize(c.title + ' ' + (c.tags || []).join(' ') + ' ' + c.publication) });
+        });
+        (typeof papersData !== 'undefined' ? papersData : []).forEach(p => {
+            items.push({ type: 'Paper', title: p.title, meta: p.publication, date: p.date, url: p.url, terms: this.tokenize(p.title + ' ' + (p.tags || []).join(' ') + ' ' + p.publication) });
+        });
+        (typeof talksData !== 'undefined' ? talksData : []).forEach(t => {
+            items.push({ type: 'Talk', title: t.topic, meta: t.event + ' · ' + t.host, date: t.date, url: t.url, terms: this.tokenize(t.topic + ' ' + (t.subtitle || '')) });
+        });
+        return items;
+    }
+
+    tokenize(text) {
+        const stop = new Set(['the','a','an','and','or','of','in','on','to','for','with','is','are','was','were','by','at','as','its','their','this','that','it','be','have','has','from','about','into','through','but','not','can','more','also','which','who','how','what','why','when','these','those','will']);
+        return text.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(w => w.length > 2 && !stop.has(w));
+    }
+
+    score(queryTerms, item) {
+        let score = 0;
+        queryTerms.forEach(q => {
+            item.terms.forEach(t => {
+                if (t === q) score += 3;
+                else if (t.startsWith(q) || q.startsWith(t)) score += 1.5;
+            });
+        });
+        return score;
+    }
+
+    search(query) {
+        const qTerms = this.tokenize(query);
+        if (!qTerms.length) return [];
+        return this.corpus
+            .map(item => ({ item, score: this.score(qTerms, item) }))
+            .filter(r => r.score > 0)
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 5)
+            .map(r => r.item);
+    }
+
+    formatDate(dateStr) {
+        if (!dateStr) return '';
+        const parts = dateStr.split('/');
+        if (parts.length !== 3) return dateStr;
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        return `${parseInt(parts[0])} ${months[parseInt(parts[1]) - 1]} ${parts[2]}`;
+    }
+
+    appendUserMsg(text) {
+        const el = document.createElement('div');
+        el.className = 'brain-msg brain-msg-user';
+        el.textContent = text;
+        this.body.appendChild(el);
+    }
+
+    appendResults(results) {
+        const wrap = document.createElement('div');
+        wrap.className = 'brain-msg brain-msg-assistant';
+
+        if (!results.length) {
+            const none = document.createElement('span');
+            none.className = 'brain-no-results';
+            none.textContent = 'No matching research found. Try different keywords.';
+            wrap.appendChild(none);
+        } else {
+            results.forEach(r => {
+                const card = document.createElement('div');
+                card.className = 'brain-result-card';
+                card.innerHTML = `
+                    <span class="brain-result-type">${r.type}</span>
+                    <span class="brain-result-title">${r.title}</span>
+                    <span class="brain-result-meta">${r.meta}${r.date ? ' · ' + this.formatDate(r.date) : ''}</span>
+                    ${r.url ? `<a href="${r.url}" target="_blank" class="brain-result-link">Read →</a>` : ''}`;
+                wrap.appendChild(card);
+            });
+        }
+        this.body.appendChild(wrap);
+        this.body.scrollTop = this.body.scrollHeight;
+    }
+
+    ask(query) {
+        if (!query.trim()) return;
+        this.appendUserMsg(query);
+        this.input.value = '';
+
+        const thinking = document.createElement('div');
+        thinking.className = 'brain-msg brain-thinking';
+        thinking.textContent = 'Searching research…';
+        this.body.appendChild(thinking);
+        this.body.scrollTop = this.body.scrollHeight;
+
+        setTimeout(() => {
+            thinking.remove();
+            this.appendResults(this.search(query));
+        }, 500);
+    }
+
+    bindEvents() {
+        this.btn.addEventListener('click', () => this.panel.classList.toggle('open'));
+        this.close.addEventListener('click', () => this.panel.classList.remove('open'));
+        this.send.addEventListener('click', () => this.ask(this.input.value));
+        this.input.addEventListener('keydown', e => { if (e.key === 'Enter') this.ask(this.input.value); });
+        document.querySelectorAll('.brain-chip').forEach(chip => {
+            chip.addEventListener('click', () => this.ask(chip.getAttribute('data-q')));
+        });
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => new BrainWidget());
+} else {
+    new BrainWidget();
+}
+
 function openLightbox(src) {
     const overlay = document.getElementById('lightbox-overlay');
     const img = document.getElementById('lightbox-img');

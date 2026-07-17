@@ -42,7 +42,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=35">
+    <link rel="stylesheet" href="css/style.css?v=36">
 </head>
 <body>
     <!-- Navigation -->
@@ -349,6 +349,39 @@
             </div>
         </section>
     </main>
+
+    <!-- Brain / Ask widget -->
+    <button class="brain-btn" id="brainBtn" aria-label="Ask Amit's Research">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span class="brain-tooltip">Ask my research</span>
+    </button>
+
+    <div class="brain-panel" id="brainPanel">
+        <div class="brain-header">
+            <div class="brain-header-left">
+                <span class="brain-title">Ask Amit's Research</span>
+                <span class="brain-subtitle">Search across commentaries, papers &amp; talks</span>
+            </div>
+            <button class="brain-close" id="brainClose" aria-label="Close">✕</button>
+        </div>
+        <div class="brain-body" id="brainBody">
+            <p class="brain-welcome">Ask anything about China's economy, India-China relations, technology policy, or geoeconomics — I'll find the most relevant pieces from my work.</p>
+            <div class="brain-chips">
+                <button class="brain-chip" data-q="China's economic slowdown">China's economy</button>
+                <button class="brain-chip" data-q="India China trade vulnerabilities">India-China trade</button>
+                <button class="brain-chip" data-q="semiconductor chip war US China">Chip war</button>
+                <button class="brain-chip" data-q="China coercive economic tools">Economic coercion</button>
+                <button class="brain-chip" data-q="India Russia relations">India-Russia</button>
+            </div>
+        </div>
+        <div class="brain-footer">
+            <input class="brain-input" id="brainInput" type="text" placeholder="Ask a question…" autocomplete="off">
+            <button class="brain-send" id="brainSend" aria-label="Send">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+        </div>
+        <p class="brain-disclaimer">Retrieves from published research only. Full AI synthesis coming soon.</p>
+    </div>
 
     <!-- Lightbox overlay -->
     <div id="lightbox-overlay" class="lightbox-overlay" onclick="closeLightbox()">
