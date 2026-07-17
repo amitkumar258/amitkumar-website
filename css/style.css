@@ -1336,6 +1336,51 @@ a:hover {
     color: white;
 }
 
+/* Video thumbnail (talks with a YouTube link but no photos) */
+.talk-video-thumb {
+    position: relative;
+    display: block;
+    max-width: 480px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #111;
+}
+
+.talk-video-thumb img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    transition: opacity 0.15s;
+}
+
+.talk-video-thumb:hover img {
+    opacity: 0.85;
+}
+
+.talk-video-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.65);
+    color: white;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 4px;
+    transition: background 0.15s, transform 0.15s;
+}
+
+.talk-video-thumb:hover .talk-video-play {
+    background: var(--accent-color);
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
 /* Gallery carousel */
 .talk-carousel {
     position: relative;

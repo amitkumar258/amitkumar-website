@@ -460,7 +460,8 @@ class Router {
         const patterns = [
             /youtu\.be\/([^?&]+)/,
             /[?&]v=([^&]+)/,
-            /youtube\.com\/embed\/([^?&]+)/
+            /youtube\.com\/embed\/([^?&]+)/,
+            /youtube\.com\/live\/([^?&]+)/
         ];
         for (const re of patterns) {
             const m = url.match(re);
@@ -534,13 +535,23 @@ class Router {
 
         container.innerHTML = talksData.map(talk => {
             const fmtDate = this.formatDate(talk.date);
+            const hasPhotos = talk.photos && talk.photos.length;
+            const ytId = this.getYouTubeId(talk.url);
 
-            const watchHtml = talk.url
+            // No photos but a YouTube link: show the video thumbnail as the visual
+            const videoThumbHtml = !hasPhotos && ytId
+                ? `<a href="${talk.url}" target="_blank" rel="noopener noreferrer" class="talk-video-thumb">
+                    <img src="https://img.youtube.com/vi/${ytId}/hqdefault.jpg" alt="${talk.topic} — video" loading="lazy">
+                    <span class="talk-video-play">▶</span>
+                  </a>`
+                : '';
+
+            const watchHtml = talk.url && !videoThumbHtml
                 ? `<a href="${talk.url}" target="_blank" rel="noopener noreferrer" class="talk-watch-btn">▶ Watch</a>`
                 : '';
 
-            const hasMultiple = talk.photos && talk.photos.length > 1;
-            const galleryHtml = talk.photos && talk.photos.length
+            const hasMultiple = hasPhotos && talk.photos.length > 1;
+            const galleryHtml = hasPhotos
                 ? `<div class="talk-carousel">
                     <div class="talk-carousel-track">
                         ${talk.photos.map((src, i) =>
@@ -575,6 +586,7 @@ class Router {
                         ${talk.subtitle ? `<span class="talk-subtitle">${talk.subtitle}</span>` : ''}
                     </div>
                     ${watchHtml}
+                    ${videoThumbHtml}
                     ${galleryHtml}
                 </div>`;
         }).join('');
