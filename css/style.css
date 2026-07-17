@@ -1336,25 +1336,77 @@ a:hover {
     color: white;
 }
 
-/* Gallery */
-.talk-gallery {
+/* Gallery carousel */
+.talk-carousel {
+    position: relative;
+    max-width: 480px;
+    overflow: hidden;
+    border-radius: 6px;
+    background: #111;
+}
+
+.talk-carousel-track {
     display: flex;
-    gap: 0.6rem;
-    flex-wrap: wrap;
+    transition: transform 0.4s ease;
 }
 
-.talk-gallery-thumb {
-    width: 130px;
-    height: 85px;
-    object-fit: cover;
-    border-radius: 3px;
+.talk-carousel-track img {
+    width: 100%;
+    flex-shrink: 0;
+    aspect-ratio: 3 / 2;
+    object-fit: contain;
     cursor: pointer;
-    transition: opacity 0.15s, transform 0.15s;
 }
 
-.talk-gallery-thumb:hover {
-    opacity: 0.85;
-    transform: scale(1.02);
+.talk-carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 0, 0, 0.45);
+    color: white;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+
+.talk-carousel-arrow:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.talk-carousel-prev { left: 0.5rem; }
+.talk-carousel-next { right: 0.5rem; }
+
+.talk-carousel-dots {
+    position: absolute;
+    bottom: 0.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.35rem;
+}
+
+.talk-carousel-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.45);
+    cursor: pointer;
+    transition: background 0.15s, transform 0.15s;
+}
+
+.talk-carousel-dot.active {
+    background: white;
+    transform: scale(1.25);
 }
 
 /* Lightbox */
@@ -2000,9 +2052,8 @@ a:hover {
         gap: 0.5rem;
     }
 
-    .talk-gallery-thumb {
-        width: 100px;
-        height: 68px;
+    .talk-carousel {
+        max-width: 100%;
     }
 }
 

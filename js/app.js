@@ -539,11 +539,22 @@ class Router {
                 ? `<a href="${talk.url}" target="_blank" rel="noopener noreferrer" class="talk-watch-btn">▶ Watch</a>`
                 : '';
 
+            const hasMultiple = talk.photos && talk.photos.length > 1;
             const galleryHtml = talk.photos && talk.photos.length
-                ? `<div class="talk-gallery">
-                    ${talk.photos.map((src, i) =>
-                        `<img src="${src}" alt="${talk.event} photo ${i + 1}" class="talk-gallery-thumb" loading="lazy" onclick="openLightbox('${src}')">`
-                    ).join('')}
+                ? `<div class="talk-carousel">
+                    <div class="talk-carousel-track">
+                        ${talk.photos.map((src, i) =>
+                            `<img src="${src}" alt="${talk.event} photo ${i + 1}" loading="lazy" onclick="openLightbox('${src}')">`
+                        ).join('')}
+                    </div>
+                    ${hasMultiple ? `
+                    <button class="talk-carousel-arrow talk-carousel-prev" aria-label="Previous photo">‹</button>
+                    <button class="talk-carousel-arrow talk-carousel-next" aria-label="Next photo">›</button>
+                    <div class="talk-carousel-dots">
+                        ${talk.photos.map((_, i) =>
+                            `<button class="talk-carousel-dot${i === 0 ? ' active' : ''}" aria-label="Go to photo ${i + 1}"></button>`
+                        ).join('')}
+                    </div>` : ''}
                   </div>`
                 : '';
 
@@ -567,6 +578,47 @@ class Router {
                     ${galleryHtml}
                 </div>`;
         }).join('');
+
+        this.initTalkCarousels();
+    }
+
+    initTalkCarousels() {
+        document.querySelectorAll('.talk-carousel').forEach(carousel => {
+            const track = carousel.querySelector('.talk-carousel-track');
+            const slides = track.children.length;
+            if (slides < 2) return;
+
+            const dots = carousel.querySelectorAll('.talk-carousel-dot');
+            let idx = 0;
+            let timer = null;
+
+            const goTo = i => {
+                idx = (i + slides) % slides;
+                track.style.transform = `translateX(-${idx * 100}%)`;
+                dots.forEach((d, di) => d.classList.toggle('active', di === idx));
+            };
+
+            const stopAuto = () => { clearInterval(timer); timer = null; };
+
+            // Auto-advance every 3s for one full cycle, then hand over to the user
+            let steps = 0;
+            timer = setInterval(() => {
+                goTo(idx + 1);
+                if (++steps >= slides) stopAuto();
+            }, 3000);
+
+            carousel.querySelector('.talk-carousel-prev').addEventListener('click', () => { stopAuto(); goTo(idx - 1); });
+            carousel.querySelector('.talk-carousel-next').addEventListener('click', () => { stopAuto(); goTo(idx + 1); });
+            dots.forEach((d, di) => d.addEventListener('click', () => { stopAuto(); goTo(di); }));
+
+            let startX = 0;
+            track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; stopAuto(); }, { passive: true });
+            track.addEventListener('touchend', e => {
+                const dx = e.changedTouches[0].clientX - startX;
+                if (dx > 40) goTo(idx - 1);
+                else if (dx < -40) goTo(idx + 1);
+            }, { passive: true });
+        });
     }
 
     updateStatistics() {
