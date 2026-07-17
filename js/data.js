@@ -686,6 +686,20 @@ const talksData = [
         ]
     },
     {
+        event: "Guest Lecture",
+        host: "Surya (Central) Command",
+        venue: "Garhwal Rifles Regimental Centre, Lansdowne",
+        date: "25/09/2025",
+        topic: "India-China trade and economic relations",
+        photos: [
+            "assets/images/talks/lansdowne-2025-1.jpg",
+            "assets/images/talks/lansdowne-2025-2.jpg",
+            "assets/images/talks/lansdowne-2025-3.jpg",
+            "assets/images/talks/lansdowne-2025-4.jpg",
+            "assets/images/talks/lansdowne-2025-5.jpg"
+        ]
+    },
+    {
         event: "ICS Wednesday Seminar",
         host: "Institute of Chinese Studies",
         venue: "Online (Delhi)",
