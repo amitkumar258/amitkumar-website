@@ -742,6 +742,21 @@ const talksData = [
         date: "03/07/2024",
         topic: "Comparative Assessment of India-China Consumption Patterns",
         url: "https://www.youtube.com/watch?v=hO_AKEgzuH0"
+    },
+    {
+        event: "Security Studies Dialogue, 2024",
+        host: "Carnegie India",
+        venue: "New Delhi",
+        date: "27/06/2024",
+        dateLabel: "27–28 Jun 2024",
+        topic: "Domestic Drivers of Global China",
+        url: "https://carnegieendowment.org/russia-eurasia/events/2026/04/security-studies-dialogue-2024",
+        photos: [
+            "assets/images/talks/delhi-carnegie-2024-1.jpg",
+            "assets/images/talks/delhi-carnegie-2024-2.jpg",
+            "assets/images/talks/delhi-carnegie-2024-3.jpg",
+            "assets/images/talks/delhi-carnegie-2024-4.jpg"
+        ]
     }
 ];
 

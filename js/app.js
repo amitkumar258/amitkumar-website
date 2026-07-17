@@ -577,7 +577,7 @@ class Router {
                             <span class="talk-host">Hosted by ${talk.host}</span>
                         </div>
                         <div class="talk-date-venue">
-                            <span class="talk-date">${fmtDate}</span>
+                            <span class="talk-date">${talk.dateLabel || fmtDate}</span>
                             <span class="talk-venue">${talk.venue}</span>
                         </div>
                     </div>
