@@ -672,6 +672,20 @@ const talksData = [
         ]
     },
     {
+        event: "Book Talk: 'Taming the Dragon'",
+        host: "Pune International Centre",
+        venue: "Pune",
+        date: "22/05/2026",
+        topic: "Taming the Dragon",
+        url: "https://www.youtube.com/watch?v=ZEOOwNvevhU&t=1s",
+        photos: [
+            "assets/images/talks/pune-2026-1.jpg",
+            "assets/images/talks/pune-2026-2.jpg",
+            "assets/images/talks/pune-2026-3.jpg",
+            "assets/images/talks/pune-2026-4.jpg"
+        ]
+    },
+    {
         event: "China Seminar",
         host: "Spear Corps, Indian Army",
         venue: "Likabali Military Station, Arunachal Pradesh",
