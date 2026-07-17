@@ -672,6 +672,20 @@ const talksData = [
         ]
     },
     {
+        event: "China Seminar",
+        host: "Spear Corps, Indian Army",
+        venue: "Likabali Military Station, Arunachal Pradesh",
+        date: "23/03/2026",
+        topic: "China's Defence Innovation Ecosystem",
+        photos: [
+            "assets/images/talks/likabali-2026-1.jpg",
+            "assets/images/talks/likabali-2026-2.jpg",
+            "assets/images/talks/likabali-2026-3.jpg",
+            "assets/images/talks/likabali-2026-4.jpg",
+            "assets/images/talks/likabali-2026-5.jpg"
+        ]
+    },
+    {
         event: "ICS Wednesday Seminar",
         host: "Institute of Chinese Studies",
         venue: "Online (Delhi)",
