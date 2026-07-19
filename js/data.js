@@ -856,6 +856,12 @@ const mediaData = [
         url: "https://www.youtube.com/watch?v=Pz1whcM-Et8"
     },
     {
+        title: "Taiwan Stirs Chinese Nationalism In A Way India Does Not",
+        outlet: "StratNewsGlobal",
+        date: "19/04/2023",
+        url: "https://www.youtube.com/watch?v=XNf6WI3Zi1w"
+    },
+    {
         title: "No Thaw In Ties With India Till China-U.S. Rapprochement Happens",
         outlet: "Bharat Shakti",
         date: "21/03/2023",
