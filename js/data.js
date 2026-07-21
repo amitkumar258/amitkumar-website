@@ -2,6 +2,14 @@
 // Updated from user-provided document with 45 commentaries
 const commentariesData = [
     {
+        title: "The Message from China's World AI Conference",
+        publication: "Eye on China",
+        date: "20/07/2026",
+        pubCategory: "national",
+        url: "https://eyeonchina.substack.com/p/the-symphony-of-global-ai",
+        tags: ["china", "technology", "ai"]
+    },
+    {
         title: "Questions surrounding the Quad partnership's future",
         publication: "The Hindu",
         date: "07/07/2026",
