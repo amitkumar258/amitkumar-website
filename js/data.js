@@ -2,6 +2,23 @@
 // Updated from user-provided document with 45 commentaries
 const commentariesData = [
     {
+        title: "Behind China's AI gift, a constraint",
+        publication: "The Hindu",
+        date: "30/07/2026",
+        pubCategory: "national",
+        url: "https://www.thehindu.com/news/international/behind-chinas-ai-gift-a-constraint/article71281433.ece",
+        tags: ["china", "technology", "security"]
+    },
+    {
+        title: "The Quad and ASEAN's First Step Off The Fence",
+        publication: "The Diplomat",
+        date: "29/07/2026",
+        pubCategory: "international",
+        url: "https://thediplomat.com/2026/07/the-quad-and-aseans-first-step-off-the-fence/",
+        coAuthor: "Vanshika Saraf",
+        tags: ["security", "india", "US", "china"]
+    },
+    {
         title: "The Message from China's World AI Conference",
         publication: "Eye on China",
         date: "20/07/2026",
