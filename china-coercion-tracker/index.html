@@ -658,7 +658,7 @@ function calcRisk(){
       cons.push('Individual export licences required for every covered shipment; applications may be refused, delayed, or revoked after approval without appeal');
       cons.push('Supply disruption: China has demonstrated willingness to restrict gallium/germanium approvals to adversarial-country buyers since 2023');
       cons.push('GAC can detain cargo at port without judicial order; retroactive enforcement of prior unlicensed shipments is possible');
-      risks.push({instrument:'Dual-Use Export Control Regulations (Dec 2024)',domain:'Domain 1 · Goods',why,cons,url:'https://picpolicy.mofcom.gov.cn/file/20241120/56691732080580306.pdf'});
+      risks.push({instrument:'Dual-Use Export Control Regulations (Dec 2024)',domain:'Domain 2 · Goods',why,cons,url:'https://picpolicy.mofcom.gov.cn/file/20241120/56691732080580306.pdf'});
     }
   }
 
@@ -670,7 +670,7 @@ function calcRisk(){
     cons.push('Chinese suppliers must disclose end-use chains in licence applications; a military end-use means near-certain denial');
     cons.push('Third-country intermediaries do not launder exposure: the prohibition follows Chinese-origin content through the chain (Export Control Law, Art. 48)');
     cons.push('The Art. 2 suspension is reversible without notice; contracts running past November 2026 carry snap-back risk');
-    risks.push({instrument:'Military End-User & Re-export Prohibition (Announcement No. 46, 2024)',domain:'Domain 1 · Goods',why,cons,url:'http://baike.taxrefund.com.cn/html/fg/2024/12/20241204103530-44471.html'});
+    risks.push({instrument:'Military End-User & Re-export Prohibition (Announcement No. 46, 2024)',domain:'Domain 2 · Goods',why,cons,url:'http://baike.taxrefund.com.cn/html/fg/2024/12/20241204103530-44471.html'});
   }
 
   // Trade remedies: import-side coercion. Fires on the documented target profile
@@ -695,7 +695,7 @@ function calcRisk(){
     cons.push('Documented duty levels of 80–218% effectively close the market overnight');
     cons.push('Investigations run 12–18 months with discretionary extensions; resolution has historically tracked diplomatic thaw, not legal merit');
     cons.push('Parallel administrative measures often accompany the formal case: customs holds, SPS inspections, import-registration suspensions');
-    risks.push({instrument:'Trade Remedies: Anti-Dumping & Countervailing Duties',domain:'Domain 6 · Market',why,cons,url:'https://www.wto.org/english/thewto_e/acc_e/chn_e/wtaccchn45_leg_1.pdf'});
+    risks.push({instrument:'Trade Remedies: Anti-Dumping & Countervailing Duties',domain:'Domain 1 · Market',why,cons,url:'https://www.wto.org/english/thewto_e/acc_e/chn_e/wtaccchn45_leg_1.pdf'});
   }
 
   // SAMR merger review: fires when an active transaction combines with a China
@@ -714,7 +714,7 @@ function calcRisk(){
     cons.push('Clearance can be conditioned on hold-separate orders and behavioural remedies that persist for years');
     cons.push('The documented coercion pattern is deal-killing by inaction: Qualcomm/NXP (2018) and Intel/Tower (2023) collapsed when SAMR let the review clock run out during US-China tension');
     cons.push('Review timing tracks the state of the bilateral relationship, and there is no meaningful appeal');
-    risks.push({instrument:'Merger Review under the Anti-Monopoly Law (SAMR)',domain:'Domain 6 · Market',why,cons,url:'https://npcobserver.com/legislation/anti-monopoly-law/'});
+    risks.push({instrument:'Merger Review under the Anti-Monopoly Law (SAMR)',domain:'Domain 1 · Market',why,cons,url:'https://npcobserver.com/legislation/anti-monopoly-law/'});
   }
 
   if(!none(tech)&&!none(rel)&&has(rel,'export_tech','ip_license','ops','jv')){
@@ -737,7 +737,7 @@ function calcRisk(){
       cons.push('Multi-stage MOFCOM/MOST licensing before any technology transfer; no statutory deadline, approval is not guaranteed');
       cons.push('Criminal prosecution for transfers of absolutely prohibited technologies, regardless of stated commercial purpose');
       cons.push('Existing contracts may be nullified if MOFCOM finds approval was required and not obtained');
-      risks.push({instrument:'Technology Export Catalogue (July 2025)',domain:'Domain 3 · Prohibited Technologies',why,cons,url:'https://cset.georgetown.edu/publication/china-export-control-catalog-july-2025/'});
+      risks.push({instrument:'Technology Export Catalogue (July 2025)',domain:'Domain 4 · Prohibited Technologies',why,cons,url:'https://cset.georgetown.edu/publication/china-export-control-catalog-july-2025/'});
     }
   }
 
@@ -760,7 +760,7 @@ function calcRisk(){
         cons.push('Chinese companies are legally prohibited from transacting with a listed entity; existing contracts are effectively void');
         cons.push('Executive travel to China becomes extremely high-risk; directors face personal visa bans, deportation, or asset seizure');
         cons.push('No independent appeals mechanism; reconsideration through MOFCOM is entirely discretionary');
-        risks.push({cluster:'cm',role:'The designation list',instrument:'Unreliable Entity List (UEL)',domain:'Domain 2 · Adversarial Entities',why,cons,url:'https://english.mofcom.gov.cn/Policies/GeneralPolicies/art/2020/art_1889a24134054b5b841134c3fba44654.html'});
+        risks.push({cluster:'cm',role:'The designation list',instrument:'Unreliable Entity List (UEL)',domain:'Domain 3 · Adversarial Entities',why,cons,url:'https://english.mofcom.gov.cn/Policies/GeneralPolicies/art/2020/art_1889a24134054b5b841134c3fba44654.html'});
       }
     }
   }
@@ -777,7 +777,7 @@ function calcRisk(){
       cons.push('Formal multi-agency investigation can be launched without pre-notification');
       cons.push('Emergency state-directed resource reallocation can redirect Chinese inputs away from your supply chain at any time');
       cons.push('UFLPA audits may become legally impossible inside China under Decree 834, creating simultaneous breach in both jurisdictions');
-      risks.push({instrument:'Decree 834 — Industrial & Supply Chain Security',domain:'Domain 5 · Supply Chain Security',why,cons,url:'https://www.gov.cn/zhengce/content/202604/content_7064837.htm'});
+      risks.push({instrument:'Decree 834 — Industrial & Supply Chain Security',domain:'Domain 6 · Supply Chain Security',why,cons,url:'https://www.gov.cn/zhengce/content/202604/content_7064837.htm'});
     }
   }
 
@@ -795,7 +795,7 @@ function calcRisk(){
       cons.push('Products deemed a security risk are blacklisted from CII procurement across seven strategic sectors simultaneously');
       cons.push('Standard review: 30+ working days; complex cases: ~90 working days; no approval guarantee');
       cons.push('Overseas IPOs of data-heavy businesses can be blocked indefinitely pending cybersecurity review completion');
-      risks.push({instrument:'Cybersecurity Review Measures (2022)',domain:'Domain 4 · Infrastructure',why,cons,url:'https://www.gov.cn/zhengce/zhengceku/2022-01/04/content_5666430.htm'});
+      risks.push({instrument:'Cybersecurity Review Measures (2022)',domain:'Domain 5 · Infrastructure',why,cons,url:'https://www.gov.cn/zhengce/zhengceku/2022-01/04/content_5666430.htm'});
     }
   }
 
@@ -815,7 +815,7 @@ function calcRisk(){
       cons.push('Prohibition Execution Orders can make compliance with specific US/EU laws inside China a criminal offence — creating an impossible dual-compliance situation');
       cons.push('Malicious Entity List designation: asset freezes, visa bans for executives, deportation, prohibition on all transactions with Chinese entities');
       cons.push('Chinese courts have jurisdiction to award substantial damages against designated entities');
-      risks.push({cluster:'cm',role:'Blocking orders + Malicious Entity List',instrument:'Decree 835 — Counter Extraterritorial Jurisdiction',domain:'Domain 5 · Supply Chain Security',why,cons,url:'https://www.gov.cn/zhengce/content/202604/content_7065398.htm'});
+      risks.push({cluster:'cm',role:'Blocking orders + Malicious Entity List',instrument:'Decree 835 — Counter Extraterritorial Jurisdiction',domain:'Domain 6 · Supply Chain Security',why,cons,url:'https://www.gov.cn/zhengce/content/202604/content_7065398.htm'});
     }
   }
 
@@ -831,7 +831,7 @@ function calcRisk(){
       cons.push('30-day notification obligation to MOFCOM whenever you receive government direction affecting your China business');
       cons.push('If a Prohibition Order is issued, complying with the foreign measure inside China becomes illegal — regardless of home-jurisdiction requirements');
       cons.push('Chinese courts can hear civil liability claims from Chinese counterparties for damages arising from your prohibited compliance');
-      risks.push({cluster:'cm',role:'The 30-day notification duty',instrument:'MOFCOM Blocking Statute (Order No. 1 of 2021)',domain:'Domain 5 · Supply Chain Security',why,cons,url:'https://english.mofcom.gov.cn/Policies/GeneralPolicies/art/2021/art_98677d0ed28b41b9adeff27b00c9d001.html'});
+      risks.push({cluster:'cm',role:'The 30-day notification duty',instrument:'MOFCOM Blocking Statute (Order No. 1 of 2021)',domain:'Domain 6 · Supply Chain Security',why,cons,url:'https://english.mofcom.gov.cn/Policies/GeneralPolicies/art/2021/art_98677d0ed28b41b9adeff27b00c9d001.html'});
     }
   }
 
@@ -861,7 +861,7 @@ function calcRisk(){
       cons.push('Applications can be rejected, conditioned, or delayed — no statutory timeline or independent appeal mechanism');
       cons.push('Post-approval: NDRC/MOFCOM can require divestiture at any time if the investment is later reassessed');
       cons.push('Conditions may include operational restrictions, technology firewalls, mandatory reporting, or government access requirements');
-      risks.push({instrument:'Foreign Investment Security Review',domain:'Domain 4 · Infrastructure',why,cons,url:'https://www.chinalawtranslate.com/en/foreigninvestmentsecurityreview/'});
+      risks.push({instrument:'Foreign Investment Security Review',domain:'Domain 5 · Infrastructure',why,cons,url:'https://www.chinalawtranslate.com/en/foreigninvestmentsecurityreview/'});
     }
   }
 
@@ -877,7 +877,7 @@ function calcRisk(){
       cons.push('Chinese investors in your company face penalties of up to 10% of investment value for violations — creating pressure to limit your activities');
       cons.push('Government can monitor how Chinese investors interact with your organisation with implications for commercial confidentiality');
       cons.push('Pre-investment national security review may be required before Chinese investment can close');
-      risks.push({instrument:'State Council Regulations on Overseas Investment (Decree 837)',domain:'Domain 5 · Supply Chain Security',why,cons,url:'https://www.news.cn/politics/20260601/c501b3cd78034669a8dd442f659f2a20/c.html'});
+      risks.push({instrument:'State Council Regulations on Overseas Investment (Decree 837)',domain:'Domain 6 · Supply Chain Security',why,cons,url:'https://www.news.cn/politics/20260601/c501b3cd78034669a8dd442f659f2a20/c.html'});
     }
   }
 
@@ -895,7 +895,7 @@ function calcRisk(){
       cons.push('All cross-border data transfers must cease during CAC review — operational disruption to AI pipelines, analytics, and cloud infrastructure');
       cons.push('CAC can order permanent deletion of data already transferred abroad');
       cons.push('Fines up to RMB 50 million or 5% of annual global turnover; criminal prosecution for executives in severe cases');
-      risks.push({instrument:'Cross-Border Data Transfer Rules',domain:'Domain 4 · Infrastructure',why,cons,url:'https://openresearch-repository.anu.edu.au/server/api/core/bitstreams/7bba4ac6-0ee2-4890-b90c-f586f63de6e8/content'});
+      risks.push({instrument:'Cross-Border Data Transfer Rules',domain:'Domain 5 · Infrastructure',why,cons,url:'https://openresearch-repository.anu.edu.au/server/api/core/bitstreams/7bba4ac6-0ee2-4890-b90c-f586f63de6e8/content'});
     }
   }
   return {risks, unsure: has(mat,'unsure')||has(tech,'unsure')};
