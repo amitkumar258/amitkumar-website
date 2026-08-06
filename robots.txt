@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://amitkumar-ak.com/sitemap.xml
+Sitemap: https://amitkumar-ak.com/china-coercion-tracker/sitemap.xml
