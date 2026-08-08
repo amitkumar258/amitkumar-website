@@ -641,7 +641,7 @@ function calcRisk(){
   if((!none(mat)&&cnNexus)||(has(sector,'defence','semi','minerals')&&!none(rel))){
     const why=[],cons=[];
     if(has(mat,'gallium','germanium','graphite','antimony','superhard'))
-      why.push('Your operations involve gallium, germanium, graphite, antimony, or synthetic diamonds — all requiring individual export licensing under MOFCOM Notice 2024 No. 46');
+      why.push('Your operations involve gallium, germanium, graphite, antimony, or superhard materials — all on the unified dual-use control list and requiring an individual export licence per shipment (Decree 792, Art. 14)');
     if(has(mat,'hree'))
       why.push('Heavy rare earth elements in your supply chain are subject to MOFCOM Notice 2025 No. 61 licensing');
     if(has(mat,'indium','bismuth','tungsten'))
@@ -657,8 +657,8 @@ function calcRisk(){
     if(why.length>0){
       cons.push('Individual export licences required for every covered shipment; applications may be refused, delayed, or revoked after approval without appeal');
       cons.push('Supply disruption: China has demonstrated willingness to restrict gallium/germanium approvals to adversarial-country buyers since 2023');
-      cons.push('GAC can detain cargo at port without judicial order; retroactive enforcement of prior unlicensed shipments is possible');
-      risks.push({instrument:'Dual-Use Export Control Regulations (Dec 2024)',domain:'Domain 2 · Goods',why,cons,url:'https://picpolicy.mofcom.gov.cn/file/20241120/56691732080580306.pdf'});
+      cons.push('Customs must withhold release of goods lacking a valid licence (Decree 792, Art. 21); retroactive enforcement of prior unlicensed shipments is possible');
+      risks.push({instrument:'Dual-Use Export Control Regulations (Dec 2024)',domain:'Domain 2 · Goods',why,cons,url:'https://www.mee.gov.cn/zcwj/gwywj/202410/t20241021_1089760.shtml'});
     }
   }
 
@@ -666,11 +666,11 @@ function calcRisk(){
     const why=[],cons=[];
     why.push('Announcement No. 46 (Dec 2024) prohibits supplying dual-use items to US military end-users, and extends accountability to organisations in any country that transfer Chinese-origin items');
     why.push('Your profile matches the prohibited chain: Chinese-origin controlled materials flowing to US defence end-users');
-    why.push('The blanket export denial to the US (Art. 2) is suspended until November 27, 2026, but the military end-user prohibition (Art. 1) remains fully in force');
+    why.push('The blanket export denial to the US (paragraph 2) is suspended by Announcement 2025 No. 72 until November 27, 2026, but the military end-user prohibition (paragraph 1) remains fully in force');
     cons.push('Chinese suppliers must disclose end-use chains in licence applications; a military end-use means near-certain denial');
-    cons.push('Third-country intermediaries do not launder exposure: the prohibition follows Chinese-origin content through the chain (Export Control Law, Art. 48)');
-    cons.push('The Art. 2 suspension is reversible without notice; contracts running past November 2026 carry snap-back risk');
-    risks.push({instrument:'Military End-User & Re-export Prohibition (Announcement No. 46, 2024)',domain:'Domain 2 · Goods',why,cons,url:'http://baike.taxrefund.com.cn/html/fg/2024/12/20241204103530-44471.html'});
+    cons.push('Third-country intermediaries do not launder exposure: MOFCOM may require overseas parties to comply where items made abroad contain, integrate or are mixed with specified Chinese-origin dual-use items (Decree 792, Art. 49)');
+    cons.push('The paragraph 2 suspension is reversible without notice; contracts running past November 2026 carry snap-back risk');
+    risks.push({instrument:'Military End-User & Re-export Prohibition (Announcement No. 46, 2024)',domain:'Domain 2 · Goods',why,cons,url:'https://exportcontrol.mofcom.gov.cn/article/zcfg/gnzcfg/zcfggzqd/202412/1072.html'});
   }
 
   // Trade remedies: import-side coercion. Fires on the documented target profile
