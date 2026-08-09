@@ -643,11 +643,11 @@ function calcRisk(){
     if(has(mat,'gallium','germanium','graphite','antimony','superhard'))
       why.push('Your operations involve gallium, germanium, graphite, antimony, or superhard materials — all on the unified dual-use control list and requiring an individual export licence per shipment (Decree 792, Art. 14)');
     if(has(mat,'hree'))
-      why.push('Heavy rare earth elements in your supply chain are subject to MOFCOM Notice 2025 No. 61 licensing');
+      why.push('Medium and heavy rare earths in your supply chain are licensed under Announcement 2025 No. 18, which covers samarium, gadolinium, terbium, dysprosium, lutetium, scandium and yttrium, including finished magnets containing terbium or dysprosium');
     if(has(mat,'indium','bismuth','tungsten'))
       why.push('Indium, bismuth, tellurium, and heavy tungsten alloys are controlled under the 2026 catalogue update (Category 6C)');
     if(has(mat,'lree'))
-      why.push('Light rare earth elements and neodymium magnets fall under Announcement No. 57 (2025)');
+      why.push('Announcement 2025 No. 57 would add holmium, erbium, thulium, europium and ytterbium, but it was suspended on 7 November 2025, the day before it was due to take effect, until 10 November 2026; light rare earths are not listed as elements in either announcement');
     if(has(rel,'export_goods'))
       why.push('You export physical goods to Chinese entities — any controlled item requires an individual export licence per shipment');
     if(has(rel,'import_materials'))
