@@ -884,18 +884,18 @@ function calcRisk(){
   if(!none(data)&&has(data,'personal_data','chinese_users','govt_data','cii_data','ai_training','ipo')){
     const why=[],cons=[];
     if(has(data,'personal_data','chinese_users'))
-      why.push('Processing personal data of Chinese residents or operating a platform with 100K+ Chinese users triggers the three-pathway compliance framework');
+      why.push('Moving personal data of Chinese residents out of China engages the three-route framework once you pass 100,000 people cumulatively since 1 January; below that, non-sensitive transfers are exempt under the March 2024 Provisions');
     if(has(data,'govt_data','cii_data'))
-      why.push('Government or CII-related data is likely classified as "important data" — triggering mandatory CAC Security Assessment before any cross-border transfer');
+      why.push('Any cross-border transfer by a critical information infrastructure operator needs a CAC Security Assessment; for other firms, data counts as "important" only once regulators have notified or publicly listed it (2024 Provisions, Art. 2)');
     if(has(data,'ai_training'))
       why.push('AI training on Chinese-sourced datasets likely involves bulk personal information processing, triggering SCC or Security Assessment requirements');
     if(has(data,'ipo'))
-      why.push('Overseas stock listing plans involving 1M+ Chinese users\' data require a CAC Security Assessment — an effective IPO blocking mechanism');
+      why.push('An overseas listing by a platform holding personal information of more than 1 million users requires a Cybersecurity Review, not a data export assessment (Cybersecurity Review Measures, Art. 7) — an effective IPO blocking mechanism');
     if(why.length>0){
       cons.push('All cross-border data transfers must cease during CAC review — operational disruption to AI pipelines, analytics, and cloud infrastructure');
       cons.push('CAC can order permanent deletion of data already transferred abroad');
       cons.push('Fines up to RMB 50 million or 5% of annual global turnover; criminal prosecution for executives in severe cases');
-      risks.push({instrument:'Cross-Border Data Transfer Rules',domain:'Domain 5 · Infrastructure',why,cons,url:'https://openresearch-repository.anu.edu.au/server/api/core/bitstreams/7bba4ac6-0ee2-4890-b90c-f586f63de6e8/content'});
+      risks.push({instrument:'Cross-Border Data Transfer Framework (2024 Provisions)',domain:'Domain 5 · Infrastructure',why,cons,url:'https://www.cac.gov.cn/2024-03/22/c_1712776611775634.htm'});
     }
   }
   return {risks, unsure: has(mat,'unsure')||has(tech,'unsure')};
