@@ -726,18 +726,18 @@ function calcRisk(){
     if(has(tech,'battery'))
       why.push('LFP/LMFP battery cathode preparation technology is restricted; any IP sharing with Chinese entities requires prior MOFCOM/MOST approval');
     if(has(tech,'lidar','quantum'))
-      why.push('LiDAR systems and quantum cryptography are restricted under the July 2025 Catalogue');
+      why.push('LiDAR systems sit on the restricted tier of the Catalogue, added by the December 2023 revision and carried into the July 2025 adjustment; export needs a MOFCOM licence');
     if(has(tech,'semi_tech'))
       why.push('Advanced semiconductor design tools and EDA software are restricted; R&D collaboration in China requires case-by-case approval');
     if(has(rel,'ip_license'))
       why.push('IP licensing agreements with Chinese entities are explicitly within Catalogue scope — the restriction is not limited to physical exports');
     if(has(rel,'jv'))
-      why.push('Technology contributions to Chinese JVs must be reviewed against the Catalogue; restricted items require MOFCOM approval before contribution');
+      why.push('Joint ventures are within scope: Article 2 of Decree 331 counts transfer by investment or economic and technical cooperation as a technology export, so listed Chinese technology reaching a foreign partner needs MOFCOM approval');
     if(why.length>0){
       cons.push('Multi-stage MOFCOM/MOST licensing before any technology transfer; no statutory deadline, approval is not guaranteed');
       cons.push('Criminal prosecution for transfers of absolutely prohibited technologies, regardless of stated commercial purpose');
       cons.push('Existing contracts may be nullified if MOFCOM finds approval was required and not obtained');
-      risks.push({instrument:'Technology Export Catalogue (July 2025)',domain:'Domain 4 · Prohibited Technologies',why,cons,url:'https://cset.georgetown.edu/publication/china-export-control-catalog-july-2025/'});
+      risks.push({instrument:'Technology Export Catalogue (2023, adjusted July 2025)',domain:'Domain 4 · Prohibited Technologies',why,cons,url:'https://www.most.gov.cn/satp/kjzc/zh/202507/t20250716_194194.html'});
     }
   }
 
