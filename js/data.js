@@ -789,6 +789,12 @@ const talksData = [
 // Media data — newest to oldest
 const mediaData = [
     {
+        title: "China launches global tax hunt going back decades",
+        outlet: "TRT World",
+        date: "08/08/2026",
+        url: "https://www.youtube.com/watch?v=5e81ZmHGR_k"
+    },
+    {
         title: "Why is China's Xi Jinping visiting North Korea now?",
         outlet: "TRT World Now",
         date: "09/06/2026",
