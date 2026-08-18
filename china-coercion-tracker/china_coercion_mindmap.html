@@ -61,6 +61,12 @@ me-tpc:focus,me-tpc:focus-visible,me-tpc.selected{outline:none!important;box-sha
 /* overarching-statute wrapper + its law children: still visually secondary (italic,
    slate) but larger than before so they're legible at full-tree zoom */
 #map me-tpc[style*="italic"]{font-size:16px!important;color:#3f4756!important;}
+/* .map-canvas ships with transition:all, so every zoom/pan animates over time instead
+   of applying instantly. That's what let the boundary-clamp script (added separately)
+   measure a mid-animation, not-yet-settled position and compute the wrong correction.
+   Instant transform changes remove the timing problem entirely, and match the fully
+   static, click-only interaction this page already uses everywhere else. */
+.map-canvas{transition:none!important;}
 </style>
 </head>
 <body>
@@ -154,7 +160,7 @@ const me = new MindElixir({
 me.init(DATA);
 window.me = me;
 syncHeaderHeight();
-setTimeout(function(){ me.toCenter(); reshapeRootLinks(); syncHeaderHeight(); }, 200);
+setTimeout(function(){ me.toCenter(); reshapeRootLinks(); syncHeaderHeight(); clampCanvasTransform(); }, 200);
 me.bus.addListener('operation', function(){ setTimeout(reshapeRootLinks, 30); });
 
 const mapEl = document.getElementById('map');
@@ -366,9 +372,45 @@ function syncHeaderHeight(){
 window.addEventListener('resize', syncHeaderHeight);
 window.syncHeaderHeight = syncHeaderHeight;
 
-window.addEventListener('wheel', function(e){
-  if (!e.ctrlKey && !e.metaKey && e.target.closest('#map')) { e.preventDefault(); e.stopPropagation(); }
-}, { capture: true, passive: false });
+function clampCanvasTransform(){
+  var canvas = document.querySelector('.map-canvas');
+  var mapEl = document.getElementById('map');
+  if(!canvas || !mapEl) return;
+  var cs = getComputedStyle(canvas);
+  if (cs.transform === 'none') return;
+  var m = new DOMMatrix(cs.transform);
+  var scale = m.a;
+  var natW = canvas.offsetWidth, natH = canvas.offsetHeight;
+  if (!natW || !natH) return;
+  var contentW = natW * scale, contentH = natH * scale;
+  var mapRect = mapEl.getBoundingClientRect();
+  var canvasRect = canvas.getBoundingClientRect();
+  var curLeft = canvasRect.left - mapRect.left;
+  var curTop = canvasRect.top - mapRect.top;
+  var viewportW = mapRect.width, viewportH = mapRect.height;
+  var newLeft = curLeft, newTop = curTop;
+  if (contentW <= viewportW) newLeft = (viewportW - contentW) / 2;
+  else if (curLeft > 0) newLeft = 0;
+  else if (curLeft < viewportW - contentW) newLeft = viewportW - contentW;
+  if (contentH <= viewportH) newTop = (viewportH - contentH) / 2;
+  else if (curTop > 0) newTop = 0;
+  else if (curTop < viewportH - contentH) newTop = viewportH - contentH;
+  var dx = newLeft - curLeft, dy = newTop - curTop;
+  if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) {
+    m.e += dx; m.f += dy;
+    canvas.style.transform = m.toString();
+  }
+}
+// mind-elixir's own wheel handler calls stopPropagation() once it processes the event,
+// which would silently stop this listener from ever firing if it were bubble-phase on
+// window (the event never bubbles that far once a descendant halts it). Capture phase
+// fires window-to-target BEFORE that handler runs, so stopPropagation() called later
+// during target/bubble phase can't affect whether this already-fired capture listener
+// ran. The actual clamp still only executes next frame (after mind-elixir's synchronous
+// transform update within the same dispatch), so firing order doesn't affect the result
+// -- only whether the listener fires at all.
+window.addEventListener('wheel', function(){ requestAnimationFrame(clampCanvasTransform); }, { capture: true, passive: true });
+window.clampCanvasTransform = clampCanvasTransform;
 </script>
 </body>
 </html>
