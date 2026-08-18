@@ -68,12 +68,6 @@ me-tpc:focus,me-tpc:focus-visible,me-tpc.selected{outline:none!important;box-sha
 
 <div id="top-stack" style="position:fixed;top:0;left:0;right:0;z-index:60;
 display:flex;flex-direction:column;align-items:stretch;">
-<div id="foundational-band" style="background:#171413;color:#fff;padding:10px 20px;display:flex;align-items:center;
-justify-content:center;gap:10px;font-family:'Inter',-apple-system,sans-serif;
-font-size:12.5px;flex-wrap:wrap;border-bottom:2px solid #620d3c;">
-<span style="text-transform:uppercase;letter-spacing:.06em;font-size:10.5px;color:#c9a0b3;font-weight:700;">Foundational — applies across all domains</span>
-<a href="#" onclick="showPopup(POPUP_DATA['https://npcobserver.com/legislation/national-security-law/']);return false;" style="color:#fff;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4);">National Security Law</a>
-</div>
 <div style="background:#F7F5F2;border-bottom:1px solid #e2ddd6;padding:10px 20px;display:flex;justify-content:center;">
 <div class="map-title">Legal Architecture of China's Economic Statecraft</div>
 </div>
@@ -150,7 +144,7 @@ const me = new MindElixir({
   el:'#map',
   theme: MindElixir.THEME,
   direction:MindElixir.SIDE,
-  draggable: !isEmbed,
+  draggable: false,
   contextMenu:false,
   toolBar:false,
   nodeMenu:false,
@@ -357,7 +351,17 @@ window.reshapeRootLinks = reshapeRootLinks;
 function syncHeaderHeight(){
   var stack = document.getElementById('top-stack');
   var map = document.getElementById('map');
-  if(stack && map) map.style.paddingTop = stack.offsetHeight + 'px';
+  if(!stack || !map) return;
+  var h = stack.offsetHeight;
+  // padding-top does NOT shrink #map's own clientHeight (padding is inside the box),
+  // so mind-elixir's own fit-to-content centring -- which reads #map's client
+  // dimensions -- never knew the header was eating into the visible area, and centred
+  // the tree as if the full viewport height were free canvas. That's what let the top
+  // row (Decree 792) end up positioned behind/above the header on some viewport sizes.
+  // margin-top + an explicit shorter height make #map's own dimensions already exclude
+  // the header, so mind-elixir's internal math is correct without any special-casing.
+  map.style.marginTop = h + 'px';
+  map.style.height = 'calc(100vh - ' + h + 'px)';
 }
 window.addEventListener('resize', syncHeaderHeight);
 window.syncHeaderHeight = syncHeaderHeight;
