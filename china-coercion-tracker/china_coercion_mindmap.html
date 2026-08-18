@@ -8,7 +8,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{width:100%;height:100%;overflow:hidden;background:#f8fafc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
-#map{width:100vw;height:100vh;padding-top:42px;--bgcolor:#f8fafc;--color:#374151;--selected:rgba(200,16,46,.18);--root-bgcolor:#c8102e;--root-color:#fff;--root-border-color:#9b0d22;--root-radius:10px;--main-bgcolor:#0d1f3c;--main-color:#fff;--main-radius:6px;--node-gap-x:20px;--node-gap-y:5px;--main-gap-x:56px;--main-gap-y:14px;}
+#map{width:100vw;height:100vh;padding-top:42px;padding-top:42px;--bgcolor:#f8fafc;--color:#374151;--selected:rgba(200,16,46,.18);--root-bgcolor:#c8102e;--root-color:#fff;--root-border-color:#9b0d22;--root-radius:10px;--main-bgcolor:#0d1f3c;--main-color:#fff;--main-radius:6px;--node-gap-x:20px;--node-gap-y:5px;--main-gap-x:56px;--main-gap-y:14px;}
 me-toolbar,.mind-elixir-toolbar,me-context-menu{display:none!important;}
 /* No focus/selection state on nodes: clicking a node opens its popup and nothing else. */
 me-tpc:focus,me-tpc:focus-visible,me-tpc.selected{outline:none!important;box-shadow:none!important;}
@@ -61,10 +61,44 @@ me-tpc:focus,me-tpc:focus-visible,me-tpc.selected{outline:none!important;box-sha
 /* overarching-statute wrapper + its law children: still visually secondary (italic,
    slate) but larger than before so they're legible at full-tree zoom */
 #map me-tpc[style*="italic"]{font-size:16px!important;color:#3f4756!important;}
+
+/* base size/colour for every node (leaves, sub-groups, overarching-statute wrappers) */
+#map me-tpc{font-size:18px!important;color:#171413!important;font-weight:500!important;}
+.map-container{--node-gap-x:40px!important;--node-gap-y:16px!important;--main-gap-x:80px!important;--main-gap-y:28px!important;--color:#171413!important;}
+/* mind-elixir auto-assigns a different stroke colour per top-level branch on the
+   connector <path> elements themselves (inline stroke attribute) -- independent of
+   any node style. CSS values beat SVG presentation attributes, so this forces every
+   branch line to the single brand colour regardless of that per-branch auto-palette. */
+#map svg path{stroke:#620d3c!important;}
+/* mind-elixir ALSO overwrites the inline border colour it sets on first-level (depth-1)
+   node pills with the same per-branch auto-palette, silently replacing whatever colour
+   was passed in the node's own style. Depth-1 pills sit at me-main>me-wrapper>me-parent
+   >me-tpc specifically (root and deeper children have a different DOM path), so this
+   targets only the 4 domain pills and forces them back to the single brand colour. */
+#map me-main>me-wrapper>me-parent>me-tpc{border-color:#620d3c!important;font-size:22px!important;font-weight:700!important;}
+/* the centre "Instruments of Economic Coercion" node lives under me-root, a DIFFERENT
+   DOM path from the domain pills above. The earlier blanket #map me-tpc{color:#171413}
+   rule was also darkening THIS node's text, on top of mind-elixir's own dark default
+   background -- dark ink on a dark navy pill, unreadable. Scoped fix: explicit wine
+   background, white text, larger bold font, high specificity so it wins over the
+   generic rule regardless of source order. */
+#map me-root me-tpc{background-color:#620d3c!important;color:#ffffff!important;font-size:26px!important;font-weight:700!important;border:none!important;}
+/* overarching-statute wrapper + its law children: still visually secondary (italic,
+   slate) but larger than before so they're legible at full-tree zoom */
+#map me-tpc[style*="italic"]{font-size:16px!important;color:#3f4756!important;}
 </style>
 </head>
 <body>
 
+<div id="foundational-band" style="position:fixed;top:0;left:0;right:0;z-index:60;
+background:#171413;color:#fff;padding:10px 20px;display:flex;align-items:center;
+justify-content:center;gap:10px;font-family:'Inter',-apple-system,sans-serif;
+font-size:12.5px;flex-wrap:wrap;border-bottom:2px solid #620d3c;">
+<span style="text-transform:uppercase;letter-spacing:.06em;font-size:10.5px;color:#c9a0b3;font-weight:700;">Foundational — apply across all domains</span>
+<a href="#" onclick="showPopup(POPUP_DATA['https://npcobserver.com/legislation/national-security-law/']);return false;" style="color:#fff;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4);">National Security Law</a>
+<span style="color:#6b6560;">&middot;</span>
+<a href="#" onclick="showPopup(POPUP_DATA['https://www.gov.cn/zhengce/content/202604/content_7064837.htm']);return false;" style="color:#fff;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4);">Decree 834 — Industrial &amp; Supply Chain Security</a>
+</div>
 <div id="foundational-band" style="position:fixed;top:0;left:0;right:0;z-index:60;
 background:#171413;color:#fff;padding:10px 20px;display:flex;align-items:center;
 justify-content:center;gap:10px;font-family:'Inter',-apple-system,sans-serif;
@@ -148,6 +182,9 @@ const me = new MindElixir({
   before:{ beginEdit(){ return false; } }
 });
 me.init(DATA);
+window.me = me;
+setTimeout(function(){ me.toCenter(); reshapeRootLinks(); }, 200);
+me.bus.addListener('operation', function(){ setTimeout(reshapeRootLinks, 30); });
 window.me = me;
 setTimeout(function(){ me.toCenter(); }, 200);
 
@@ -329,6 +366,18 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape') closePopup(); });
 
 
 window.closePopup=closePopup;
+
+function reshapeRootLinks(){
+  document.querySelectorAll('#map svg path').forEach(function(p){
+    var d = p.getAttribute('d');
+    var m = d.match(/^M\s*([\d.]+)\s+([\d.]+)\s+Q\s*[\d.]+\s+[\d.]+\s+([\d.]+)\s+([\d.]+)$/);
+    if(!m) return;
+    var x1 = +m[1], y1 = +m[2], x2 = +m[3], y2 = +m[4];
+    var midX = x1 + (x2 - x1) * 0.55;
+    p.setAttribute('d', 'M ' + x1 + ' ' + y1 + ' C ' + midX + ' ' + y1 + ' ' + midX + ' ' + y2 + ' ' + x2 + ' ' + y2);
+  });
+}
+window.reshapeRootLinks = reshapeRootLinks;
 </script>
 </body>
 </html>
