@@ -367,7 +367,7 @@ window.addEventListener('resize', syncHeaderHeight);
 window.syncHeaderHeight = syncHeaderHeight;
 
 window.addEventListener('wheel', function(e){
-  if (e.target.closest('#map')) { e.preventDefault(); e.stopPropagation(); }
+  if (!e.ctrlKey && !e.metaKey && e.target.closest('#map')) { e.preventDefault(); e.stopPropagation(); }
 }, { capture: true, passive: false });
 </script>
 </body>
