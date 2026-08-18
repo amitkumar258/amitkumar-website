@@ -160,7 +160,7 @@ const me = new MindElixir({
 me.init(DATA);
 window.me = me;
 syncHeaderHeight();
-setTimeout(function(){ me.toCenter(); reshapeRootLinks(); syncHeaderHeight(); clampCanvasTransform(); }, 200);
+setTimeout(function(){ me.toCenter(); reshapeRootLinks(); syncHeaderHeight(); captureFitScale(); clampCanvasTransform(); }, 200);
 me.bus.addListener('operation', function(){ setTimeout(reshapeRootLinks, 30); });
 
 const mapEl = document.getElementById('map');
@@ -370,8 +370,27 @@ function syncHeaderHeight(){
   map.style.height = 'calc(100vh - ' + h + 'px)';
 }
 window.addEventListener('resize', syncHeaderHeight);
+window.addEventListener('resize', function(){ me.toCenter(); captureFitScale(); clampCanvasTransform(); });
 window.syncHeaderHeight = syncHeaderHeight;
 
+var __fitScale = null;
+// Capturing scaleVal after calling toCenter() was unreliable -- toCenter's own scale
+// update apparently lands a variable number of frames after the call returns (even a
+// double requestAnimationFrame sometimes still read the pre-toCenter default of 1
+// instead of the real fit value), so the floor kept getting pinned at the wrong number.
+// Sidestepping that entirely: this recomputes the exact same fit-to-content formula
+// mind-elixir's own scaleFit() uses (read directly from its source), from current DOM
+// sizes -- synchronous, no dependency on when any internal async state settles.
+function captureFitScale(){
+  var nodes = document.querySelector('me-nodes');
+  var container = document.getElementById('map');
+  if (!nodes || !container || !container.offsetHeight || !container.offsetWidth) return;
+  var e = nodes.offsetHeight / container.offsetHeight;
+  var t = nodes.offsetWidth / container.offsetWidth;
+  __fitScale = 1 / Math.max(1, Math.max(e, t));
+  window.__fitScale = __fitScale;
+}
+window.captureFitScale = captureFitScale;
 function clampCanvasTransform(){
   var canvas = document.querySelector('.map-canvas');
   var mapEl = document.getElementById('map');
@@ -380,6 +399,11 @@ function clampCanvasTransform(){
   if (cs.transform === 'none') return;
   var m = new DOMMatrix(cs.transform);
   var scale = m.a;
+  if (__fitScale && scale < __fitScale - 0.001) {
+    window.me.scale(__fitScale);
+    requestAnimationFrame(clampCanvasTransform);
+    return;
+  }
   var natW = canvas.offsetWidth, natH = canvas.offsetHeight;
   if (!natW || !natH) return;
   var contentW = natW * scale, contentH = natH * scale;
@@ -397,8 +421,14 @@ function clampCanvasTransform(){
   else if (curTop < viewportH - contentH) newTop = viewportH - contentH;
   var dx = newLeft - curLeft, dy = newTop - curTop;
   if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) {
-    m.e += dx; m.f += dy;
-    canvas.style.transform = m.toString();
+    // mind-elixir writes its own transform as translate3d(x,y,0) scale(n) and re-parses
+    // that exact string on every subsequent scale()/move() call to recover its current
+    // position. Writing a raw matrix(...) string here (an earlier version of this code)
+    // was read back fine by getComputedStyle (browsers normalise either form to a matrix
+    // for computed style), but corrupted mind-elixir's OWN next read of its un-computed
+    // style.transform, breaking every interaction after the first correction. Using its
+    // own move() method keeps the string in the exact format it expects.
+    window.me.move(dx, dy);
   }
 }
 // mind-elixir's own wheel handler calls stopPropagation() once it processes the event,
