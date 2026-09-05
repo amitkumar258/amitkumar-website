@@ -77,7 +77,6 @@ ul.task-list li input[type="checkbox"] {
 <meta property="og:image:height" content="1572">
 <meta property="og:image:width" content="2760">
 <meta name="twitter:title" content="Mind Map: Legal Architecture of China’s Economic Statecraft – China Coercion Tracker">
-<meta name="twitter:description" content="China Coercion Tracker — Takshashila Institution">
 <meta name="twitter:image" content="https://amitkumar-ak.com/china-coercion-tracker/thumbnail.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image-height" content="1572">
@@ -143,7 +142,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="mm-intro">
 <p>Full node map of China’s coercive instruments with interactive summaries. Click any node to open a structured summary with source link.</p>
+</div>
 <style>
 .mm-outer {
   width: 85vw;
@@ -192,16 +193,41 @@ ul.task-list li input[type="checkbox"] {
   .mm-outer { display: none; }
   .mm-portrait-hint { display: flex !important; }
 }
-/* Landscape mobile: full width embed, no page chrome needed */
+/* Landscape mobile: the map IS the page, so reclaim the viewport from
+   page chrome. Previously the frame was calc(100vh - 60px) while the real
+   chrome (navbar 56 + title 69 + intro 51 + topbar) came to ~267px, so on a
+   375px-tall landscape phone only ~108px of the map was ever on screen. */
 @media (max-width: 991px) and (orientation: landscape) {
+  #title-block-header,
+  .mm-intro { display: none !important; }
+
   .mm-outer {
     width: 100% !important;
     left: 0 !important;
     transform: none !important;
+    margin-top: 0 !important;
+    position: relative;
+  }
+  /* Float the button over the map rather than spending a row on it */
+  .mm-topbar {
+    position: absolute;
+    top: 8px; right: 8px;
+    margin: 0;
+    z-index: 5;
+  }
+  .mm-fullscreen-btn {
+    padding: 5px 11px;
+    font-size: 11.5px;
+    opacity: .92;
   }
   .mm-frame-wrap {
-    height: calc(100vh - 60px) !important;
+    /* dvh, not vh: mobile browsers shrink the viewport when the URL bar
+       retracts, and vh does not follow it */
+    height: calc(100dvh - 64px) !important;
     min-height: unset !important;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
   }
 }
 

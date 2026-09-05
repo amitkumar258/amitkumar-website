@@ -389,9 +389,9 @@ ul.task-list li input[type="checkbox"] {
       Find if you are at risk
     </button>
     <div class="hero-meta">
-      <span>⏱ Takes ~3 minutes</span>
+      <span>⏱ Takes ~5 minutes</span>
       <span>🔒 Confidential: answers never leave your browser</span>
-      <span>📊 10 questions</span>
+      <span>📊 13 questions</span>
     </div>
   </div>
 
@@ -426,9 +426,14 @@ const RQs=[
      {v:'defence',  l:'Defence or aerospace contractor (weapons systems, military hardware, drones)'},
      {v:'semi',     l:'Semiconductor company (chip design, fabrication, or equipment)'},
      {v:'tech',     l:'Advanced technology firm (AI/ML, quantum computing, robotics, advanced software)'},
+     {v:'cyber',    l:'Cybersecurity, encryption, or network security vendor'},
      {v:'telecom',  l:'Telecommunications equipment manufacturer or network operator'},
      {v:'minerals', l:'Critical minerals, mining, or rare earth processing firm'},
      {v:'materials',l:'Advanced materials, chemicals, or battery technology manufacturer'},
+     {v:'machinery',l:'Machine tools, industrial equipment, robotics, or precision instruments'},
+     {v:'geo',      l:'Mapping, surveying, geospatial, or satellite imagery provider'},
+     {v:'bio',      l:'Biotechnology, life sciences, or laboratory services'},
+     {v:'energy',   l:'Energy, nuclear, or power equipment'},
      {v:'finance',  l:'Financial services, private equity, or investment fund'},
      {v:'research', l:'Research institution, university, or think tank'},
      {v:'law',      l:'Law firm or trade compliance / sanctions consultancy'},
@@ -437,6 +442,7 @@ const RQs=[
      {v:'consumer', l:'Consumer goods, luxury, or retail brand'},
      {v:'auto',     l:'Automotive or mobility manufacturer'},
      {v:'pharma',   l:'Pharmaceuticals or medical devices'},
+     {v:'logistics',l:'Shipping, ports, logistics, or dredging'},
      {v:'other',    l:'Other manufacturing, services, or industrial firm'},
    ]},
   {id:'geo',multi:false,
@@ -460,22 +466,106 @@ const RQs=[
      {v:'ops',             l:'R&D centre, lab, or manufacturing operation inside China'},
      {v:'import_materials',l:'Source critical raw materials or components from Chinese suppliers'},
      {v:'china_customers', l:'Chinese entities are significant customers (>20% of revenue)'},
+     {v:'reexport',        l:'Re-export, resell, or ship onward items of Chinese origin, including through third countries'},
+     {v:'indirect',        l:'Sell to third-country distributors, systems integrators, or contract manufacturers that we know or expect onward-ship to China'},
      {v:'none',            l:'None of the above'},
    ]},
   {id:'mat',multi:true,
-   text:'Do any of the following controlled physical materials feature in your operations? Select all that apply.',
+   text:'Do any of these controlled materials feature anywhere in your operations, products, or supply chain? Select all that apply.',
    opts:[
-     {v:'gallium',  l:'Gallium (Ga) or gallium compounds'},
-     {v:'germanium',l:'Germanium (Ge) or germanium compounds'},
+     {v:'gallium',  l:'Gallium in any form: gallium metal, gallium nitride (GaN), gallium arsenide (GaAs), indium gallium arsenide (InGaAs), gallium oxide or phosphide, including wafers and epitaxial wafers'},
+     {v:'germanium',l:'Germanium in any form: germanium metal, zone-refined ingots, germanium substrates for chips or solar cells, germanium dioxide or tetrachloride'},
+     {v:'antimony', l:'Antimony in any form: ore, metal, high-purity oxides, organoantimony compounds, or indium antimonide (InSb) used in infrared sensors'},
      {v:'graphite', l:'Natural or synthetic graphite'},
-     {v:'antimony', l:'Antimony (Sb) or antimony compounds'},
-     {v:'tungsten', l:'Tungsten or heavy tungsten-nickel alloys'},
-     {v:'superhard',l:'Synthetic diamonds or cubic boron nitride (superhard materials)'},
-     {v:'indium',   l:'Indium (In) or indium compounds'},
-     {v:'bismuth',  l:'Bismuth (Bi) or tellurium (Te) materials'},
-     {v:'hree',     l:'Heavy rare earth elements (Tb, Dy, Sm, Gd, Lu, Sc, Y, Ho, Er, Tm, Eu, Yb)'},
-     {v:'lree',     l:'Light rare earth elements (La, Ce, Pr, Nd) or neodymium magnets'},
-     {v:'unsure',   l:'Not sure / we have not audited our inputs against China\'s control lists'},
+     {v:'tungsten', l:'Tungsten, tungsten carbide, or alloys over 90% tungsten'},
+     {v:'tellurium',l:'Tellurium or tellurium compounds (including cadmium telluride used in thin-film solar)'},
+     {v:'bismuth',  l:'Bismuth or bismuth compounds'},
+     {v:'molybdenum',l:'Molybdenum or molybdenum compounds'},
+     {v:'indium',   l:'Indium or indium compounds (including indium tin oxide used in displays and touchscreens)'},
+     {v:'superhard',l:'Synthetic diamond, diamond window materials, or cubic boron nitride'},
+     {v:'hree',     l:'Medium and heavy rare earths (samarium, gadolinium, terbium, dysprosium, lutetium, scandium, yttrium), including magnets containing them'},
+     {v:'lree',     l:'Light rare earths (lanthanum, cerium, praseodymium, neodymium) or neodymium magnets'},
+     {v:'composite',l:'Carbon fibre, prepregs, or high-performance structural composites'},
+     {v:'alloy',    l:'Maraging steel, specialist aluminium or titanium alloys, beryllium, hafnium, or zirconium'},
+     {v:'uhmwpe',   l:'Ultra-high molecular weight polyethylene fibre (body armour, ropes, ballistic panels)'},
+     {v:'ablative', l:'Ceramic or ablative heat-shielding materials'},
+     {v:'unsure',   l:'Not sure: we have not audited our bill of materials against China\'s control lists'},
+     {v:'none',     l:'None of the above'},
+   ]},
+  {id:'equip',multi:true,
+   text:'Does your organisation make, buy, sell, or ship any of this equipment or software? China\'s control list covers machines and code, not only raw materials. Select all that apply.',
+   opts:[
+     {v:'hpc',      l:'High-performance computers, GPU clusters, or server interconnects (anything above roughly 8 trillion weighted floating-point operations per second)'},
+     {v:'crypto_eq',l:'Encryption or information-security equipment of any of these kinds: quantum cryptography or quantum key distribution devices; security chips or dedicated cryptographic equipment carrying algorithms for the power, tax, public security or finance sectors; high-throughput cryptographic machines, VPN devices or key management systems; or code-breaking (cryptanalysis) equipment. Note that the first two kinds are controlled without any throughput threshold'},
+     {v:'cnc',      l:'Computer-controlled (CNC) machine tools able to cut along two or more axes at once, or the software that drives them'},
+     {v:'robots',   l:'Robots or robotic end-effectors built to national safety standards for handling high explosives, or rated radiation-hardened to withstand more than 5×10⁴ Gy(Si); or controllers built for them. Robots for ordinary industrial use such as automotive paint booths are excluded'},
+     {v:'sensors',  l:'Lasers, high-speed cameras, photomultiplier tubes, or precision pressure sensors. Each is threshold-gated; ordinary 1 to 5 kW continuous-wave CO₂ cutting and welding lasers are expressly excluded'},
+     {v:'radar',    l:'Radar, imaging sensors, terrain or scene mapping equipment, or radiation-hardened electronics'},
+     {v:'nav',      l:'Accelerometers, gyroscopes, inertial navigation, or guidance and control systems'},
+     {v:'uav_hw',   l:'Drones or unmanned airships that can be flown under control beyond the operator\'s natural line of sight, with maximum endurance of one hour or more (or 30 minutes or more, if it can also take off and fly stably in 25-knot gusts). Range and payload do not matter to this test. Recreational model aircraft are excluded'},
+     {v:'uav_long', l:'Drones with 300 km or more range, or carrying aerosol dispersal systems over 20 litres'},
+     {v:'uav_parts',l:'Drone engines above 16 kW continuous power or built for flight above 15,420 m; drone payloads (infrared imagers, synthetic aperture radar, target designation lasers, inertial measurement units); kits converting manned aircraft to unmanned; or drone radio links reaching beyond 50 km or controlling more than 10 aircraft at once'},
+     {v:'uav_spray',l:'Spray or misting systems fitted to drones that disperse more than 2 litres per minute at droplet sizes below 50 microns'},
+     {v:'cuav',     l:'Counter-drone systems: jammers reaching beyond 5 km, or lasers above 1.5 kilowatts'},
+     {v:'turbine',  l:'Gas turbine or jet engines, or the casting and tooling equipment used to make their blades and discs'},
+     {v:'press',    l:'Cubic presses or their key parts (the equipment used to manufacture synthetic diamond)'},
+     {v:'mpcvd',    l:'Microwave plasma chemical vapour deposition (MPCVD) equipment above 10 kilowatts'},
+     {v:'biolab',   l:'Chemical production plant, biological material processing equipment, or toxic gas monitoring systems'},
+     {v:'windtun',  l:'Supersonic or hypersonic wind tunnels'},
+     {v:'dredge',   l:'Dredgers at or above the size limits: trailing suction hopper at 1,500 m³, cutter suction at 500 kW cutter power or 2,000 kW installed, bucket dredgers at 4 m³, sand suction vessels at 500 m³ or 1,000 kW, self-discharging hopper barges at 1,000 m³; or dredging to 15 m or deeper (hopper, cutter and bucket classes); or fitted for bow-blowing'},
+     {v:'unsure',   l:'Not sure: we have not checked our equipment or software against the control list'},
+     {v:'none',     l:'None of the above'},
+   ]},
+  {id:'bio',multi:true,
+   text:'Do any of these biological, chemical, or agricultural items feature in your work? Select all that apply.',
+   opts:[
+     {v:'pathogen', l:'Listed disease-causing organisms or toxins. The animal list includes African swine fever, avian influenza (H5N1, H5N6, H7N9), foot-and-mouth, bluetongue and rinderpest; the human list includes Ebola, Marburg, Lassa, Variola, monkeypox, Crimean-Congo haemorrhagic fever and the SARS and MERS coronaviruses'},
+     {v:'gmo',      l:'Genetic material (including plasmids, vectors, genomes and transposons) or modified organisms carrying sequences tied to the pathogenicity of a listed organism, or encoding a listed toxin. Ordinary plasmids and cell lines carrying no such sequence are outside this; E. coli O157 pathogenicity sequences are expressly excluded, though Shiga-like toxin coding sequences are not'},
+     {v:'plantpath',l:'Listed plant pathogens, including Xanthomonas oryzae (rice blight), Xanthomonas campestris pv. citri (citrus canker), Ralstonia solanacearum races 2 and 3, and potato spindle tuber viroid'},
+     {v:'chem_mon', l:'Any of these bulk chemicals: hydrofluoric acid, potassium/sodium/ammonium fluorides and hydrogen fluorides, sodium sulfide, diisopropylamine, 2-diethylaminoethanol, 2-chloroethanol, potassium perchlorate'},
+     {v:'chem_sch', l:'Scheduled chemicals under China\'s monitored-chemicals list, which includes bulk commodities such as sodium cyanide, thionyl chloride and triethanolamine used in gold leaching, electroplating and surfactant manufacture'},
+     {v:'vetvax',   l:'Veterinary vaccine or virus strains (African swine fever, avian influenza, foot-and-mouth, classical swine fever)'},
+     {v:'germplasm',l:'Crop, forage, tobacco, livestock, or aquatic germplasm; or genes and vectors used in plant breeding'},
+     {v:'unsure',   l:'Not sure: we have not checked our biological or chemical inventory against the control list'},
+     {v:'none',     l:'None of the above'},
+   ]},
+  {id:'tech_ind',multi:true,
+   text:'Which industrial or materials know-how does your organisation hold, use, or want to acquire? This question is about technology and process knowledge, not physical goods. Select all that apply.',
+   opts:[
+     {v:'ree_sep',  l:'Rare earth separation or refining processes (solvent extraction, rare earth metal and alloy production)'},
+     {v:'magnet',   l:'Magnet-making know-how: samarium cobalt, neodymium, or cerium magnet preparation'},
+     {v:'ree_mine', l:'Rare earth mining, ore processing, smelting, or extraction chemicals'},
+     {v:'lithium',  l:'Lithium extraction or refining: from spodumene ore or from brine, lithium carbonate or hydroxide production, metallic lithium'},
+     {v:'battery',  l:'Lithium iron phosphate (LFP) or lithium manganese iron phosphate (LMFP) cathode preparation'},
+     {v:'ga_ext',   l:'Extracting gallium from alumina production liquor'},
+     {v:'turbine_t',l:'Aviation gas turbine core engine design or manufacturing'},
+     {v:'radhard',  l:'Radiation-hardened integrated circuit manufacturing at the listed levels: silicon-on-sapphire or CMOS devices at 2,500 V antistatic and transient dose rate hardening above 1×10¹¹ rad(Si)-s, or bipolar devices at 3,000 V antistatic and the same dose rate'},
+     {v:'aviamat',  l:'Aviation materials: aluminium-lithium alloys with rare earths, single-crystal turbine blade alloys, tungsten-hafnium superalloys'},
+     {v:'stealth',  l:'Military stealth materials, high-temperature alloys above 850°C, or transpiration cooling materials'},
+     {v:'cfiber',   l:'Carbon fibre processing technology'},
+     {v:'cinsul',   l:'Rigid low-density bonded carbon fibre or non-fibrous carbon insulation, usable above 2000°C or at density 100 to 300 kg/m³'},
+     {v:'cnc_t',    l:'High-end CNC machine tool design, or integrated casting-forging-milling metal 3D printing'},
+     {v:'unsure',   l:'Not sure: we have not mapped our process know-how against the Catalogue'},
+     {v:'none',     l:'None of the above'},
+   ]},
+  {id:'tech_dig',multi:true,
+   text:'Which digital, information, or life-science technologies does your organisation work with? Select all that apply.',
+   opts:[
+     {v:'recsys',   l:'Recommendation engines or personalised content-push algorithms'},
+     {v:'cn_lang',  l:'Chinese-language speech recognition, text processing, handwriting recognition, machine translation, or minority-language processing'},
+     {v:'ai',       l:'Advanced AI or machine learning architectures (training, inference, or deployment)'},
+     {v:'supercomp',l:'Supercomputer hardware, software, or network architecture'},
+     {v:'quantum',  l:'Quantum cryptography, or cryptographic chip design'},
+     {v:'dpi',      l:'Deep packet inspection at 500 Gbps or above, advanced persistent threat detection, or threat-intelligence generation'},
+     {v:'infodef',  l:'Vulnerability discovery, malicious code development, information hiding, or cyberattack attribution'},
+     {v:'lidar',    l:'LiDAR probe or ranging systems meeting any one of: pulse peak power above 30 kW, pulse width under 1 ns, detection range beyond 2 km, angular accuracy finer than 40 µrad, angular resolution finer than 20 µrad, or ranging accuracy finer than 2 mm. The last three catch most automotive and survey units'},
+     {v:'uav_t',    l:'Drone autonomous navigation, flight control, sensing and avoidance, or mission payload technology'},
+     {v:'satnav',   l:'BeiDou satellite navigation encryption, satellite telemetry encoding, or spacecraft tracking and control'},
+     {v:'carto_pro',l:'Mapping or survey data of China at 1:100,000 scale or finer, or Chinese geodetic coordinate, gravity, or elevation databases'},
+     {v:'carto_gis',l:'Geographic information systems holding Chinese topographic or coordinate data at scales finer than 1:1,000,000'},
+     {v:'gene',     l:'Human germline gene editing (embryos, eggs, or sperm)'},
+     {v:'paclitaxel',l:'Paclitaxel extraction, or medicinal extraction from China\'s scarce and endangered plants'},
+     {v:'unsure',   l:'Not sure: we have not mapped our technology stack against the Catalogue'},
      {v:'none',     l:'None of the above'},
    ]},
   {id:'down',multi:true,
@@ -486,23 +576,6 @@ const RQs=[
      {v:'cn_content', l:'Our products incorporate Chinese-origin critical materials or components (even via third-country distributors)'},
      {v:'none',       l:'None of the above'},
    ]},
-  {id:'tech',multi:true,
-   text:'Which controlled technology areas are relevant to your work? Select all that apply.',
-   opts:[
-     {v:'ai',       l:'Advanced AI or ML algorithms (training, inference, or deployment)'},
-     {v:'battery',  l:'LFP or LMFP battery cathode technology'},
-     {v:'lidar',    l:'LiDAR systems or components'},
-     {v:'quantum',  l:'Quantum computing or quantum cryptography'},
-     {v:'ree_proc', l:'Rare earth separation, smelting, or processing know-how'},
-     {v:'gene',     l:'Gene editing, CRISPR, or human cell manipulation technology'},
-     {v:'semi_tech',l:'Advanced semiconductor process design (below 14nm) or EDA tools'},
-     {v:'encrypt',  l:'Military-grade encryption or secure communications'},
-     {v:'satellite',l:'Satellite navigation, guidance, or payload systems'},
-     {v:'uav',      l:'Unmanned systems (drones, autonomous vehicles) core technology'},
-     {v:'nuclear',  l:'Nuclear, chemical, or biological dual-use technology'},
-     {v:'unsure',   l:'Not sure / we have not mapped our technology against the Catalogue'},
-     {v:'none',     l:'None of the above'},
-   ]},
   {id:'actions',multi:true,
    text:'Has your organisation done any of the following in the past three years? Select all that apply.',
    opts:[
@@ -510,7 +583,8 @@ const RQs=[
      {v:'ofac_comply', l:'Complied with US OFAC or EU sanctions targeting Chinese individuals or entities'},
      {v:'cutoff',      l:'Cut off or suspended supply to Chinese entities following sanctions/government direction'},
      {v:'terminate_jv',l:'Terminated a JV or partnership with a Chinese company under regulatory pressure'},
-     {v:'research',    l:'Published research, reports, or testimony critical of China\'s tech/military/economic policies'},
+     {v:'research',    l:'Published research, reports, journalism, or commentary critical of China\'s tech/military/economic policies'},
+     {v:'advise',      l:'Advised, represented, or audited clients on export controls, sanctions, or supply chain compliance involving Chinese entities'},
      {v:'testimony',   l:'Provided expert testimony to US, EU, or allied governments on Chinese security practices'},
      {v:'lobbying',    l:'Joined advocacy coalitions or lobbying groups promoting restrictions on Chinese technology'},
      {v:'uflpa',       l:'Applied for/facilitated/advised on UFLPA supply chain investigations involving Chinese suppliers'},
@@ -624,281 +698,543 @@ function nextQ(){
   else renderQ();
 }
 
-// ── RISK ENGINE ──
+// ═══════════════════════════════════════════════════════════════════
+//  RISK ENGINE
+//  Structure: shared predicates → dated constants → domain labels → rules.
+//  Rules read from the shared layer only. If a trigger definition changes,
+//  it changes in exactly one place. Do not re-inline predicates into rules.
+// ═══════════════════════════════════════════════════════════════════
+
+// ── DATED CONSTANTS ──
+// Suspensions are data, not prose, so status is computed rather than
+// hardcoded into sentences that silently go stale.
+// Verify against MOFCOM announcements when any date below passes.
+const SUSPENSIONS={
+  ann46p2:{until:'2026-11-27',by:'Announcement 2025 No. 72'},
+  ann57:  {until:'2026-11-10',by:'Announcement 2025 No. 70'},
+  ann61:  {until:'2026-11-10',by:'Announcement 2025 No. 70'},
+  ann62:  {until:'2026-11-10',by:'Announcement 2025 No. 70'},
+};
+function suspStatus(key){
+  const s=SUSPENSIONS[key], until=new Date(s.until+'T00:00:00');
+  const live=new Date()<until;
+  const d=until.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  return {live, date:d, by:s.by,
+    phrase: live
+      ? `suspended by ${s.by} until ${d}, and the suspension is reversible without notice`
+      : `suspended by ${s.by} until ${d}, a date that has now passed: confirm the current status before relying on it`};
+}
+
+// ── DOMAIN LABELS ──
+// These must match the branch names in the Legal Architecture Map.
+// Last reconciled with china_coercion_mindmap.html on 26 August 2026.
+const D={
+  dualuse:  'Export Controls · Dual-Use Goods',
+  strattech:'Export Controls · Strategic Technology',
+  outbound: 'Export Controls · Outbound Investment',
+  duties:   'Market Restrictions · Duties',
+  ma:       'Market Restrictions · Merger and Acquisition',
+  inbound:  'Market Restrictions · Inbound Investment',
+  advent:   'Countermeasures · Adversarial Entities',
+  extraterr:'Countermeasures · Extraterritorial Jurisdiction',
+  supply:   'Countermeasures · Supply Chain Security',
+  cmstat:   'Countermeasures · Overarching statutes',
+  netprod:  'Data Restrictions · Network Products & Services',
+  datatx:   'Data Restrictions · Data Transfer',
+};
+
 function calcRisk(){
   const sector=ans.sector||[],geo=ans.geo||'other',rel=ans.rel||[],
-        mat=ans.mat||[],tech=ans.tech||[],actions=ans.actions||[],
-        capital=ans.capital||[],data=ans.data||[],down=ans.down||[],txn=ans.txn||[];
+        mat=ans.mat||[],equip=ans.equip||[],bio=ans.bio||[],
+        tind=ans.tech_ind||[],tdig=ans.tech_dig||[],
+        actions=ans.actions||[],capital=ans.capital||[],
+        data=ans.data||[],down=ans.down||[],txn=ans.txn||[];
+
+  // ── SHARED PREDICATES ──
   const has=(arr,...v)=>v.some(x=>arr.includes(x));
-  const none=arr=>arr.length===0||arr.includes('none');
+  const none=arr=>!arr||arr.length===0||arr.includes('none');
+  const unsureIn=arr=>(arr||[]).includes('unsure');
+  const real=arr=>(arr||[]).filter(v=>v!=='none'&&v!=='unsure');
+  const any=arr=>real(arr).length>0;
+
+  // Nexus. Split deliberately: China's export-control instruments reach
+  // firms with NO direct Chinese relationship, through Chinese-origin
+  // content and re-export. Gating everything on a direct relationship
+  // is the classic false negative, so originNexus stands on its own.
+  const directNexus=has(rel,'export_goods','export_tech','ip_license','jv','ops','import_materials','china_customers','indirect');
+  const originNexus=has(rel,'import_materials','reexport')||has(down,'cn_content');
+  const anyNexus=directNexus||originNexus;
+
+  // Routes by which technology can transfer, per Decree 331 Art. 2:
+  // trade, investment, or economic and technical cooperation.
+  const techVector=has(rel,'export_tech','ip_license','jv','ops');
+
+  // One conduct pattern, several instruments. Defined once.
+  const cmTrigger=has(actions,'bis_comply','ofac_comply','cutoff','terminate_jv','screen_inv');
+
+  // Absolutely prohibited technologies: no licence exists for these.
+  const PROHIBITED={
+    ree_sep:'rare earth solvent extraction and separation, and rare earth metal and alloy production (Catalogue 083201J)',
+    magnet:'samarium cobalt, neodymium and cerium magnet preparation (Catalogue 083201J)',
+    turbine_t:'aviation gas turbine core engine design and manufacturing (Catalogue 083702J)',
+    radhard:'radiation-hardened integrated circuit manufacturing (Catalogue 083901J)',
+    satnav:'BeiDou navigation encryption and satellite telemetry encoding (Catalogue 083701J, 086303J)',
+    carto_pro:'direct-output topographic image products of China at 1:100,000 scale or finer, and satellite positioning technology that directly outputs Chinese geodetic coordinates together with the gravity and elevation databases behind it (Catalogue 087401J, 087402J). Note that 084007X restricts near-identically worded applied technology at the same scale, so where your work is the applied technology rather than the direct output, the restricted tier may govern instead',
+    cinsul:'production of rigid low-density bonded carbon fibre or non-fibrous carbon insulation usable above 2273 K (2000°C), or at density between 100 and 300 kg/m³ (Catalogue 083002J)',
+    gene:'human germline gene editing (Catalogue 237301J)',
+    paclitaxel:'paclitaxel and medicinal extraction from scarce and endangered plants (Catalogue 082703J)',
+  };
+
   const risks=[];
+  const unsureAreas=[];
+  if(unsureIn(mat))   unsureAreas.push('your bill of materials');
+  if(unsureIn(equip)) unsureAreas.push('your equipment and software');
+  if(unsureIn(bio))   unsureAreas.push('your biological and chemical inventory');
+  if(unsureIn(tind))  unsureAreas.push('your industrial process know-how');
+  if(unsureIn(tdig))  unsureAreas.push('your technology stack');
 
-  // Materials exposure requires an actual China nexus: sourcing, selling, operating,
-  // or Chinese-origin content in products. Materials alone (e.g. sourced from
-  // Australia) do not put a firm inside MOFCOM's licensing net.
-  const cnNexus = has(rel,'import_materials','export_goods','ops','jv','china_customers') || has(down,'cn_content');
-
-  if((!none(mat)&&cnNexus)||(has(sector,'defence','semi','minerals')&&!none(rel))){
+  // ─────────────────────────────────────────────────────────────
+  //  DUAL-USE EXPORT CONTROLS (Decree 792 + unified control list)
+  //  One instrument, one licence regime, many listed item types.
+  //  Consolidated into a single card with precise per-item bullets.
+  // ─────────────────────────────────────────────────────────────
+  {
     const why=[],cons=[];
-    if(has(mat,'gallium','germanium','graphite','antimony','superhard'))
-      why.push('Your operations involve gallium, germanium, graphite, antimony, or superhard materials — all on the unified dual-use control list and requiring an individual export licence per shipment (Decree 792, Art. 14)');
+
+    if(has(mat,'gallium'))
+      why.push('Gallium is controlled in every form under code 3C001, which reaches well past the metal: gallium nitride, gallium arsenide, indium gallium arsenide, gallium oxide and gallium phosphide are all listed, including as wafers, epitaxial wafers, powder and scrap');
+    if(has(mat,'germanium'))
+      why.push('Germanium is controlled under code 3C002, covering the metal, zone-refined ingots, germanium substrates used in chips and space solar cells, germanium dioxide and germanium tetrachloride');
+    if(has(mat,'antimony'))
+      why.push('Antimony is controlled under code 3C003, covering ore, metal, oxides at 99.99% purity or above, organoantimony compounds, and indium antimonide used in infrared detectors');
+    if(has(mat,'graphite'))
+      why.push('Graphite is controlled under code 1C108 in three limbs that work very differently. <strong>Natural flake graphite and its products, including spheroidised and expanded graphite, are controlled unconditionally.</strong> Artificial fine-grain graphite is caught only where all three hold together: density above 1.72 g/cm³, tensile fracture strain of 0.7% or more, and thermal expansion coefficient of 2.75×10⁻⁶/°C or less. Other artificial graphite is caught only at purity above 99.9%, flexural strength above 30 MPa and density above 1.73 g/cm³ together. Synthetic graphite below those figures falls outside the entry');
+    if(has(mat,'tungsten'))
+      why.push('Tungsten, tungsten carbide and alloys above 90% tungsten are controlled under code 1C226 only as hollow cylindrical bodies of 100 to 300 mm inner diameter weighing more than 20 kg, and products designed as counterweights or gamma-ray collimators are expressly excluded. Cutting tools, drill bits, mill products and powder fall outside 1C226 entirely, though they remain caught by Announcement No. 10 below');
+    if(has(mat,'bismuth'))
+      why.push('Bismuth is controlled under code 1C229 only at purity of 99.99% or above with silver content below 0.001%. Metallurgical-grade bismuth and bismuth pharmaceutical compounds fall outside 1C229, though they remain caught by Announcement No. 10 below');
+    if(has(mat,'tungsten','tellurium','bismuth','molybdenum','indium'))
+      why.push('Tungsten, tellurium, bismuth, molybdenum and indium related items are separately controlled by Announcement No. 10 of 2025, issued jointly by the Ministry of Commerce and the General Administration of Customs on 4 February 2025 and effective the same day, covering 41 customs codes at ten-digit level. Unlike most of the 2025 announcements, this one has never been suspended and remains fully in force');
+    if(has(mat,'superhard'))
+      why.push('Diamond window materials are controlled under code 2C901, covering curved windows and flat windows of 3 inches or more with visible transmission at or above 65%');
     if(has(mat,'hree'))
-      why.push('Medium and heavy rare earths in your supply chain are licensed under Announcement 2025 No. 18, which covers samarium, gadolinium, terbium, dysprosium, lutetium, scandium and yttrium, including finished magnets containing terbium or dysprosium');
-    if(has(mat,'indium','bismuth','tungsten'))
-      why.push('Indium, bismuth, tellurium, and heavy tungsten alloys are controlled under the 2026 catalogue update (Category 6C)');
+      why.push('Medium and heavy rare earths in your supply chain are licensed under Announcement 2025 No. 18, covering samarium, gadolinium, terbium, dysprosium, lutetium, scandium and yttrium, including finished magnets containing terbium or dysprosium. This announcement has never been suspended and is fully in force');
     if(has(mat,'lree'))
-      why.push('Announcement 2025 No. 57 would add holmium, erbium, thulium, europium and ytterbium, but it was suspended on 7 November 2025, the day before it was due to take effect, until 10 November 2026; light rare earths are not listed as elements in either announcement');
-    if(has(rel,'export_goods'))
-      why.push('You export physical goods to Chinese entities — any controlled item requires an individual export licence per shipment');
-    if(has(rel,'import_materials'))
-      why.push('You source controlled materials from China; MOFCOM holds unilateral licensing authority and can suspend approvals without reason');
-    if(has(down,'cn_content'))
-      why.push('Chinese-origin content enters your products through suppliers; MOFCOM\'s licensing net follows the item, not the invoice');
-    if(why.length>0){
-      cons.push('Individual export licences required for every covered shipment; applications may be refused, delayed, or revoked after approval without appeal');
-      cons.push('Supply disruption: China has demonstrated willingness to restrict gallium/germanium approvals to adversarial-country buyers since 2023');
-      cons.push('Customs must withhold release of goods lacking a valid licence (Decree 792, Art. 21); retroactive enforcement of prior unlicensed shipments is possible');
-      risks.push({instrument:'Dual-Use Export Control Regulations (Dec 2024)',domain:'Domain 2 · Goods',why,cons,url:'https://www.mee.gov.cn/zcwj/gwywj/202410/t20241021_1089760.shtml'});
+      why.push(`Light rare earths are not listed as elements in Announcement 2025 No. 18, and Announcement 2025 No. 57, which would add holmium, erbium, thulium, europium and ytterbium, was ${suspStatus('ann57').phrase}. <strong>Do not stop reading there if you make or buy neodymium magnets.</strong> Sintered NdFeB for motors and generators is routinely doped with dysprosium or terbium to raise coercivity, and both are listed under Announcement 2025 No. 18, which has never been suspended. Check the composition of your grades, and note that magnet preparation technology is separately prohibited outright under Catalogue entry 083201J`);
+    if(has(mat,'composite'))
+      why.push('Fibre and filament materials are controlled under code 1C210, but not uniformly. Carbon and aramid fibres are caught on <strong>either</strong> specific modulus of 1.27×10⁷ m or specific tensile strength of 2.35×10⁵ m. Glass fibre must meet <strong>both</strong> specific modulus of 3.18×10⁶ m and specific tensile strength of 7.62×10⁴ m, which ordinary E-glass fails. Prepreg under 1C210.c reaches only tape <strong>not exceeding 15 mm in width</strong>, so standard aerospace broadgoods at 300 to 1500 mm are outside it, and aramid carrying 0.25% or more ester-based surface modifier is excluded. Structural composites under 9C110 require specific tensile strength above 7.62×10⁴ m <strong>and</strong> specific modulus above 3.18×10⁶ m together');
+    if(has(mat,'alloy'))
+      why.push('Maraging steel reaching 1950 MPa at 20°C is controlled under 1C216, but not where every linear dimension is 75 mm or less. Aluminium at 460 MPa and titanium at 900 MPa are controlled under 1C202 only as tube or solid bar above 75 mm outer diameter. Beryllium (1C230), hafnium (1C231) and zirconium (1C234) are separately listed, each with its own carve-outs: beryllium excludes X-ray windows and beryllium oxide electronic substrates, zirconium excludes foil of 0.1 mm or less');
+    if(has(mat,'uhmwpe'))
+      why.push('Ultra-high molecular weight polyethylene fibre is controlled under code 1C901 only where all three hold: breaking tenacity of 40 cN/dtex or above, initial modulus of 1600 cN/dtex or above, and untwisted. Finished products are caught only as unpressed soft laminate at areal density of 5.3 kg/m² or below achieving V50 of 700 m/s or more against a 1.1 g standard fragment. Marine rope and cut-resistant glove yarn generally fall outside. Production technology is controlled under 1E901');
+    if(has(mat,'ablative'))
+      why.push('Ceramic and ablative heat-shielding materials are controlled under code 9C116');
+
+    if(has(equip,'hpc'))
+      why.push('High-performance computers are controlled under code 4A003 at an adjusted peak performance above 8.0 weighted teraFLOPS, along with processor-aggregating assemblies and interconnects above 2.0 GByte/s per link. Most current GPU server configurations clear that threshold comfortably');
+    if(has(equip,'crypto_eq'))
+      why.push('Information-security equipment is controlled under code 5A002 across six limbs which are <strong>not gated alike</strong>. Quantum cryptography equipment (5A002.f) is controlled with no threshold of any kind. Security chips (5A002.a.1) and dedicated cryptographic equipment (5A002.e) carrying algorithms for the power, tax, public security or finance sectors are gated on key length alone, above 64-bit symmetric, 768-bit integer factorisation or 128-bit elliptic curve, with no throughput condition at all. Only cryptographic machines and cards (5A002.b), VPN devices (5A002.c) and key management products (5A002.d) carry throughput tests, at 10 Gbps, 50,000 signatures per second and 10,000 managed objects respectively, so a 1 Gbps enterprise VPN appliance is outside those three limbs but may still be caught by the others. Cryptanalysis equipment (5A004) has no floor. Associated software (5D002) and technology (5E002) are controlled separately');
+    if(has(equip,'cnc'))
+      why.push('Machine tools able to perform contouring control along two or more axes simultaneously are controlled under code 2B201, with thresholds including lathes handling workpieces above 35 mm diameter at positioning accuracy finer than 6 µm. The driving software is controlled under 2D202 and 2D203');
+    if(has(equip,'robots'))
+      why.push('Robots and end-effectors are controlled under code 2B207 only where designed to national safety standards for handling high explosives, or specially designed or rated radiation-hardened to withstand more than 5×10⁴ Gy(Si) without loss of performance, together with controllers built for those. The entry expressly excludes robots designed for non-nuclear industrial applications such as automotive paint booths, which is most of the industry');
+    if(has(equip,'sensors'))
+      why.push('These are gated far more tightly than the category names suggest. Pressure sensors under 6A226 reach only shock gauges and quartz transducers measuring <strong>above 10 GPa</strong>, roughly 100,000 bar, so an ordinary process transmitter sits a thousandfold below the line. High-speed cameras under 6A203 need framing rates <strong>above 225,000 frames per second</strong>, or gating and exposure times of 50 ns or less, or streak writing speed above 0.5 mm/µs. Photomultipliers under 6A202 need photocathode above 20 cm² and anode pulse rise under 1 ns together. Lasers under 6A205 expressly exclude ordinary 1 to 5 kW continuous-wave CO₂ cutting and welding lasers');
+    if(has(equip,'radar'))
+      why.push('Target-detection electronics are controlled under code 6A108: radar, terrain-contour mapping, scene mapping, imaging sensors and radiation-hardened components. Equipment integrated into civil aircraft is expressly excluded');
+    if(has(equip,'nav'))
+      why.push('Accelerometers with scale-factor error below 0.25% (7A101), gyroscopes with rated drift below 0.5°/hour (7A102), guidance and control equipment (7A103), astro gyro compasses and celestial or satellite navigation devices (7A104), navigation processors (7A105) and target-detection altimeters (7A106) are listed, along with their test and calibration equipment. <strong>All six entries expressly exclude equipment integrated into civil aircraft, general aviation aircraft and other civil aircraft</strong>, so a civil avionics supplier is generally outside them. Note separately that 7A103.b controls drone autopilots, which sit in this navigation category rather than with the drone entries');
+    if(has(equip,'uav_hw'))
+      why.push('Drones and unmanned airships are controlled under code 9A012.a on <strong>endurance alone</strong>: controllable flight beyond the operator\'s natural visual range, with maximum endurance of one hour or more, or of 30 minutes or more combined with the ability to take off and fly stably in gusts of 46.3 km/h. There is no range condition and no payload condition in this limb. It is far wider than the 300 km and 20-litre tests and catches most commercial survey, inspection and delivery aircraft');
+    if(has(equip,'uav_long'))
+      why.push('Drones at 300 km range or above, or with autonomous or beyond-line-of-sight flight combined with aerosol dispersal capacity above 20 litres, are controlled under code 9A501. Aircraft designed for recreation or competition are excluded from this limb');
+    if(has(equip,'uav_parts'))
+      why.push('Drone subsystems are controlled independently of the aircraft under code 9A012: engines above 16 kW maximum continuous power or designed for flight above 15,420 m; infrared imagers at 780 to 30,000 nm with instantaneous field of view under 2.5 mrad; and synthetic aperture radar working beyond 5 km at stripmap resolution finer than 0.3 m or spotlight resolution finer than 0.1 m. <strong>Two payload tests are conjunctive and easy to over-read.</strong> Target designation lasers must be temperature-control-free, above 80 mJ, better than 15% stability and under 0.3 mrad beam divergence, all together, and stable above 55°C ambient. Inertial units must have heading accuracy under 2°, attitude accuracy under 0.5° and resolution under 0.1°, all together, with items already controlled under 7A or 7B carved out. Conversion kits are caught only where they convert to a 9A012.a.1 aircraft. Radio equipment is caught beyond 50 km range or above 10 aircraft controlled per station. The recreational model exclusion attaches to the aircraft, the 9A012.b.1 engine limb and conversion kits, and does not reach payloads or communications equipment');
+    if(has(equip,'uav_spray'))
+      why.push('Spray and misting systems for drones are controlled under code 2B352.h where they disperse above 2 litres per minute at volume median droplet diameter below 50 microns, along with the nozzles, multi-head assemblies and aerosol generators built for them. This test is keyed to flow rate and droplet size rather than tank volume, so agricultural spray equipment well under the 20-litre threshold is caught. Systems incapable of releasing biological agents as infectious aerosols are excluded');
+    if(has(equip,'cuav'))
+      why.push('Civilian counter-drone systems are controlled under code 0A903: electronic jamming equipment with range beyond 5 km, and high-power lasers above 1.5 kilowatts');
+    if(has(equip,'turbine'))
+      why.push('Turbojet engines at 90 kN thrust or above, all turbofan engines and turbo-combined engines are controlled under code 9A101, which expressly excludes engines integrated into civil and general aviation aircraft. The manufacturing side is controlled separately and without that exclusion: directional and single-crystal casting equipment for superalloy blades and vanes, precision casting intermediates including ceramic cores, wax patterns and shells (9B001), and solid-state disc-joining tooling (9B004)');
+    if(has(equip,'press'))
+      why.push('Cubic presses are controlled under code 2B901 at a bore of 500 mm or more or a design pressure of 5 GPa or more, and their key components, meaning hinge beams, anvils and high-pressure control systems, under 2A901. This is the equipment layer of China\'s synthetic diamond dominance');
+    if(has(equip,'mpcvd'))
+      why.push('Microwave plasma chemical vapour deposition equipment above 10 kW at 915 or 2450 MHz is controlled under code 2B005');
+    if(has(equip,'biolab'))
+      why.push('Chemical production equipment (2B350), toxic gas monitoring systems (2B351) and biological material processing equipment (2B352) are listed. 2B350 turns on materials of construction and expressly excludes ordinary 304 and 316 stainless steel, carries upper size bounds and a civil-use exclusion, so a standard stainless reactor is generally outside it. Associated technology follows the equipment rather than being pooled: 2E301 covers the biological processing equipment, 2E302 covers the chemical plant and gas monitors');
+    if(has(equip,'windtun'))
+      why.push('Supersonic wind tunnels covering Mach 1.4 to 5 and hypersonic tunnels covering Mach 5 to 15 are controlled under code 9B105, which expressly excludes tunnels specially designed for teaching purposes with an internally measured test section under 25 cm');
+    if(has(equip,'dredge'))
+      why.push('Dredgers are controlled under code 8A901 by vessel class, each class having its own alternative limbs: trailing suction hopper dredgers at hopper capacity of 1,500 m³, dredging depth of 15 m, or bow-blowing capability; cutter suction at 500 kW cutter power, 15 m depth, or 2,000 kW total installed; bucket dredgers at 4 m³ bucket capacity or 15 m depth; sand suction vessels at 500 m³ hopper or 1,000 kW installed; and self-propelled self-discharging hopper barges at 1,000 m³, or bow-blowing combined with self-discharging equipment. The depth limb exists only for the first three classes. Bow-blowing here means discharging dredged material ashore over the bow. A small inland-waterway bucket dredger below these figures is not controlled');
+
+    if(has(bio,'pathogen'))
+      why.push('Listed disease-causing organisms, toxins and their subunits are controlled under code 1C351. The animal list expressly names African swine fever, avian influenza in subtypes pathogenic to humans or birds including H5N1, H5N6 and H7N9, foot-and-mouth disease, bluetongue and rinderpest. The human and zoonotic list includes Ebola, Marburg, Lassa, Variola, monkeypox, Crimean-Congo haemorrhagic fever and the SARS, MERS and SARS-CoV-2 coronaviruses. The entry reaches strains, live cultures and any biological material containing them, natural or genetically modified, but <strong>expressly excludes those organisms in vaccine form</strong>, and excludes immunotoxins and approved human or animal drug products. It also extends open-endedly to pathogens newly discovered in China or whose biological characteristics have markedly changed. Associated technology is controlled under 1E301');
+    if(has(bio,'gmo'))
+      why.push('Genetic material and modified organisms are controlled under code 1C353 only where they carry nucleic acid sequences associated with the pathogenicity of a <em>listed</em> organism, or sequences encoding a listed toxin or its subunits. Genetic material expressly includes chromosomes, genomes, plasmids, transposons and vectors, modified or not. Ordinary plasmids, vectors and cell lines carrying no such sequence are outside the control. Sequences tied to the pathogenicity of E. coli O157 and other Shiga-like toxin producing strains are expressly excluded, though sequences encoding the toxin itself remain controlled');
+    if(has(bio,'plantpath'))
+      why.push('Listed plant pathogens are controlled under code 1C354, naming among others Xanthomonas oryzae pv. oryzae (rice bacterial blight), Xanthomonas campestris pv. citri (citrus canker), Ralstonia solanacearum races 2 and 3, and potato spindle tuber viroid');
+    if(has(bio,'chem_mon'))
+      why.push('Code 1C350 is a closed list of eleven chemicals identified by CAS number, headed by hydrogen fluoride, better known as hydrofluoric acid (CAS 7664-39-3), and running through potassium, sodium and ammonium fluorides and hydrogen fluorides, sodium sulfide, diisopropylamine, 2-diethylaminoethanol, 2-chloroethanol and potassium perchlorate. Associated technology is controlled under 1E302');
+    if(has(bio,'chem_sch'))
+      why.push('Monitored chemicals are controlled under code 1C450, whose third schedule covers bulk industrial commodities including sodium cyanide, thionyl chloride and triethanolamine. Gold leaching, electroplating and surfactant manufacture handle these at scale and are squarely in scope. Note the converse, which works in your favour: no technology entry anywhere in the list covers 1C450 or 1C501, so the know-how behind these chemicals is not itself export-controlled even though the chemicals are');
+    if(has(bio,'vetvax'))
+      why.push('Veterinary strains sit across two instruments, and the line between them matters. African swine fever, avian influenza, foot-and-mouth and swine fever are listed organisms under code 1C351, so the <strong>strains and live cultures</strong> you hold need an export licence, though the <strong>finished vaccine is expressly excluded</strong> from that entry. Separately, and with no such exclusion, the production technology for those same diseases is restricted under Technology Catalogue entry 080501X, which names them as its own control points. So the vaccine can move where the strain and the know-how cannot');
+
+    // DUL Part One 二(一)3: every entry whose third code digit is 1 is scoped to
+    // items related to delivery systems capable of 500 kg to 300 km. This governs
+    // 1C108, 6A108, 7A101-7A106, 9A101, 9B105, 9C110 and 9C116, so it must be
+    // surfaced wherever those bullets fire or they read as flat category controls.
+    if(has(mat,'graphite','composite','ablative')||has(equip,'radar','nav','turbine','windtun'))
+      why.push('<strong>One scoping rule cuts across several of the entries above.</strong> Where a control code carries the digit 1 in its third position, the List scopes it to items related to complete ballistic missiles, launch vehicles, sounding rockets, cruise missiles and drones capable of delivering a 500 kg payload to 300 km, and to production facilities specially designed for them. That governs graphite (1C108), radar and target detection (6A108), navigation (7A101 to 7A106), engines (9A101), wind tunnels (9B105) and structural composites and heat shielding (9C110, 9C116). Where your product has no such application, the entry may not reach you even if you meet its technical figures');
+
+    // Unsure propagates into the rule rather than dead-ending in an advisory.
+    if(anyNexus&&(unsureIn(mat)||unsureIn(equip)||unsureIn(bio)))
+      why.push('You have not audited your inputs against the control list. China\'s controls attach at item level across 173 codes spanning materials, equipment, software and technology, so exposure here can be neither confirmed nor ruled out without that audit. Treat this as unresolved rather than as absence of risk');
+
+    if(why.length>0&&anyNexus){
+      if(has(rel,'export_goods'))
+        why.push('You export physical goods to Chinese entities, so any covered item needs an individual export licence for every shipment');
+      if(has(rel,'import_materials'))
+        why.push('You source controlled items from China. The Ministry of Commerce holds unilateral licensing authority and can suspend approvals without giving reasons');
+      if(has(rel,'indirect'))
+        why.push('Selling through third-country distributors, integrators or contract manufacturers that onward-ship to China does not put you outside the regime. The licensing obligation attaches to the export of the controlled item, and knowledge or expectation of the ultimate destination is what matters, not the address on your invoice');
+      if(has(down,'us_tech'))
+        why.push('You supply the United States semiconductor and advanced technology base. That is precisely the chain Announcement No. 46\'s re-export logic tracks, so Chinese-origin inputs in your products carry a materially higher chance of end-use scrutiny');
+      if(has(rel,'reexport')||has(down,'cn_content'))
+        why.push('Chinese-origin items move through your chain. The list covers items integrated into other products as a principal component where they can be removed and reused, so the licensing net follows the item rather than the invoice, and a third-country intermediary does not break the chain');
+
+      cons.push('An individual export licence is required for every covered shipment; applications can be refused, delayed, or revoked after approval, and there is no appeal');
+      cons.push('Customs must withhold release of goods lacking a valid licence (Decree 792, Art. 21), and unlicensed prior shipments can be enforced retroactively');
+      cons.push('Supply disruption: China has restricted gallium and germanium approvals to buyers in adversarial countries since 2023');
+      cons.push('Where items made abroad contain, integrate, or are mixed with specified Chinese-origin controlled items, the Ministry of Commerce may require the overseas party to comply (Decree 792, Art. 49)');
+      risks.push({instrument:'Dual-Use Export Control Regulations (Decree 792) and the unified control list',domain:D.dualuse,why,cons,url:'https://exportcontrol.mofcom.gov.cn/article/zcfg/gnzcfg/zcfggzqd/202412/1072.html'});
     }
   }
 
-  if(!none(mat)&&has(down,'us_defence')&&(has(down,'cn_content')||has(rel,'import_materials'))){
+  // ── Military end-user prohibition ─────────────────────────────
+  // Reaches firms with no direct China relationship, so it is gated on
+  // originNexus, not on a commercial relationship with China.
+  if(has(down,'us_defence')&&(originNexus||any(mat)||any(equip))){
+    const s=suspStatus('ann46p2');
     const why=[],cons=[];
-    why.push('Announcement No. 46 (Dec 2024) prohibits supplying dual-use items to US military end-users, and extends accountability to organisations in any country that transfer Chinese-origin items');
-    why.push('Your profile matches the prohibited chain: Chinese-origin controlled materials flowing to US defence end-users');
-    why.push('The blanket export denial to the US (paragraph 2) is suspended by Announcement 2025 No. 72 until November 27, 2026, but the military end-user prohibition (paragraph 1) remains fully in force');
-    cons.push('Chinese suppliers must disclose end-use chains in licence applications; a military end-use means near-certain denial');
-    cons.push('Third-country intermediaries do not launder exposure: MOFCOM may require overseas parties to comply where items made abroad contain, integrate or are mixed with specified Chinese-origin dual-use items (Decree 792, Art. 49)');
-    cons.push('The paragraph 2 suspension is reversible without notice; contracts running past November 2026 carry snap-back risk');
-    risks.push({instrument:'Military End-User & Re-export Prohibition (Announcement No. 46, 2024)',domain:'Domain 2 · Goods',why,cons,url:'https://exportcontrol.mofcom.gov.cn/article/zcfg/gnzcfg/zcfggzqd/202412/1072.html'});
+    why.push('Announcement No. 46 (December 2024) prohibits supplying dual-use items to United States military end-users, and extends accountability to organisations in any country that pass Chinese-origin items along');
+    why.push('Your profile matches the prohibited chain: controlled items of Chinese origin reaching United States defence end-users');
+    why.push(`The blanket export denial to the United States in paragraph 2 is ${s.phrase}, but the military end-user prohibition in paragraph 1 was never suspended and remains fully in force`);
+    if(!originNexus)
+      why.push('You have not indicated Chinese-origin content, but this prohibition turns on the origin of the item rather than on your own relationship with China, so trace your inputs before concluding you are outside it');
+    cons.push('Chinese suppliers must disclose end-use chains in licence applications, and a military end-use means near-certain denial');
+    cons.push('Third-country intermediaries do not launder exposure: the obligation follows the Chinese-origin item');
+    cons.push(s.live?`The paragraph 2 suspension can be reversed without notice, so contracts running past ${s.date} carry snap-back risk`:'The paragraph 2 suspension window has lapsed; confirm whether the blanket denial has resumed');
+    risks.push({instrument:'Military End-User and Re-export Prohibition (Announcement No. 46, 2024)',domain:D.dualuse,why,cons,url:'https://exportcontrol.mofcom.gov.cn/article/zcfg/gnzcfg/zcfggzqd/202412/1072.html'});
   }
 
-  // Trade remedies: import-side coercion. Fires on the documented target profile
-  // (substitutable goods + China market exposure); framed as profile match with
-  // precedent, not prediction, since targeting is political and discretionary.
-  if(has(sector,'agri','consumer','auto','pharma','other')&&has(rel,'export_goods','china_customers')){
+  // ── Extraterritorial 0.1% rule ────────────────────────────────
+  // Suspended, but included because it captures firms with zero China
+  // nexus and would apply on reinstatement without any change in conduct.
+  if((any(mat)||any(equip)||originNexus)&&has(mat,'hree','lree','gallium','germanium','antimony','graphite','superhard')){
+    const s=suspStatus('ann61');
     const why=[],cons=[];
-    why.push('You sell substitutable goods into the Chinese market: the exact profile of China\'s most-exercised coercion tool, the trade-remedy investigation');
-    if(geo==='allied')
-      why.push('Documented precedent in your region: Australian barley (80.5% duties) and wine (116–218%), both initiated within weeks of Canberra\'s 2020 COVID-inquiry call');
-    else if(geo==='eu'||geo==='uk')
-      why.push('Documented precedent in your region: EU brandy, pork, and dairy investigations (2024), opened in response to the EU\'s EV anti-subsidy probe, with sectors chosen for political pain in specific member states');
-    else if(geo==='taiwan')
-      why.push('Documented precedent in your region: the 2023–24 trade-barrier investigation used to suspend ECFA tariff concessions on 134+ product lines');
-    else if(geo==='us')
-      why.push('Documented precedent in your region: retaliatory anti-dumping actions, including sorghum (2018), deployed alongside tariff lists');
-    else
-      why.push('The pattern is cross-jurisdictional: Australia (barley, wine), the EU (brandy, pork, dairy), Taiwan (ECFA suspensions); targeting follows bilateral tension, not product economics');
-    if(has(rel,'china_customers'))
-      why.push('Chinese entities account for over 20% of your revenue; market-access denial is precisely the pressure point trade remedies are built to squeeze');
-    cons.push('Provisional duties can land within months of initiation, with cash deposits required at the border immediately');
-    cons.push('Documented duty levels of 80–218% effectively close the market overnight');
-    cons.push('Investigations run 12–18 months with discretionary extensions; resolution has historically tracked diplomatic thaw, not legal merit');
-    cons.push('Parallel administrative measures often accompany the formal case: customs holds, SPS inspections, import-registration suspensions');
-    risks.push({instrument:'Trade Remedies: Anti-Dumping & Countervailing Duties',domain:'Domain 1 · Market',why,cons,url:'https://www.gov.cn/gongbao/content/2004/content_62747.htm'});
+    why.push(`Announcement 2025 No. 61 would extend licensing to items made outside China containing Chinese-origin controlled materials above 0.1% by value. It is ${s.phrase}`);
+    why.push('This rule reaches organisations with no commercial relationship with China at all: the trigger is the origin and value share of the material, not where you are or who you trade with');
+    why.push('Announcement 2025 No. 62, covering rare earth technology, sits under the same suspension');
+    cons.push('On reinstatement, foreign-made goods would need a Chinese export licence purely on the basis of embedded Chinese-origin content');
+    cons.push('A 0.1% by-value threshold is low enough that most electronics, magnets, and optical assemblies would need bill-of-materials tracing to establish compliance either way');
+    cons.push(s.live?`Suspension runs to ${s.date} and is reversible without notice; build the tracing capability before you need it`:'The suspension window has lapsed; confirm current status as a matter of priority');
+    risks.push({instrument:'Extraterritorial 0.1% Rule (Announcement 2025 No. 61, suspended)',domain:D.dualuse,why,cons,url:'https://exportcontrol.mofcom.gov.cn/article/zcfg/gnzcfg/zcfggzqd/202412/1072.html'});
   }
 
-  // SAMR merger review: fires when an active transaction combines with a China
-  // turnover signal (verified threshold, unverified, or the >20% revenue proxy).
-  if(has(txn,'ma','jvform')&&(has(txn,'both_cn_rev','unsure_rev')||has(rel,'china_customers'))){
-    const why=[],cons=[];
-    why.push('A merger, acquisition, or JV between entirely non-Chinese parties still requires SAMR clearance if the parties have sufficient China turnover: the test is activity in China, not place of incorporation');
-    if(has(txn,'both_cn_rev'))
-      why.push('You meet the two-party element of the filing thresholds: at least two parties each above RMB 800 million in China turnover');
-    if(has(txn,'unsure_rev'))
-      why.push('You have not measured the parties\' China revenues against the thresholds (RMB 800 million each for at least two parties; RMB 12 billion combined worldwide); this is the first check any deal team should run');
-    if(!has(txn,'both_cn_rev','unsure_rev')&&has(rel,'china_customers'))
-      why.push('Chinese entities provide over 20% of your revenue; measure that against the RMB 800 million threshold before assuming you are outside SAMR\'s jurisdiction');
-    why.push('SAMR retains a call-in power below the thresholds where it suspects the deal may restrict competition');
-    cons.push('Closing anywhere in the world is illegal until SAMR clears the deal; gun-jumping fines reach 10% of prior-year turnover');
-    cons.push('Clearance can be conditioned on hold-separate orders and behavioural remedies that persist for years');
-    cons.push('The documented coercion pattern is deal-killing by inaction: Qualcomm/NXP (2018) and Intel/Tower (2023) collapsed when SAMR let the review clock run out during US-China tension');
-    cons.push('Review timing tracks the state of the bilateral relationship, and there is no meaningful appeal');
-    risks.push({instrument:'Merger Review under the Anti-Monopoly Law (SAMR)',domain:'Domain 1 · Market',why,cons,url:'https://www.chinalawtranslate.com/en/anti-monopoly-law-2022/'});
-  }
-
-  if(!none(tech)&&!none(rel)&&has(rel,'export_tech','ip_license','ops','jv')){
-    const why=[],cons=[];
-    if(has(tech,'ree_proc','gene'))
-      why.push('Rare earth processing know-how and gene editing technology are absolutely prohibited from export — criminal liability applies; no licence is available');
-    if(has(tech,'ai'))
-      why.push('Advanced AI/ML training and inference architectures are restricted; transfer via JV, licensing, or technical assistance requires multi-stage MOFCOM approval');
-    if(has(tech,'battery'))
-      why.push('LFP/LMFP battery cathode preparation technology is restricted; any IP sharing with Chinese entities requires prior MOFCOM/MOST approval');
-    if(has(tech,'lidar','quantum'))
-      why.push('LiDAR systems sit on the restricted tier of the Catalogue, added by the December 2023 revision and carried into the July 2025 adjustment; export needs a MOFCOM licence');
-    if(has(tech,'semi_tech'))
-      why.push('Advanced semiconductor design tools and EDA software are restricted; R&D collaboration in China requires case-by-case approval');
-    if(has(rel,'ip_license'))
-      why.push('IP licensing agreements with Chinese entities are explicitly within Catalogue scope — the restriction is not limited to physical exports');
-    if(has(rel,'jv'))
-      why.push('Joint ventures are within scope: Article 2 of Decree 331 counts transfer by investment or economic and technical cooperation as a technology export, so listed Chinese technology reaching a foreign partner needs MOFCOM approval');
-    if(why.length>0){
-      cons.push('Multi-stage MOFCOM/MOST licensing before any technology transfer; no statutory deadline, approval is not guaranteed');
-      cons.push('Criminal prosecution for transfers of absolutely prohibited technologies, regardless of stated commercial purpose');
-      cons.push('Existing contracts may be nullified if MOFCOM finds approval was required and not obtained');
-      risks.push({instrument:'Technology Export Catalogue (2023, adjusted July 2025)',domain:'Domain 4 · Prohibited Technologies',why,cons,url:'https://www.most.gov.cn/satp/kjzc/zh/202507/t20250716_194194.html'});
+  // ─────────────────────────────────────────────────────────────
+  //  TECHNOLOGY EXPORT CATALOGUE
+  //  Split by tier. Prohibited and restricted are different legal
+  //  positions with different consequences, and conflating them is
+  //  the single biggest accuracy problem in the previous version.
+  // ─────────────────────────────────────────────────────────────
+  {
+    const hits=Object.keys(PROHIBITED).filter(k=>has(tind,k)||has(tdig,k)||has(bio,k));
+    if(hits.length>0){
+      const why=hits.map(k=>`Your work involves ${PROHIBITED[k]}. This sits on the prohibited tier: no export licence exists for it, in any circumstances`);
+      const cons=[];
+      why.push('The Catalogue treats transfer by trade, investment, or economic and technical cooperation alike (Decree 331, Art. 2), so a joint venture, a licence, a secondment, or a technical briefing all count as export');
+      if(!techVector)
+        why.push('You have not indicated a transfer route to a Chinese counterparty. The prohibition binds only on transfer, so this is a constraint on future partnerships and hiring rather than a present breach');
+      cons.push('No licence is available. There is no application to make and no approval to obtain');
+      cons.push('Criminal prosecution follows transfer regardless of the stated commercial purpose');
+      cons.push('Contracts contemplating transfer of prohibited technology are void and unenforceable');
+      cons.push('This constrains joint venture scope, technical due diligence, and what your Chinese-based staff can lawfully be shown');
+      risks.push({instrument:'Technology Export Catalogue: prohibited tier',domain:D.strattech,why,cons,url:'https://www.most.gov.cn/satp/kjzc/zh/202507/t20250716_194194.html'});
     }
   }
 
   {
-    const d1=has(actions,'bis_comply','ofac_comply','cutoff','terminate_jv','screen_inv');
+    const R={
+      ree_mine:'rare earth mining, ore processing and smelting, and rare earth extraction chemicals (083201X, control points 6 to 8)',
+      lithium:'lithium extraction and refining from spodumene and from brine, including lithium carbonate, lithium hydroxide and metallic lithium production (083201X, control points 9 to 13, added in the July 2025 revision)',
+      battery:'cathode preparation under 252604X, added in the July 2025 revision, which sets <strong>different thresholds for the two chemistries</strong>: lithium iron phosphate at compacted density of 2.58 g/cc or above at 220 MPa, 160 mAh/g or above, and initial coulombic efficiency of 97% or above; lithium manganese iron phosphate at compacted density of <strong>2.38 g/cc</strong> or above, efficiency of 95% or above, 0.1C capacity of 155 mAh/g or above, and 0.1C average voltage of 3.85 V or above. A third control point covers phosphate cathode raw materials, including iron phosphate at tap density above 1.2 g/cc with magnetic foreign matter below 10 ppb',
+      ga_ext:'extraction of metallic gallium from alumina mother liquor by ion exchange (083201X, control point 2, amended in the July 2025 revision)',
+      aviamat:'aviation materials: aluminium-lithium alloys containing rare earths, tungsten-hafnium directional solidification superalloys, and single-crystal turbine blade interlayer alloys (083707X)',
+      stealth:'military stealth material formulations, high-temperature alloys rated at 850°C and above, and transpiration cooling materials (083101X)',
+      cfiber:'carbon fibre processing technology (082603X)',
+      cnc_t:'high-end CNC machine tool design and process technology, and integrated casting-forging-milling metal 3D printing (203406X, 203405X)',
+      recsys:'personalised information push and recommendation algorithm technology (086501X, control point 18)',
+      cn_lang:'Chinese-language speech recognition, text processing, handwriting recognition, and machine translation above 4.5 on the assessment scale (086501X)',
+      supercomp:'supercomputer hardware, software and network technology at 97 trillion operations per second and above (083906X, 086502X, 086302X)',
+      quantum:'quantum cryptography and cryptographic chip design (206401X)',
+      dpi:'deep packet inspection at 500 Gbps and above, advanced persistent threat detection, and threat-intelligence generation (206402X)',
+      infodef:'vulnerability discovery and mining, malicious code development, information hiding, and cyberattack attribution (206403X, 206404X)',
+      lidar:'LiDAR probe and ranging systems meeting any <strong>one</strong> of six conditions under 233914X: pulse peak power above 30 kW, pulse width below 1 ns, detection range beyond 2 km, angular accuracy finer than 40 µrad, angular resolution finer than 20 µrad, or ranging accuracy finer than 2 mm. The two angular limbs catch mainstream automotive and survey units that satisfy none of the other four',
+      germplasm:'crop, forage and tobacco germplasm, livestock and aquatic germplasm, and the genes and vectors used in plant breeding (080101X, 080102X, 200104X, 230105X, 080401X)',
+      uav_t:'drone autonomous navigation, flight control, sensing and avoidance, and mission payload technology (203912X)',
+      carto_gis:'geographic information systems holding Chinese coordinate data at scales finer than 1:1,000,000 (084007X)',
+    };
+    const hits=Object.keys(R).filter(k=>has(tind,k)||has(tdig,k)||has(bio,k));
+    const why=[],cons=[];
+    hits.forEach(k=>why.push(`Restricted: ${R[k]}. Export is permitted only with prior approval from the Ministry of Commerce and the Ministry of Science and Technology`));
+    if(has(tdig,'ai'))
+      why.push('Advanced AI and machine learning architectures sit close to several restricted entries, including recommendation algorithms and Chinese-language processing. Where your models are trained, tuned, or deployed with Chinese counterparties, assume the Catalogue is engaged until you have mapped the specific control points');
+    if(has(sector,'geo'))
+      why.push('As a mapping, surveying or geospatial provider you face the Catalogue on both tiers at once: direct-output cartography at 1:100,000 or finer and geodetic coordinate output are prohibited outright (087401J, 087402J), while geographic information systems holding Chinese coordinate data, precision engineering survey for key projects, and aerospace remote sensing are restricted (084007X, 087403X, 207407X)');
+    if(has(sector,'logistics'))
+      why.push('As a shipping, ports or dredging business you sit against container port equipment and automated terminal control systems (085501X), bulk ship loaders above 10,000 t/h and unloaders above 3,600 t/h (233407X), and ship design, marine equipment and shipbuilding process technology (083701X to 083704X), all on the restricted tier');
+    if(techVector&&(unsureIn(tind)||unsureIn(tdig)))
+      why.push('You have not mapped your technology against the Catalogue. The Catalogue runs to 23 prohibited and 109 restricted entries, and the boundary between the two tiers is not intuitive: rare earth separation is prohibited outright while rare earth mining is merely restricted. Treat this as unresolved');
+    if(why.length>0&&techVector){
+      if(has(rel,'ip_license'))
+        why.push('Licensing intellectual property is expressly within scope. The restriction is not limited to physical exports');
+      if(has(rel,'jv'))
+        why.push('Joint ventures are within scope: Article 2 of Decree 331 counts transfer by investment or by economic and technical cooperation as a technology export');
+      if(has(rel,'ops'))
+        why.push('Technology developed or held in your China-based operation is subject to the Catalogue when it moves out, which includes moving it to your own headquarters');
+      cons.push('Multi-stage approval from the Ministry of Commerce and the Ministry of Science and Technology before any transfer, with no statutory deadline and no guarantee of approval');
+      cons.push('Existing contracts can be nullified where approval was required and not obtained');
+      cons.push('Approval can be withheld indefinitely without a stated reason, which functions as a soft block on partnerships');
+      risks.push({instrument:'Technology Export Catalogue: restricted tier (2023, adjusted July 2025)',domain:D.strattech,why,cons,url:'https://www.most.gov.cn/satp/kjzc/zh/202507/t20250716_194194.html'});
+    }
+  }
+
+  // ── Trade remedies ────────────────────────────────────────────
+  if(has(sector,'agri','consumer','auto','pharma','minerals','materials','energy','machinery','logistics','other')&&has(rel,'export_goods','china_customers')){
+    const why=[],cons=[];
+    why.push('You sell substitutable goods into the Chinese market: the exact profile of China\'s most-exercised coercion tool, the trade-remedy investigation');
+    if(geo==='allied')
+      why.push('Documented precedent in your region: Australian barley (80.5% duties) and wine (116 to 218%), both initiated within weeks of Canberra\'s 2020 COVID-inquiry call. The same campaign ran through coal, copper, timber and lobster by administrative means rather than formal duties, so commodity exporters were not spared');
+    else if(geo==='eu'||geo==='uk')
+      why.push('Documented precedent in your region: EU brandy, pork, and dairy investigations (2024), opened in response to the EU\'s electric vehicle anti-subsidy probe, with sectors chosen for political pain in specific member states');
+    else if(geo==='taiwan')
+      why.push('Documented precedent in your region: the 2023 to 2024 trade-barrier investigation used to suspend ECFA tariff concessions on more than 134 product lines');
+    else if(geo==='us')
+      why.push('Documented precedent in your region: retaliatory anti-dumping actions, including sorghum (2018), deployed alongside tariff lists');
+    else if(geo==='india')
+      why.push('The pattern is cross-jurisdictional and has not spared India: targeting follows bilateral tension rather than product economics');
+    else
+      why.push('The pattern is cross-jurisdictional: Australia (barley, wine), the EU (brandy, pork, dairy), Taiwan (ECFA suspensions); targeting follows bilateral tension, not product economics');
+    if(has(rel,'china_customers'))
+      why.push('Chinese entities account for over 20% of your revenue, and market-access denial is precisely the pressure point trade remedies are built to squeeze');
+    cons.push('Provisional duties can land within months of initiation, with cash deposits required at the border immediately');
+    cons.push('Documented duty levels of 80 to 218% effectively close the market overnight');
+    cons.push('Investigations run 12 to 18 months with discretionary extensions, and resolution has historically tracked diplomatic thaw rather than legal merit');
+    cons.push('Parallel administrative measures often accompany the formal case: customs holds, sanitary and phytosanitary inspections, import-registration suspensions');
+    cons.push('Unlike most instruments here, this one has a route of challenge: Anti-Dumping Regulations Art. 53 allows administrative reconsideration or litigation');
+    risks.push({instrument:'Trade Remedies: Anti-Dumping and Countervailing Duties',domain:D.duties,why,cons,url:'https://www.gov.cn/gongbao/content/2004/content_62747.htm'});
+  }
+
+  // ── SAMR merger review ────────────────────────────────────────
+  if(has(txn,'ma','jvform')&&(has(txn,'both_cn_rev','unsure_rev')||has(rel,'china_customers'))){
+    const why=[],cons=[];
+    why.push('A merger, acquisition, or joint venture between entirely non-Chinese parties still requires clearance from the State Administration for Market Regulation if the parties have sufficient China turnover: the test is activity in China, not place of incorporation');
+    if(has(txn,'both_cn_rev'))
+      why.push('You meet the two-party element of the filing thresholds: at least two parties each above RMB 800 million (roughly USD 110 million) in China turnover');
+    if(has(txn,'unsure_rev'))
+      why.push('You have not measured the parties\' China revenues against the thresholds, which are RMB 800 million each for at least two parties and RMB 12 billion combined worldwide. This is the first check any deal team should run');
+    if(!has(txn,'both_cn_rev','unsure_rev')&&has(rel,'china_customers'))
+      why.push('Chinese entities provide over 20% of your revenue. Measure that against the RMB 800 million threshold before assuming you are outside the regulator\'s jurisdiction');
+    why.push('The regulator retains a call-in power below the thresholds where it suspects the deal may restrict competition');
+    cons.push('Closing anywhere in the world is unlawful until the deal is cleared, and gun-jumping fines reach 10% of prior-year turnover');
+    cons.push('Clearance can be conditioned on hold-separate orders and behavioural remedies that persist for years');
+    cons.push('The documented coercion pattern is deal-killing by inaction: Qualcomm/NXP (2018) and Intel/Tower (2023) collapsed when the review clock was allowed to run out during periods of US-China tension');
+    cons.push('Review timing tracks the state of the bilateral relationship, and there is no meaningful appeal');
+    risks.push({instrument:'Merger Review under the Anti-Monopoly Law',domain:D.ma,why,cons,url:'https://www.chinalawtranslate.com/en/anti-monopoly-law-2022/'});
+  }
+
+  // ── Unreliable Entity List ────────────────────────────────────
+  {
     const d2=has(sector,'defence')&&(geo==='us'||geo==='taiwan');
-    const d3=has(sector,'research','media','law')&&has(actions,'research','testimony','lobbying');
-    if(d1||d2||d3){
+    const d3=has(sector,'research','media','law')&&has(actions,'research','testimony','lobbying','advise');
+    if(cmTrigger||d2||d3){
       const why=[],cons=[];
       if(has(actions,'cutoff','terminate_jv'))
-        why.push('Cutting off supply or terminating a JV under government direction is the core UEL trigger: "interrupting normal commercial transactions without a legitimate reason"');
+        why.push('Cutting off supply or terminating a joint venture under government direction is the core trigger: interrupting normal commercial transactions without a legitimate reason');
       if(has(actions,'bis_comply','ofac_comply'))
-        why.push('Complying with US/EU export controls or OFAC sanctions restricting Chinese entities may be framed as "discriminating against Chinese enterprises"');
+        why.push('Complying with United States or EU export controls or sanctions restricting Chinese entities may be framed as discriminating against Chinese enterprises');
       if(has(actions,'screen_inv'))
-        why.push('Blocking Chinese investment on national security grounds may be characterised as harming China\'s development interests — an explicit UEL criterion');
-      if(d2) why.push('US and Taiwan-based defence contractors are the primary documented UEL designation targets; your sector and geography directly match known patterns');
-      if(d3) why.push('Research organisations publishing critical analyses or providing expert testimony supporting sanctions are explicitly referenced in UEL listing criteria');
+        why.push('Blocking Chinese investment on national security grounds may be characterised as harming China\'s development interests, which is an explicit listing criterion');
+      if(d2) why.push('Defence contractors based in the United States and Taiwan are the primary documented designation targets, and your sector and geography match the known pattern directly');
+      if(d3) why.push('Research organisations publishing critical analyses or providing expert testimony supporting sanctions are explicitly referenced in the listing criteria');
       if(why.length>0){
-        cons.push('Designation bans listed entities from all import/export with China — immediate loss of Chinese supply and customer base');
-        cons.push('Chinese companies are legally prohibited from transacting with a listed entity; existing contracts are effectively void');
-        cons.push('Executive travel to China becomes extremely high-risk; directors face personal visa bans, deportation, or asset seizure');
-        cons.push('No independent appeals mechanism; reconsideration through MOFCOM is entirely discretionary');
-        risks.push({cluster:'cm',role:'The designation list',instrument:'Unreliable Entity List (UEL)',domain:'Domain 3 · Adversarial Entities',why,cons,url:'https://english.mofcom.gov.cn/Policies/GeneralPolicies/art/2020/art_1889a24134054b5b841134c3fba44654.html'});
+        cons.push('Designation bans the listed entity from all import and export with China, meaning immediate loss of Chinese supply and customer base');
+        cons.push('Chinese companies are legally prohibited from transacting with a listed entity, so existing contracts are effectively void');
+        cons.push('Executive travel to China becomes high-risk: directors face personal visa bans, deportation, or asset seizure');
+        cons.push('There is no independent appeals mechanism, and reconsideration is entirely discretionary');
+        risks.push({cluster:'cm',role:'The designation list',instrument:'Unreliable Entity List',domain:D.advent,why,cons,url:'https://english.mofcom.gov.cn/Policies/GeneralPolicies/art/2020/art_1889a24134054b5b841134c3fba44654.html'});
       }
     }
   }
 
-  if(has(actions,'bis_comply','ofac_comply','cutoff','uflpa')||has(rel,'import_materials')||(has(rel,'ops')&&has(sector,'defence','semi','tech','minerals','materials'))){
+  // ── Decree 834 supply chain security ──────────────────────────
+  if(has(actions,'bis_comply','ofac_comply','cutoff','uflpa')||has(rel,'import_materials')||(has(rel,'ops')&&has(sector,'defence','semi','tech','minerals','materials','machinery','energy'))){
     const why=[],cons=[];
     if(has(actions,'cutoff'))
-      why.push('Decree 834 targets foreign entities whose sanctions compliance "interrupts normal commercial transactions" — a formal multi-agency investigation trigger');
+      why.push('Decree 834 targets foreign entities whose sanctions compliance interrupts normal commercial transactions, which is a formal multi-agency investigation trigger');
     if(has(rel,'import_materials'))
-      why.push('Your supply chain depends on Chinese inputs; Decree 834 enables NDRC to direct domestic producers to deprioritise adversarial-country buyers through emergency allocation orders');
+      why.push('Your supply chain depends on Chinese inputs, and Decree 834 enables the National Development and Reform Commission to direct domestic producers to deprioritise buyers in adversarial countries through emergency allocation orders');
     if(has(actions,'uflpa'))
-      why.push('UFLPA compliance audits require supply chain transparency inside China; Decree 834\'s blocking provisions may prohibit Chinese suppliers from cooperating');
+      why.push('UFLPA compliance audits require supply chain transparency inside China, and Decree 834\'s blocking provisions may prohibit Chinese suppliers from cooperating');
     if(why.length>0){
-      cons.push('Formal multi-agency investigation can be launched without pre-notification');
-      cons.push('Emergency state-directed resource reallocation can redirect Chinese inputs away from your supply chain at any time');
-      cons.push('UFLPA audits may become legally impossible inside China under Decree 834, creating simultaneous breach in both jurisdictions');
-      risks.push({instrument:'Decree 834 — Industrial & Supply Chain Security',domain:'Domain 6 · Countermeasures',why,cons,url:'https://www.gov.cn/zhengce/content/202604/content_7064837.htm'});
+      cons.push('A formal multi-agency investigation can be launched without pre-notification');
+      cons.push('Emergency state-directed reallocation can redirect Chinese inputs away from your supply chain at any time');
+      cons.push('Supply chain audits may become legally impossible inside China, creating simultaneous breach in both jurisdictions');
+      risks.push({instrument:'Decree 834: Industrial and Supply Chain Security',domain:D.supply,why,cons,url:'https://www.gov.cn/zhengce/content/202604/content_7064837.htm'});
     }
   }
 
-  if(has(sector,'telecom','semi')||has(data,'cii_data','chinese_hw','ipo')||(has(rel,'ops')&&has(sector,'tech','finance'))){
+  // ── Cybersecurity review ──────────────────────────────────────
+  if((has(sector,'telecom','semi','cyber')&&(directNexus||has(data,'cii_data','chinese_hw','govt_data','chinese_cloud')))||has(data,'cii_data','chinese_hw','ipo')||(has(rel,'ops')&&has(sector,'tech','finance'))){
     const why=[],cons=[];
     if(has(sector,'telecom','semi'))
-      why.push('Telecom and semiconductor companies are core CII vendors; their products trigger mandatory CAC-led cybersecurity review for any CII procurement');
+      why.push('Telecommunications and semiconductor companies are core vendors to critical information infrastructure, and their products trigger mandatory review led by the Cyberspace Administration for any such procurement');
+    if(has(sector,'cyber'))
+      why.push('Network security products supplied into Chinese critical information infrastructure fall squarely within the review regime, and the reviewing body is also your commercial regulator');
     if(has(data,'cii_data'))
-      why.push('Handling CII operations data in China creates both Cybersecurity Review obligations and cross-border data transfer compliance requirements');
+      why.push('Handling critical information infrastructure data in China creates both review obligations and cross-border transfer compliance requirements');
     if(has(data,'chinese_hw'))
-      why.push('Integration of Chinese hardware (Huawei, ZTE) in your network; products integrated into Chinese CII trigger mandatory review');
+      why.push('Integration of Chinese hardware into your network means products integrated into Chinese critical information infrastructure trigger mandatory review');
     if(has(data,'ipo'))
-      why.push('Overseas listing involving 1M+ Chinese users\' personal data requires CAC cybersecurity review — an effective IPO blocking mechanism');
+      why.push('An overseas listing by a platform holding personal information of more than one million users requires cybersecurity review, which functions as an effective listing block');
     if(why.length>0){
-      cons.push('Products deemed a security risk are blacklisted from CII procurement across seven strategic sectors simultaneously');
-      cons.push('Standard review: 30+ working days; complex cases: ~90 working days; no approval guarantee');
-      cons.push('Overseas IPOs of data-heavy businesses can be blocked indefinitely pending cybersecurity review completion');
-      risks.push({instrument:'Cybersecurity Review Measures (2022)',domain:'Domain 5 · Infrastructure',why,cons,url:'https://www.gov.cn/zhengce/zhengceku/2022-01/04/content_5666430.htm'});
+      cons.push('Products deemed a security risk are blacklisted from critical infrastructure procurement across the listed strategic sectors simultaneously');
+      cons.push('Standard review runs beyond 30 working days and complex cases around 90 working days, with no guarantee of approval');
+      cons.push('Overseas listings of data-heavy businesses can be blocked indefinitely pending completion of review');
+      risks.push({instrument:'Cybersecurity Review Measures (2022)',domain:D.netprod,why,cons,url:'https://www.gov.cn/zhengce/zhengceku/2022-01/04/content_5666430.htm'});
     }
   }
 
-  if(has(actions,'bis_comply','ofac_comply','cutoff','terminate_jv','screen_inv')||(has(actions,'lobbying','research','testimony')&&has(sector,'research','law','media','finance'))){
+  // ── Decree 835 ────────────────────────────────────────────────
+  if(cmTrigger||has(actions,'advise')||(has(actions,'lobbying','research','testimony')&&has(sector,'research','law','media','finance'))){
     const why=[],cons=[];
     if(has(actions,'cutoff','terminate_jv'))
-      why.push('Cutting off supply or terminating JVs under US/EU sanctions creates direct exposure to Decree 835 Prohibition Execution Orders');
+      why.push('Cutting off supply or terminating joint ventures under United States or EU sanctions creates direct exposure to Prohibition Execution Orders');
     if(has(actions,'bis_comply','ofac_comply'))
-      why.push('Compliance with BIS or OFAC restrictions targeting Chinese entities may be classified as "executing" foreign extraterritorial measures under Decree 835');
+      why.push('Compliance with BIS or OFAC restrictions targeting Chinese entities may be classified as executing foreign extraterritorial measures');
     if(has(actions,'lobbying','research'))
-      why.push('Art. 8 of Decree 835 explicitly covers entities "promoting or participating in" foreign restrictive measures — published research and lobbying potentially qualify');
+      why.push('Article 8 covers entities promoting or participating in foreign restrictive measures, and published research and lobbying can potentially qualify');
+    if(has(actions,'advise'))
+      why.push('Advising, representing or auditing clients on export controls, sanctions or supply chain compliance involving Chinese entities can itself be characterised as facilitating foreign restrictive measures under Article 8, which covers those who promote or participate in them. The conduct that exposes you here is work done for others, not restrictions you imposed yourself');
     if(has(sector,'law'))
-      why.push('Law firms advising on China sanctions compliance are directly within Decree 835\'s scope as facilitators of foreign restrictive measures');
+      why.push('Law firms advising on China sanctions compliance are directly within scope as facilitators of foreign restrictive measures');
     if(has(sector,'finance'))
-      why.push('Financial institutions implementing OFAC or EU sanctions on Chinese counterparties are "executing" foreign extraterritorial measures under Decree 835');
+      why.push('Financial institutions implementing OFAC or EU sanctions on Chinese counterparties are executing foreign extraterritorial measures');
     if(why.length>0){
-      cons.push('Prohibition Execution Orders can make compliance with specific US/EU laws inside China a criminal offence — creating an impossible dual-compliance situation');
-      cons.push('Malicious Entity List designation: asset freezes, visa bans for executives, deportation, prohibition on all transactions with Chinese entities');
+      cons.push('Prohibition Execution Orders can make compliance with specific foreign laws inside China a criminal offence, creating an impossible dual-compliance position');
+      cons.push('Malicious Entity List designation brings asset freezes, visa bans for executives, deportation, and prohibition on all transactions with Chinese entities');
       cons.push('Chinese courts have jurisdiction to award substantial damages against designated entities');
-      risks.push({cluster:'cm',role:'Blocking orders + Malicious Entity List',instrument:'Decree 835 — Counter Extraterritorial Jurisdiction',domain:'Domain 6 · Countermeasures',why,cons,url:'https://www.gov.cn/zhengce/content/202604/content_7065398.htm'});
+      cons.push('The Malicious Entity List is administered by the relevant State Council departments through the working mechanism; the Ministry of Justice issues the separate prohibition order under Article 13');
+      risks.push({cluster:'cm',role:'Blocking orders and the Malicious Entity List',instrument:'Decree 835: Counter Extraterritorial Jurisdiction',domain:D.extraterr,why,cons,url:'https://www.gov.cn/zhengce/content/202604/content_7065398.htm'});
     }
   }
 
+  // ── MOFCOM Blocking Statute ───────────────────────────────────
   if(has(actions,'bis_comply','ofac_comply','cutoff')&&has(rel,'export_goods','export_tech','ops','import_materials')){
     const why=[],cons=[];
-    if(has(actions,'bis_comply','ofac_comply','cutoff'))
-      why.push('Complying with foreign export controls or sanctions affecting Chinese entities is the core trigger for mandatory MOFCOM notification');
+    why.push('Complying with foreign export controls or sanctions affecting Chinese entities is the core trigger for mandatory notification to the Ministry of Commerce');
     if(has(rel,'export_goods','export_tech'))
-      why.push('Your active export relationships with China mean supply restrictions made under US/EU law must be reported to MOFCOM within 30 days');
+      why.push('Your active export relationships with China mean supply restrictions made under foreign law must be reported within 30 days');
     if(has(rel,'ops'))
-      why.push('Your China operations are directly subject to MOFCOM Prohibition Orders; compliance with a foreign law could itself become illegal inside China');
-    if(why.length>0){
-      cons.push('30-day notification obligation to MOFCOM whenever you receive government direction affecting your China business');
-      cons.push('If a Prohibition Order is issued, complying with the foreign measure inside China becomes illegal — regardless of home-jurisdiction requirements');
-      cons.push('Chinese courts can hear civil liability claims from Chinese counterparties for damages arising from your prohibited compliance');
-      risks.push({cluster:'cm',role:'The 30-day notification duty',instrument:'MOFCOM Blocking Statute (Order No. 1 of 2021)',domain:'Domain 6 · Countermeasures',why,cons,url:'https://english.mofcom.gov.cn/Policies/GeneralPolicies/art/2021/art_98677d0ed28b41b9adeff27b00c9d001.html'});
-    }
+      why.push('Your China operations are directly subject to Prohibition Orders, and compliance with a foreign law could itself become unlawful inside China');
+    cons.push('A 30-day notification obligation arises whenever you receive government direction affecting your China business');
+    cons.push('If a Prohibition Order is issued, complying with the foreign measure inside China becomes unlawful regardless of home-jurisdiction requirements');
+    cons.push('Chinese courts can hear civil liability claims from Chinese counterparties for damages arising from your prohibited compliance');
+    risks.push({cluster:'cm',role:'The 30-day notification duty',instrument:'MOFCOM Blocking Statute (Order No. 1 of 2021)',domain:D.extraterr,why,cons,url:'https://english.mofcom.gov.cn/Policies/GeneralPolicies/art/2021/art_98677d0ed28b41b9adeff27b00c9d001.html'});
   }
 
-  if(has(actions,'bis_comply','ofac_comply','cutoff','terminate_jv','screen_inv')){
+  // ── Anti-Foreign Sanctions Law ────────────────────────────────
+  if(cmTrigger){
     const why=[],cons=[];
     if(has(actions,'bis_comply','ofac_comply','cutoff'))
-      why.push('Implementing US/EU export controls or OFAC sanctions restricting Chinese entities constitutes "implementing discriminatory restrictive measures" under AFSL');
+      why.push('Implementing foreign export controls or sanctions restricting Chinese entities constitutes implementing discriminatory restrictive measures');
     if(has(actions,'terminate_jv'))
-      why.push('Terminating a JV under regulatory pressure can be characterised as participating in implementing foreign containment policy against China');
+      why.push('Terminating a joint venture under regulatory pressure can be characterised as participating in implementing foreign containment policy against China');
     if(has(actions,'screen_inv'))
       why.push('Blocking Chinese investment on national security grounds may be framed as discriminating against Chinese enterprises');
-    if(why.length>0){
-      cons.push('Individuals and executives involved may be personally listed — exposing them to asset freezes and entry bans into China');
-      cons.push('Chinese entities can file civil suits for damages in Chinese courts against listed persons, with punitive multipliers');
-      cons.push('If executives travel to or hold assets in China, AFSL designation creates direct personal financial and liberty risk');
-      risks.push({cluster:'cm',role:'Personal countermeasures on executives',instrument:'Anti-Foreign Sanctions Law (2021)',domain:'Foundational Legislation',why,cons,url:'https://npcobserver.com/legislation/anti-foreign-sanctions-law/'});
-    }
+    cons.push('Individuals and executives involved may be personally listed, exposing them to asset freezes and entry bans');
+    cons.push('Chinese entities can file civil suits for damages in Chinese courts against listed persons, with punitive multipliers');
+    cons.push('Decisions taken under Articles 4 to 6 are final: Article 7 forecloses administrative reconsideration and administrative litigation alike');
+    cons.push('Decree 803 (March 2025) allows a request to suspend, change, or cancel a listing on evidence of corrected conduct. That is removal by rectification, not appeal');
+    risks.push({cluster:'cm',role:'Personal countermeasures on executives',instrument:'Anti-Foreign Sanctions Law (2021)',domain:D.cmstat,why,cons,url:'https://npcobserver.com/legislation/anti-foreign-sanctions-law/'});
   }
 
-  if(has(rel,'jv','ops')&&has(sector,'defence','semi','telecom','tech','minerals','materials')){
+  // ── Foreign Investment Security Review ────────────────────────
+  if(has(rel,'jv','ops')&&has(sector,'defence','semi','telecom','tech','minerals','materials','machinery','energy','bio')){
     const why=[],cons=[];
-    if(has(sector,'defence')) why.push('Investment involving defence and military-civil fusion enterprises is subject to mandatory NDRC/MOFCOM security review');
-    if(has(sector,'semi','tech')) why.push('AI, semiconductor, and advanced technology sectors are explicitly listed mandatory review categories');
-    if(has(sector,'minerals','materials')) why.push('Strategic resources, advanced materials, and energy in strategically important areas trigger mandatory review');
-    if(has(rel,'jv')) why.push('JV structures in sensitive sectors require security clearance and may be subject to ongoing review');
+    if(has(sector,'defence')) why.push('Investment involving defence and military-civil fusion enterprises is subject to mandatory security review');
+    if(has(sector,'semi','tech')) why.push('Artificial intelligence, semiconductors, and advanced technology are explicitly listed mandatory review categories');
+    if(has(sector,'minerals','materials','energy')) why.push('Strategic resources, advanced materials, and energy in strategically important areas trigger mandatory review');
+    if(has(sector,'machinery','bio')) why.push('Important equipment manufacturing and biotechnology fall within the sectors subject to review');
+    if(has(rel,'jv')) why.push('Joint venture structures in sensitive sectors require security clearance and may be subject to ongoing review');
     if(why.length>0){
-      cons.push('Applications can be rejected, conditioned, or delayed — no statutory timeline or independent appeal mechanism');
-      cons.push('Post-approval: NDRC/MOFCOM can require divestiture at any time if the investment is later reassessed');
+      cons.push('Applications can be rejected, conditioned, or delayed, with no statutory timeline and no independent appeal');
+      cons.push('After approval, the investment can be reassessed and divestiture required at any time');
       cons.push('Conditions may include operational restrictions, technology firewalls, mandatory reporting, or government access requirements');
-      risks.push({instrument:'Foreign Investment Security Review',domain:'Domain 5 · Infrastructure',why,cons,url:'https://www.chinalawtranslate.com/en/foreigninvestmentsecurityreview/'});
+      risks.push({instrument:'Foreign Investment Security Review',domain:D.inbound,why,cons,url:'https://www.chinalawtranslate.com/en/foreigninvestmentsecurityreview/'});
     }
   }
 
-  if(!none(capital)&&(!none(tech)||!none(mat)||has(rel,'ops','jv'))){
+  // ── Decree 837 outbound investment ────────────────────────────
+  if(!none(capital)){
     const why=[],cons=[];
     if(has(capital,'soe','gwf'))
-      why.push('Chinese SOE or government fund investment subjects your company to Decree 837\'s full-process supervision');
+      why.push('Chinese state-owned enterprise or government fund investment subjects your company to full-process supervision under Decree 837');
     if(has(capital,'private','individual'))
-      why.push('Chinese private company or connected individual investors are subject to NDRC/MOFCOM monitoring under Decree 837 if technology or strategic assets are involved');
-    if(!none(tech)&&!none(capital))
-      why.push('Decree 837 prohibits Chinese investors from using overseas investment to transfer restricted technologies to your organisation or third parties');
+      why.push('Chinese private company or connected individual investors are subject to monitoring where technology or strategic assets are involved');
+    if((any(tind)||any(tdig))&&!none(capital))
+      why.push('Decree 837 prohibits Chinese investors from using overseas investment to transfer restricted technologies to your organisation or onward to third parties');
+    if(has(capital,'discussing'))
+      why.push('Active or recent discussions with Chinese investors bring you inside the pre-investment review perimeter before any money moves, and the review sits with the investor rather than with you, so you may not see it');
+    if(has(capital,'subsidies'))
+      why.push('Chinese government grants, loans or subsidies create a continuing supervision relationship with the granting authority. They also carry a second-order risk in your own jurisdiction, where foreign subsidy regimes increasingly require disclosure of exactly this');
     if(why.length>0){
-      cons.push('Chinese investors in your company face penalties of up to 10% of investment value for violations — creating pressure to limit your activities');
-      cons.push('Government can monitor how Chinese investors interact with your organisation with implications for commercial confidentiality');
+      cons.push('Chinese investors in your company face penalties of up to 10% of investment value for violations, creating pressure to limit your activities');
+      cons.push('The government can monitor how Chinese investors interact with your organisation, with implications for commercial confidentiality');
       cons.push('Pre-investment national security review may be required before Chinese investment can close');
-      risks.push({instrument:'State Council Regulations on Overseas Investment (Decree 837)',domain:'Domain 6 · Countermeasures',why,cons,url:'https://www.news.cn/politics/20260601/c501b3cd78034669a8dd442f659f2a20/c.html'});
+      risks.push({instrument:'Overseas Investment Supervision (Decree 837)',domain:D.outbound,why,cons,url:'https://www.news.cn/politics/20260601/c501b3cd78034669a8dd442f659f2a20/c.html'});
     }
   }
 
-  if(!none(data)&&has(data,'personal_data','chinese_users','govt_data','cii_data','ai_training','ipo')){
+  // ── Cross-border data transfer ────────────────────────────────
+  if(has(data,'personal_data','chinese_users','govt_data','cii_data','ai_training','ipo','chinese_cloud')){
     const why=[],cons=[];
     if(has(data,'personal_data','chinese_users'))
-      why.push('Moving personal data of Chinese residents out of China engages the three-route framework once you pass 100,000 people cumulatively since 1 January; below that, non-sensitive transfers are exempt under the March 2024 Provisions');
+      why.push('Moving personal data of Chinese residents out of China engages the three-route framework once you pass 100,000 people cumulatively since 1 January. Below that, non-sensitive transfers are exempt under the March 2024 Provisions');
     if(has(data,'govt_data','cii_data'))
-      why.push('Any cross-border transfer by a critical information infrastructure operator needs a CAC Security Assessment; for other firms, data counts as "important" only once regulators have notified or publicly listed it (2024 Provisions, Art. 2)');
+      why.push('Any cross-border transfer by a critical information infrastructure operator needs a security assessment. For other firms, data counts as important only once regulators have notified or publicly listed it (2024 Provisions, Art. 2)');
     if(has(data,'ai_training'))
-      why.push('AI training on Chinese-sourced datasets likely involves bulk personal information processing, triggering SCC or Security Assessment requirements');
+      why.push('AI model training on Chinese-sourced datasets likely involves bulk personal information processing, triggering either standard contract or security assessment requirements');
+    if(has(data,'chinese_cloud'))
+      why.push('Running core operations on Chinese cloud services or data centres places that data inside Chinese jurisdiction, where domestic access powers reach it. Moving it out later is itself a cross-border transfer needing one of the three routes, so the dependency is easier to create than to unwind');
     if(has(data,'ipo'))
-      why.push('An overseas listing by a platform holding personal information of more than 1 million users requires a Cybersecurity Review, not a data export assessment (Cybersecurity Review Measures, Art. 7) — an effective IPO blocking mechanism');
-    if(why.length>0){
-      cons.push('All cross-border data transfers must cease during CAC review — operational disruption to AI pipelines, analytics, and cloud infrastructure');
-      cons.push('CAC can order permanent deletion of data already transferred abroad');
-      cons.push('Fines up to RMB 50 million or 5% of annual global turnover; criminal prosecution for executives in severe cases');
-      risks.push({instrument:'Cross-Border Data Transfer Framework (2024 Provisions)',domain:'Domain 5 · Infrastructure',why,cons,url:'https://www.cac.gov.cn/2024-03/22/c_1712776611775634.htm'});
-    }
+      why.push('An overseas listing by a platform holding personal information of more than one million users requires cybersecurity review rather than a data export assessment (Cybersecurity Review Measures, Art. 7)');
+    cons.push('All cross-border transfers must cease during review, disrupting AI pipelines, analytics, and cloud infrastructure');
+    cons.push('Regulators can order permanent deletion of data already transferred abroad');
+    cons.push('Fines reach RMB 50 million or 5% of annual global turnover, with criminal prosecution for executives in severe cases');
+    cons.push('Where core state data is involved, Data Security Law Art. 45 raises penalties to RMB 2 million to 10 million, and Art. 24 makes security review decisions final');
+    risks.push({instrument:'Cross-Border Data Transfer Framework (2024 Provisions)',domain:D.datatx,why,cons,url:'https://www.cac.gov.cn/2024-03/22/c_1712776611775634.htm'});
   }
-  return {risks, unsure: has(mat,'unsure')||has(tech,'unsure')};
+
+  // Safe harbour: the Dual-Use List expressly carves public-domain
+  // information and basic scientific research out of technology controls.
+  // Surfacing this prevents the tool over-flagging academic users.
+  const safeHarbour=has(sector,'research')&&(any(tind)||any(tdig)||any(mat)||any(equip)||any(bio)
+    ||unsureIn(tind)||unsureIn(tdig)||unsureIn(mat)||unsureIn(equip)||unsureIn(bio));
+
+  return {risks, unsureAreas, safeHarbour};
 }
 
 function riskCard(r){
@@ -928,7 +1264,8 @@ function riskCard(r){
 function renderResults(){
   document.getElementById('prog-fill').style.width='100%';
   document.getElementById('prog-pct').textContent='100%';
-  const {risks,unsure}=calcRisk();
+  const {risks,unsureAreas,safeHarbour}=calcRisk();
+  const unsure=unsureAreas.length>0;
   const cm=risks.filter(r=>r.cluster==='cm');
   const rest=risks.filter(r=>r.cluster!=='cm');
   let html='';
@@ -937,14 +1274,14 @@ function renderResults(){
       <div class="ic">✅</div>
       <h3>No significant exposure identified</h3>
       <p>Based on your responses, your organisation does not appear to directly trigger the major instruments in China's coercive legal architecture. Re-run the assessment if your commercial relationships, technology areas, or activities change.</p>
-      <p class="res-meta">🔒 Your answers never left this browser; nothing was stored or transmitted. Assessment reflects instruments in force as of July 2026.</p>
+      <p class="res-meta">🔒 Your answers never left this browser; nothing was stored or transmitted. Assessment reflects instruments in force as of August 2026.</p>
     </div>`;
   } else {
     if(risks.length>0){
       html=`<div class="res-intro fade-in">
         <h3>⚠ ${risks.length} instrument${risks.length>1?'s':''} applicable to your profile</h3>
         <p>Based on your responses, the following elements of China's legal architecture of economic coercion are relevant to your organisation. Each entry explains why it applies and what the practical consequences are. <strong>This is not legal advice</strong>: engage a specialised trade compliance counsel for a detailed assessment.</p>
-        <p class="res-meta">🔒 Your answers never left this browser; nothing was stored or transmitted. Assessment reflects instruments in force as of July 2026.</p>
+        <p class="res-meta">🔒 Your answers never left this browser; nothing was stored or transmitted. Assessment reflects instruments in force as of August 2026.</p>
       </div>`;
     }
     html+=rest.map(riskCard).join('');
@@ -958,9 +1295,17 @@ function renderResults(){
       html+=cm.map(riskCard).join('');
     }
     if(unsure){
+      const list=unsureAreas.length===1?unsureAreas[0]
+        :unsureAreas.slice(0,-1).join(', ')+' and '+unsureAreas[unsureAreas.length-1];
       html+=`<div class="advisory-card fade-in">
-        <h4>◑ Unverified exposure: controlled items not audited</h4>
-        <p>You answered &ldquo;Not sure&rdquo; on controlled materials or technologies. China's controls attach at item level, so exposure cannot be ruled in or out without an internal audit of your bill of materials and technology stack against MOFCOM's control lists.</p>
+        <h4>◑ Unresolved: ${unsureAreas.length} area${unsureAreas.length>1?'s':''} not yet audited</h4>
+        <p>You answered &ldquo;Not sure&rdquo; on ${list}. This is not the same as being unexposed. China's controls attach at item level across 173 dual-use codes covering materials, equipment, software and technology, plus 132 entries in the Technology Export Catalogue. Any assessment above should be read as a floor rather than a complete picture, and the audit is the next step.</p>
+      </div>`;
+    }
+    if(safeHarbour){
+      html+=`<div class="advisory-card fade-in">
+        <h4>◑ Exemptions that may apply to you</h4>
+        <p>As a research organisation, note that the dual-use control list expressly carves several things out of technology controls: information already in the <strong>public domain</strong> whose further circulation is unrestricted, <strong>basic scientific research</strong> undertaken to advance fundamental knowledge without a specific practical objective, and the knowledge needed for ordinary patent applications. Retail software installable without supplier support is similarly outside software controls. These exemptions are narrower than they sound, and applied research with a defined application will not qualify, but they should be assessed before assuming the controls bite.</p>
       </div>`;
     }
   }
