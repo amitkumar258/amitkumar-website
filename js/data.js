@@ -2,6 +2,14 @@
 // Updated from user-provided document with 45 commentaries
 const commentariesData = [
     {
+        title: "Will the BRICS push for de-dollarisation inadvertently benefit China?",
+        publication: "Indian Express",
+        date: "11/09/2026",
+        pubCategory: "national",
+        url: "https://indianexpress.com/article/opinion/columns/will-brics-ush-de-dollarisation-benefit-china-xi-india-10873259/",
+        tags: ["china", "economy", "security"]
+    },
+    {
         title: "Behind China's AI gift, a constraint",
         publication: "The Hindu",
         date: "30/07/2026",
