@@ -504,6 +504,13 @@ const commentariesData = [
 // Papers data — newest to oldest
 const papersData = [
     {
+        title: "China is Armed for an Age of Protracted Economic Warfare",
+        publication: "Takshashila Institution",
+        date: "05/09/2026",
+        url: "https://takshashila.org.in/content/publications/20260905-china-economic-warfare.html",
+        tags: ["china", "economy", "security"]
+    },
+    {
         title: "Sand Slipping Through Fingers",
         publication: "Takshashila Institution",
         date: "30/03/2026",
