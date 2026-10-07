@@ -2,6 +2,15 @@
 // Updated from user-provided document with 45 commentaries
 const commentariesData = [
     {
+        title: "At BRICS, India must bank on the NDB",
+        publication: "The Hindu",
+        date: "14/09/2026",
+        pubCategory: "national",
+        url: "https://www.thehindu.com/news/national/at-brics-india-must-bank-on-the-ndb/article71451692.ece",
+        coAuthor: "Anushka Saxena",
+        tags: ["security", "economy", "india"]
+    },
+    {
         title: "Will the BRICS push for de-dollarisation inadvertently benefit China?",
         publication: "Indian Express",
         date: "11/09/2026",
