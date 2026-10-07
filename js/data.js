@@ -19,6 +19,14 @@ const commentariesData = [
         tags: ["security", "economy", "india"]
     },
     {
+        title: "What Cements the BRICS?",
+        publication: "Eye on China",
+        date: "12/09/2026",
+        pubCategory: "national",
+        url: "https://eyeonchina.substack.com/p/what-cements-the-brics",
+        tags: ["india", "china", "economy", "security"]
+    },
+    {
         title: "Will the BRICS push for de-dollarisation inadvertently benefit China?",
         publication: "Indian Express",
         date: "11/09/2026",
