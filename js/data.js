@@ -819,6 +819,12 @@ const mediaData = [
         url: "https://www.youtube.com/watch?v=5e81ZmHGR_k"
     },
     {
+        title: "BRICS Summit 2026",
+        outlet: "News 9",
+        date: "08/08/2026",
+        url: "https://x.com/i/broadcasts/1oJMvNqPEVjxQ"
+    },
+    {
         title: "Why is China's Xi Jinping visiting North Korea now?",
         outlet: "TRT World Now",
         date: "09/06/2026",
