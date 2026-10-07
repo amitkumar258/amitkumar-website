@@ -2,6 +2,14 @@
 // Updated from user-provided document with 45 commentaries
 const commentariesData = [
     {
+        title: "From iPhones to borders: India's real China dilemma",
+        publication: "ThinkChina",
+        date: "30/09/2026",
+        pubCategory: "international",
+        url: "https://www.thinkchina.sg/politics/iphones-borders-indias-real-china-dilemma",
+        tags: ["china", "india", "security"]
+    },
+    {
         title: "At BRICS, India must bank on the NDB",
         publication: "The Hindu",
         date: "14/09/2026",
