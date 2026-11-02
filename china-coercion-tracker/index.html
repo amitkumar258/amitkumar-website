@@ -434,6 +434,7 @@ const RQs=[
      {v:'geo',      l:'Mapping, surveying, geospatial, or satellite imagery provider'},
      {v:'bio',      l:'Biotechnology, life sciences, or laboratory services'},
      {v:'energy',   l:'Energy, nuclear, or power equipment'},
+     {v:'solar',    l:'Solar / photovoltaics manufacturer (polysilicon, ingots, wafers, cells, or modules)'},
      {v:'finance',  l:'Financial services, private equity, or investment fund'},
      {v:'research', l:'Research institution, university, or think tank'},
      {v:'law',      l:'Law firm or trade compliance / sanctions consultancy'},
@@ -467,6 +468,7 @@ const RQs=[
      {v:'import_materials',l:'Source critical raw materials or components from Chinese suppliers'},
      {v:'china_customers', l:'Chinese entities are significant customers (>20% of revenue)'},
      {v:'reexport',        l:'Re-export, resell, or ship onward items of Chinese origin, including through third countries'},
+     {v:'control_change',  l:'A change in the ownership or actual control of technology held in China is passing to an overseas entity, including redomiciling the company abroad or an acquisition of it'},
      {v:'indirect',        l:'Sell to third-country distributors, systems integrators, or contract manufacturers that we know or expect onward-ship to China'},
      {v:'none',            l:'None of the above'},
    ]},
@@ -526,6 +528,9 @@ const RQs=[
      {v:'chem_sch', l:'Scheduled chemicals under China\'s monitored-chemicals list, which includes bulk commodities such as sodium cyanide, thionyl chloride and triethanolamine used in gold leaching, electroplating and surfactant manufacture'},
      {v:'vetvax',   l:'Veterinary vaccine or virus strains (African swine fever, avian influenza, foot-and-mouth, classical swine fever)'},
      {v:'germplasm',l:'Crop, forage, tobacco, livestock, or aquatic germplasm; or genes and vectors used in plant breeding'},
+     {v:'cellgene', l:'Cell and gene therapy: process platforms, or novel target discovery and validation'},
+     {v:'sirna',    l:'siRNA therapeutics: process platforms, or novel target discovery and validation'},
+     {v:'pathmod',  l:'Modification of pathogenic micro-organisms'},
      {v:'unsure',   l:'Not sure: we have not checked our biological or chemical inventory against the control list'},
      {v:'none',     l:'None of the above'},
    ]},
@@ -543,6 +548,11 @@ const RQs=[
      {v:'aviamat',  l:'Aviation materials: aluminium-lithium alloys with rare earths, single-crystal turbine blade alloys, tungsten-hafnium superalloys'},
      {v:'stealth',  l:'Military stealth materials, high-temperature alloys above 850°C, or transpiration cooling materials'},
      {v:'cfiber',   l:'Carbon fibre processing technology'},
+     {v:'pv_poly',  l:'Polysilicon production processes, or engineering design for production lines of 30,000 tonnes a year or more'},
+     {v:'pv_wafer', l:'Monocrystalline rod or wafer processes, or preparation of very thin wafers'},
+     {v:'pv_cell',  l:'Solar cell technology: TOPCon, XBC, or HJT, or cell edge-passivation processes'},
+     {v:'pv_perov', l:'Perovskite or tandem module production technology'},
+     {v:'pv_equip', l:'Key production equipment listed for polysilicon, wafer, or cell manufacturing'},
      {v:'cinsul',   l:'Rigid low-density bonded carbon fibre or non-fibrous carbon insulation, usable above 2000°C or at density 100 to 300 kg/m³'},
      {v:'cnc_t',    l:'High-end CNC machine tool design, or integrated casting-forging-milling metal 3D printing'},
      {v:'unsure',   l:'Not sure: we have not mapped our process know-how against the Catalogue'},
@@ -552,7 +562,15 @@ const RQs=[
    text:'Which digital, information, or life-science technologies does your organisation work with? Select all that apply.',
    opts:[
      {v:'recsys',   l:'Recommendation engines or personalised content-push algorithms'},
-     {v:'cn_lang',  l:'Chinese-language speech recognition, text processing, handwriting recognition, machine translation, or minority-language processing'},
+     {v:'cn_lang',  l:'Chinese-language speech recognition, text processing, handwriting recognition, machine translation, minority-language processing, or voiceprint recognition'},
+     {v:'frontier', l:'Foundation models meeting any one of: 10²⁶ or more training FLOPs, 2 trillion or more parameters, or global top-ten capability on public evaluations'},
+     {v:'ai_data',  l:'Models trained on Chinese "core data" or "important data" as those tiers are defined by the Data Security Law'},
+     {v:'ai_agent', l:'AI agents with autonomous multi-step planning, multi-agent collaboration, or large-scale tool use'},
+     {v:'ai_chip',  l:'AI chip design at 14nm or below, or using advanced 2.5D/3D packaging, high-speed interconnect, or memory-compute integration'},
+     {v:'ai_mem',   l:'Memory design: flash at 8 Gb/mm² or denser with 1.5 Gbps or faster I/O, or DRAM below 18nm or using vertical channel transistors'},
+     {v:'ai_clust', l:'Compute clusters of 10,000 or more AI accelerators combined with 800 GB/s interconnect, 120-second failure recovery, 98% scaling efficiency, or scheduling across two or more chip vendors'},
+     {v:'ai_offen', l:'AI for malicious code generation, automated vulnerability discovery, or detection evasion'},
+     {v:'aigc_det', l:'Detection of AI-generated content at high accuracy (95% and above, or 98% and above)'},
      {v:'ai',       l:'Advanced AI or machine learning architectures (training, inference, or deployment)'},
      {v:'supercomp',l:'Supercomputer hardware, software, or network architecture'},
      {v:'quantum',  l:'Quantum cryptography, or cryptographic chip design'},
@@ -723,6 +741,20 @@ function suspStatus(key){
     phrase: live
       ? `suspended by ${s.by} until ${d}, and the suspension is reversible without notice`
       : `suspended by ${s.by} until ${d}, a date that has now passed: confirm the current status before relying on it`};
+}
+
+// Consultation deadlines, handled the same way so the copy does not go stale.
+const CONSULTATIONS={
+  ann48:{closes:'2026-11-15'},
+};
+function consultStatus(key){
+  const c=CONSULTATIONS[key], closes=new Date(c.closes+'T00:00:00');
+  const open=new Date()<closes;
+  const d=closes.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  return {open, date:d,
+    phrase: open
+      ? `open for public comment until ${d}, so the thresholds below may still move`
+      : `closed for comment on ${d}; check whether the final text has been issued and how it differs from the draft`};
 }
 
 // ── DOMAIN LABELS ──
@@ -1008,6 +1040,67 @@ function calcRisk(){
       cons.push('Existing contracts can be nullified where approval was required and not obtained');
       cons.push('Approval can be withheld indefinitely without a stated reason, which functions as a soft block on partnerships');
       risks.push({instrument:'Technology Export Catalogue: restricted tier (2023, adjusted July 2025)',domain:D.strattech,why,cons,url:'https://www.most.gov.cn/satp/kjzc/zh/202507/t20250716_194194.html'});
+    }
+  }
+
+  // ─────────────────────────────────────────────────────────────
+  //  MOFCOM + MOST ANNOUNCEMENT 2026 No. 48
+  //  Two instruments in one announcement, at different stages:
+  //    (1) a REGISTRATION duty, in force since 16 Oct 2026, temporary,
+  //        running until the revised Catalogue is issued;
+  //    (2) a DRAFT Catalogue revision, 40 technologies, 14 prohibited and
+  //        26 restricted, still out for comment.
+  //  Keep them apart. Telling a firm it is already licence-controlled when
+  //  the tier is still draft is the same error as conflating J with X.
+  // ─────────────────────────────────────────────────────────────
+  {
+    const AI48={
+      frontier:'foundation models meeting any one of 10²⁶ training FLOPs, 2 trillion parameters, or global top-ten capability on public evaluations',
+      ai_data:'models trained on Chinese "core data" (proposed prohibited) or "important data" (proposed restricted), the tiers defined by the Data Security Law',
+      ai_agent:'AI agents with autonomous multi-step planning, multi-agent collaboration, or large-scale tool use',
+      ai_chip:'AI chip design at 14nm or below, or using advanced 2.5D/3D packaging, high-speed interconnect, or memory-compute integration',
+      ai_mem:'memory design: flash at 8 Gb/mm² or denser with 1.5 Gbps or faster I/O, and DRAM below 18nm or using vertical channel transistors',
+      ai_clust:'compute clusters of 10,000 or more AI accelerators combined with 800 GB/s interconnect, 120-second failure recovery, 98% scaling efficiency, or scheduling across two or more chip vendors',
+      ai_offen:'AI for malicious code generation, automated vulnerability discovery, or detection evasion, the first of which is in the proposed prohibited tier',
+      aigc_det:'detection of AI-generated content, proposed as prohibited above 95% accuracy where mainly used for cross-border data security, and restricted above 98%',
+      cn_lang:'minority-language translation and voiceprint recognition',
+    };
+    const BIO48={
+      cellgene:'cell and gene therapy process platforms (proposed prohibited) and novel target discovery and validation (proposed restricted)',
+      sirna:'siRNA process platforms (proposed prohibited) and novel target discovery and validation (proposed restricted)',
+      pathmod:'modification of certain pathogenic micro-organisms (proposed prohibited)',
+    };
+    const PV48={
+      pv_poly:'polysilicon production processes, with engineering design for lines of 30,000 tonnes a year or more in the proposed restricted tier',
+      pv_wafer:'monocrystalline rod and wafer processes, and preparation of very thin wafers',
+      pv_cell:'TOPCon, XBC and HJT cell technology, and cell edge-passivation processes',
+      pv_perov:'perovskite and tandem module production technology',
+      pv_equip:'the listed key production equipment',
+    };
+    const hits=[]
+      .concat(Object.keys(AI48).filter(k=>has(tdig,k)).map(k=>AI48[k]))
+      .concat(Object.keys(BIO48).filter(k=>has(bio,k)).map(k=>BIO48[k]))
+      .concat(Object.keys(PV48).filter(k=>has(tind,k)).map(k=>PV48[k]));
+    const registrable=techVector||has(rel,'control_change');
+
+    if(hits.length>0&&registrable){
+      const c=consultStatus('ann48');
+      const why=[],cons=[];
+      why.push('<strong>A registration duty applies to you now.</strong> Announcement No. 48 of 2026, issued jointly by the Ministry of Commerce and the Ministry of Science and Technology on 16 October 2026, requires technology exporters to register on the Ministry of Commerce business platform <em>before</em> exporting any of the 40 listed technologies. This is a filing obligation, not a licence, and it took effect the day it was published');
+      hits.forEach(h=>why.push(`Your work involves ${h}`));
+      why.push('Registration is triggered by the <strong>transaction type</strong>, not by a licensing decision: transferring technology ownership abroad, licensing domestic technology for overseas use, or a change in the ownership or actual control of domestic technology to an overseas party. Exports already under way but not yet completed must also be registered');
+      if(has(rel,'control_change'))
+        why.push('You have indicated a change of ownership or control passing overseas. That is expressly a registrable export even where no code or document crosses a border, which reaches company redomiciliation and acquisition as much as a licensing deal');
+      why.push(`The second half of the announcement, a draft revision of the Technology Export Catalogue adding 40 technologies in 14 prohibited and 26 restricted entries, is <strong>not yet in force</strong>. It is ${c.phrase}. Treat the tier assignments above as proposed rather than operative, and the registration duty as live`);
+      why.push('<strong>Several carve-outs matter here.</strong> Access by overseas users through an API, an app, a website or software as a service is outside the controls, as is lightweight deployment on local devices. Technology already public through open source or publication is excluded, though commentators disagree over whether that carve-out reaches the prohibited tier as well as the restricted one. Products made using the listed technologies are not themselves controlled');
+      if(hits.some(h=>h.indexOf('cell and gene')===0||h.indexOf('siRNA')===0))
+        why.push('For the biomedicine entries the proposed prohibition bites only where <strong>ownership is transferred outbound</strong>. Licensing, and outsourced research or manufacturing that does not move ownership, fall outside it');
+      cons.push('Register before exporting, and retrospectively for transactions already in progress. The filing covers the parties, the destination, the technology, its intended use and the expected value');
+      cons.push('The exporter carries the burden of deciding whether a given export is in scope, and the announcement sets out no penalties, which leaves the consequences of getting it wrong to the underlying Foreign Trade Law and the Technology Import/Export Administration Regulations');
+      cons.push('Automatic licensing is promised for open-source releases, overseas self-operated data centres, overseas tape-out, international joint research and standards participation. Approval is described as near-immediate rather than guaranteed');
+      cons.push('Licences are to be handled by provincial commerce and science authorities, with central authorities able to intervene');
+      cons.push(c.open?`The draft may change before it is finalised; comment closes ${c.date}`:'Comment has closed: confirm the final text before relying on any threshold above');
+      risks.push({instrument:'Technology Export Registration and draft Catalogue revision (Announcement 2026 No. 48)',domain:D.strattech,why,cons,url:'https://www.mofcom.gov.cn/zwgk/zcfb/art/2026/art_0a31a3c9ac404f7a9b0e917ce3412997.html'});
     }
   }
 
