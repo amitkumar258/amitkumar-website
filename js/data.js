@@ -723,6 +723,21 @@ const papersData = [
 // Talks data — seminars, webinars, conferences — newest to oldest
 const talksData = [
     {
+        event: "29th India Trilateral Forum",
+        host: "The Takshashila Institution, the German Marshall Fund of the United States and the Swedish Ministry for Foreign Affairs",
+        venue: "Bengaluru",
+        date: "22/10/2026",
+        dateLabel: "22–23 Oct 2026",
+        topic: "Session on Critical Minerals",
+        subtitle: "Moderator",
+        photos: [
+            "assets/images/talks/itf29-2026-1.jpg",
+            "assets/images/talks/itf29-2026-2.jpg",
+            "assets/images/talks/itf29-2026-3.jpg",
+            "assets/images/talks/itf29-2026-4.jpg"
+        ]
+    },
+    {
         event: "China In The World 2026",
         host: "Doublethink Lab",
         venue: "Taipei, Taiwan",
