@@ -2,6 +2,14 @@
 // Updated from user-provided document with 45 commentaries
 const commentariesData = [
     {
+        title: "Quad isn't dormant. Look at the evidence",
+        publication: "Moneycontrol",
+        date: "23/11/2026",
+        pubCategory: "national",
+        url: "https://www.moneycontrol.com/news/opinion/quad-isn-t-dormant-look-at-the-evidence-14087119.html",
+        tags: ["security", "india", "US"]
+    },
+    {
         title: "From iPhones to borders: India's real China dilemma",
         publication: "ThinkChina",
         date: "30/09/2026",
