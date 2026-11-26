@@ -2,6 +2,14 @@
 // Updated from user-provided document with 45 commentaries
 const commentariesData = [
     {
+        title: "Beyond Alice Huang, the expanding footprint of Chinese espionage in America",
+        publication: "Indian Express",
+        date: "26/11/2026",
+        pubCategory: "national",
+        url: "https://indianexpress.com/article/opinion/columns/alice-huang-chinese-espionage-america-jensen-nvidia-10979802/",
+        tags: ["security", "china", "US"]
+    },
+    {
         title: "Quad isn't dormant. Look at the evidence",
         publication: "Moneycontrol",
         date: "23/11/2026",
